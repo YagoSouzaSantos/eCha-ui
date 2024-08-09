@@ -1,0 +1,59 @@
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/image/login/background.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+  z-index: -2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(145, 194, 80, 0.3);
+  filter: blur(20px);
+  z-index: -1;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  color: #12400B;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+img {
+  height: 45.6552px;
+  width: auto;
+}
+
+mat-card {
+  height: 623.52px;
+  width: 428.4px;
+  border-radius: 8px;
+}

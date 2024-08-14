@@ -1,0 +1,57 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px;
+}
+
+.title-area {
+  padding-bottom: 35px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+form {
+  width: 100%;
+  max-width: 428.4px;
+  min-width: 300px;
+}
+
+form mat-form-field {
+  width: 100%;
+}
+
+.recovery-button {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas, cada uma ocupando metade da largura */
+  gap: 10px; /* Espaçamento entre os itens */
+}
+
+.item1, .item4, .item5 {
+  grid-column: 1 / -1; /* Ocupa toda a largura na linha */
+}
+
+.item2, .item3 {
+  grid-column: span 1; /* Cada item ocupa uma coluna na linha */
+}
+
+.full-width-button {
+  width: 100%; /* Faz o botão ocupar toda a largura do contêiner pai */
+  box-sizing: border-box; /* Inclui padding e bordas na largura total */
+}

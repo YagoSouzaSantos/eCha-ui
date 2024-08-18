@@ -1,3 +1,6 @@
+$action-button: #CBDFB2;
+$text-action-button: #12400B;
+$icon-color: #acacac;
 :host {
   display: flex;
   flex-direction: column;
@@ -12,7 +15,7 @@
 }
 
 h2 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   margin-bottom: 0;
 }
@@ -39,19 +42,46 @@ form mat-form-field {
 .grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Duas colunas, cada uma ocupando metade da largura */
-  gap: 10px; /* Espaçamento entre os itens */
+  grid-template-columns: 1fr 1fr;
+  margin-top: 5px;
+  gap: 5px;
 }
 
-.item1, .item4, .item5 {
-  grid-column: 1 / -1; /* Ocupa toda a largura na linha */
+.item1,
+.item4,
+.item5 {
+  grid-column: 1 / -1;
 }
 
-.item2, .item3 {
-  grid-column: span 1; /* Cada item ocupa uma coluna na linha */
+.item2,
+.item3 {
+  grid-column: span 1;
 }
 
 .full-width-button {
-  width: 100%; /* Faz o botão ocupar toda a largura do contêiner pai */
-  box-sizing: border-box; /* Inclui padding e bordas na largura total */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mat-mdc-outlined-button {
+  border-width: 2px;
+  color: $text-action-button !important
+}
+
+button {
+  font-weight: 400;  color: $text-action-button !important;
+}
+
+.mat-mdc-unelevated-button {
+  background-color: $action-button !important;
+  color: $text-action-button !important;
+  font-weight: 450 !important;
+}
+
+mat-icon img {
+  width: 18px;
+}
+
+mat-icon {
+  color: $icon-color !important;
 }

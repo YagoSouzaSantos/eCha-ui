@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SignInComponent } from './core/authentication/components/sign-in/sign-in.component';
+import { SignInComponent } from "./features/login/components/sign-in/sign-in.component";
+
 
 
 @Component({

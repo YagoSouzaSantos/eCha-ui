@@ -3,6 +3,8 @@ import { SignInComponent } from './features/login/components/sign-in/sign-in.com
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { LoginComponent } from './features/login/login.component';
 import { SignUpComponent } from './features/login/components/sign-up/sign-up.component';
+import { AuthGuard } from './core/security/auth.guard';
+import { HomeComponent } from './features/home/home/home.component';
 
 export const routes: Routes = [
   {
@@ -19,5 +21,6 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: 'my-profile', component: MyProfileComponent }
+  { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent }
 ];

@@ -25,6 +25,7 @@
     "@angular/ssr": "^18.1.4",
     "angular-oauth2-oidc": "^17.0.2",
     "express": "^4.18.2",
+    "json-server": "^1.0.0-beta.2",
     "jsonwebtoken": "^9.0.2",
     "jsrsasign": "^11.1.0",
     "jwt-simple": "^0.5.6",

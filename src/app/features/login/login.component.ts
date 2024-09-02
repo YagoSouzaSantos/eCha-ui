@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private topnavService: TopnavService) {  }
 
   ngOnInit(): void {
-    this.topnavService.setMyBoolean(false);
+    this.topnavService.configureTopNavBar(false,'start','default');
   }
 
 }

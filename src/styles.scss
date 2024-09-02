@@ -8,31 +8,24 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .container-full {
-  height: 100vh;
+  min-height: 90vh;
   width: 100vw;
   overflow: hidden;
   display: flex;
   justify-content: center;
+  background-color: aquamarine;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-//colors
-$dark-green: #152B11;
 
-.mat-mdc-button-base .p-green {
-  background-color: var($dark-green);
+// area de conteúdo
+.ca {
+  // background-color: #fff;
+  width: 100%;
+  max-width: 1480px;
+
 }

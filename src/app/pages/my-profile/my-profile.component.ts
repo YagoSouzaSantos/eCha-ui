@@ -17,7 +17,6 @@ export class MyProfileComponent {
 
   showData() {
     const data = JSON.stringify(this.authGoogleService.getProfile())
-
     console.log(data);
   }
 

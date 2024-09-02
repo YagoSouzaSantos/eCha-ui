@@ -1,2 +1,10 @@
-<app-top-nav />
-<router-outlet />
+<mat-drawer-container>
+  <mat-drawer mode="over" [ngClass]="bgColorTheme">
+    menu
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-top-nav />
+    <router-outlet />
+  </mat-drawer-content>
+</mat-drawer-container>

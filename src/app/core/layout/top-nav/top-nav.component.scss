@@ -2,8 +2,9 @@
 
   .mat-toolbar-row,
   .mat-toolbar-single-row {
+    padding-top: 8px;
     justify-content: center;
-    background-color: #fff;
+    background-color: transparent;
   }
 
   .tn-content {
@@ -19,12 +20,25 @@
     margin: 0 8px 0 8px;
   }
 
+  mat-icon {
+    color: #fff;
+  }
+
   img {
     height: 48px;
     width: auto;
   }
 
-  .spacer {
-    flex: 1 1 auto;
+  .sidenav-menu {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .action {
+      display: none;
+    }
+    .sidenav-menu {
+      display: block;
+    }
   }
 }

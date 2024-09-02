@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MATERIAL } from '../../../features/login/components/imports/imports';
-import { TopNavImports } from './config/material';
 import { Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { TopNavImports } from './config/material';
 import { TopnavService } from './services/topnav.service';
 
 @Component({
@@ -13,19 +13,25 @@ import { TopnavService } from './services/topnav.service';
 })
 export class TopNavComponent implements OnInit {
   private router = inject(Router)
-  // Variável para armazenar o valor atual da variável booleana
+
   display: boolean = true;
+  actionType!: string;
+  logoType!: string;
 
   constructor(private topnavService: TopnavService) { }
 
   ngOnInit(): void {
-    // Inscreva-se para obter atualizações sobre a variável booleana
-    this.topnavService.myBoolean$.subscribe(value => {
-      this.display = value;
+    combineLatest([
+      this.topnavService.displayBar$,
+      this.topnavService.actionType$,
+      this.topnavService.logoType$
+    ]).subscribe(([display, actionType, logoType]) => {
+      this.display = display;
+      this.actionType = actionType;
+      this.logoType = logoType;
     });
 
-    // Modificar o valor da variável booleana
-    this.topnavService.setMyBoolean(true);
+    this.topnavService.configureTopNavBar(true, 'start', 'default');
   }
 
 

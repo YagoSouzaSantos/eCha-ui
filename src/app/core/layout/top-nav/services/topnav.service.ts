@@ -5,15 +5,17 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TopnavService {
- private myBooleanSubject = new BehaviorSubject<boolean>(false);
- myBoolean$ = this.myBooleanSubject.asObservable();
+  private displayBar = new BehaviorSubject<boolean>(false);
+  private actionType = new BehaviorSubject<string>('start');
+  private logoType = new BehaviorSubject<string>('default');
 
- constructor() {}
+  displayBar$ = this.displayBar.asObservable();
+  actionType$ = this.actionType.asObservable();
+  logoType$ = this.logoType.asObservable();
 
- getMyBoolean(): boolean {
-   return this.myBooleanSubject.value;
- }
- setMyBoolean(value: boolean): void {
-   this.myBooleanSubject.next(value);
- }
+  configureTopNavBar(displayBar: boolean, actionType: string,logoType: string ): void {
+    this.displayBar.next(displayBar);
+    this.actionType.next(actionType);
+    this.logoType.next(logoType);
+  }
 }

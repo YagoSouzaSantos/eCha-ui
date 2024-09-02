@@ -2,12 +2,33 @@
 $verde-escuro: #152B11;
 $verde-palmeira: #CBDFB2;
 
-.ol-verde-escuro {
-  color: $verde-escuro !important;
-  border-color: $verde-escuro !important;
+.background-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 250px;
 }
 
-.bg-verde-palmeira {
+.green {
+  background-color: #152B11;
+}
+
+.btn-ol-dark {
+  color: #fff !important;
+  border-color: #fff !important;
+  font-weight: 300 !important;
+  background-color: transparent;
+}
+
+.btn-ol-verde-escuro {
+  color: $verde-escuro !important;
+  border-color: $verde-escuro !important;
+  background-color: transparent;
+}
+
+.btn-bg-verde-palmeira {
   color: $verde-escuro !important;
   background-color: $verde-palmeira !important;
 }

@@ -15,7 +15,7 @@ export class LandingPageComponent implements OnInit {
   constructor(private topnavService: TopnavService) { }
 
   ngOnInit(): void {
-    this.topnavService.setMyBoolean(true);
+    this.topnavService.configureTopNavBar(true,'start', 'default');
   }
 
 

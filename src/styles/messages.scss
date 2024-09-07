@@ -1,0 +1,31 @@
+.msg-system {
+  padding: 8px 16px;
+  border-radius: 0 25px;
+  text-align: center;
+  width: 95%;
+  max-width: 750px;
+  flex-wrap: nowrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slide-in 0.5s ease forwards;
+}
+
+.slide-in-from-right {
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slide-in 1s ease forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

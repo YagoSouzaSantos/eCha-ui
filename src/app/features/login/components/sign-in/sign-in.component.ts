@@ -41,7 +41,7 @@ export class SignInComponent {
       this.authService.login(email, password).subscribe({
         next: (user) => {
           this.snackbarService.showSuccess("Usuário autenticado com sucesso!");
-          this.router.navigate(['/home'])
+          this.router.navigate(['/profile'])
 
         },
         error: (error) => {

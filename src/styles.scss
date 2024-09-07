@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 html,
 body {
   height: 100%;
@@ -19,6 +21,15 @@ body {
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.background-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 250px;
 }
 
 

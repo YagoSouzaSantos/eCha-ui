@@ -2,18 +2,19 @@
 $verde-escuro: #152B11;
 $verde-palmeira: #CBDFB2;
 
-.background-page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 250px;
-}
+
 
 .green {
   background-color: #152B11;
 }
+
+.verde-claro {
+  background-color: #d6ecb894;
+}
+.verde-claro-hover :hover{
+  background-color: #d6ecb894;
+}
+
 
 .btn-ol-dark {
   color: #fff !important;

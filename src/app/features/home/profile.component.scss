@@ -4,4 +4,9 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+
+  .content-spacer {
+    height: 68px;
+    width: 100%;
+  }
 }

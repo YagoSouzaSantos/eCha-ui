@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -13,12 +14,13 @@ import { TopnavService } from './services/topnav.service';
 })
 export class TopNavComponent implements OnInit {
   private router = inject(Router)
+  private topnavService = inject(TopnavService)
+  private authService = inject(AuthService)
 
   display: boolean = true;
   actionType!: string;
   logoType!: string;
 
-  constructor(private topnavService: TopnavService) { }
 
   ngOnInit(): void {
     combineLatest([
@@ -34,8 +36,9 @@ export class TopNavComponent implements OnInit {
     this.topnavService.configureTopNavBar(true, 'start', 'default');
   }
 
-
-  toLogin() {
-    this.router.navigate(['/login'])
+  logout() {
+    this.authService.logout()
   }
+
+
 }

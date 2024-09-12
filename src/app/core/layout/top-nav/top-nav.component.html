@@ -8,13 +8,13 @@
     <div class="action">
       @if (actionType == 'start') {
 
-      <button mat-stroked-button class="btn-ol-verde-escuro" (click)="toLogin()">Entrar</button>
+      <button mat-stroked-button class="btn-ol-verde-escuro" [routerLink]="'auth/login'">Entrar</button>
       <button mat-flat-button class="btn-bg-verde-palmeira">Crie seu chá</button>
 
       } @if (actionType == 'home') {
 
       <button mat-stroked-button class="btn-ol-dark">Meu saldo</button>
-      <button mat-button><mat-icon>logout</mat-icon></button>
+      <button mat-button (click)="logout()"><mat-icon>logout</mat-icon></button>
 
       }
     </div>

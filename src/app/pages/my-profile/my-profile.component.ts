@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-
-
 import { Router } from '@angular/router';
-import { AuthGoogleService } from '../../features/login/services/auth-google.service';
+import { AuthGoogleService } from '../../modules/auth/data-access/auth-google.service';
+
+
 
 @Component({
   selector: 'app-my-profile',
@@ -10,7 +10,6 @@ import { AuthGoogleService } from '../../features/login/services/auth-google.ser
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent {
-
 
     private authGoogleService = inject(AuthGoogleService);
     private router = inject(Router)

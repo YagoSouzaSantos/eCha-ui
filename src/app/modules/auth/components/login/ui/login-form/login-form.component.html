@@ -3,22 +3,35 @@
     <mat-spinner diameter="25"></mat-spinner>
   }
 </div>
-{{loginStatus()}}
 <form [formGroup]="loginForm">
   <div class="input-label">Seu e-mail</div>
   <mat-form-field appearance="outline">
     <input matNativeControl formControlName="email" type="email" placeholder="exemplo@email.com" />
+    @if (loginForm.get('email')?.invalid) {
+      <mat-error>{{getErrorMessage('email')}}</mat-error>
+      }
   </mat-form-field>
   <div class="input-label">Senha</div>
   <mat-form-field appearance="outline">
     <input matNativeControl formControlName="password" type="password" placeholder="Informe sua senha aqui"/>
+    @if (loginForm.get('password')?.invalid) {
+      <mat-error>{{getErrorMessage('password')}}</mat-error>
+    }
   </mat-form-field>
 </form>
 
 <button (click)="alert()" mat-button class="recovery-button">Esqueci minha senha</button>
 
 <div class="grid-container">
-  <div class="item1"><button (click)="onSubmit($event)" [disabled]="loginStatus() === 'authenticating'"  mat-flat-button class="full-width-button">Entrar</button></div>
+  <div class="item1">
+    <button
+      (click)="onSubmit($event)"
+      [disabled]="loginStatus() === 'authenticating' || !loginForm.valid"
+      mat-flat-button
+      class="full-width-button"
+      >Entrar
+    </button>
+  </div>
   <div class="item2"><button (click)="alert()" mat-flat-button class="full-width-button"><mat-icon><img src="./assets/image/icon/google.png"></mat-icon>Google</button></div>
   <div class="item3"><button (click)="alert()" mat-flat-button class="full-width-button"><mat-icon><img src="./assets/image/icon/facebook.png"></mat-icon>Facebook</button></div>
   <div class="item4"><p>ou</p></div>

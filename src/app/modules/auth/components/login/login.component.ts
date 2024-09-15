@@ -30,7 +30,7 @@ export class LoginComponent {
       const user = this.authService.user()();
       console.log('user: ', user);
       if (user !== null && user !== undefined) {
-        this.router.navigate(['profile']);
+        this.router.navigate(['gift-list']);
       }
     });
   }

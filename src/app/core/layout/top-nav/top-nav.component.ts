@@ -1,9 +1,6 @@
+import { Component, inject } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
-import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
 import { TopNavImports } from './config/material';
-import { TopnavService } from './services/topnav.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -12,33 +9,11 @@ import { TopnavService } from './services/topnav.service';
   templateUrl: './top-nav.component.html',
   styleUrls: ['./top-nav.component.scss', '/src/styles/colors.scss']
 })
-export class TopNavComponent implements OnInit {
-  private router = inject(Router)
-  private topnavService = inject(TopnavService)
+export class TopNavComponent {
   private authService = inject(AuthService)
-
-  display: boolean = true;
-  actionType!: string;
-  logoType!: string;
-
-
-  ngOnInit(): void {
-    combineLatest([
-      this.topnavService.displayBar$,
-      this.topnavService.actionType$,
-      this.topnavService.logoType$
-    ]).subscribe(([display, actionType, logoType]) => {
-      this.display = display;
-      this.actionType = actionType;
-      this.logoType = logoType;
-    });
-
-    this.topnavService.configureTopNavBar(true, 'start', 'default');
-  }
+  user$ = this.authService.user();
 
   logout() {
     this.authService.logout()
   }
-
-
 }

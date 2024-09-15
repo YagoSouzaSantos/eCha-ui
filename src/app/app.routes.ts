@@ -1,3 +1,4 @@
+import { GiftListContainerComponent } from './modules/gift-list/gift-list-container/gift-list-container.component';
 import { Routes } from '@angular/router';
 import { isAuthenticatedGuard } from './core/security/auth.guard';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
@@ -23,6 +24,11 @@ export const routes: Routes = [
         component: LoginComponent
       }
     ]
+  },
+  {
+    path: 'gift-list',
+    component: GiftListContainerComponent,
+    canActivate: [isAuthenticatedGuard()]
   },
   {
     path: 'profile',

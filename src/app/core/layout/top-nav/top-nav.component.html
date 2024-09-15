@@ -1,21 +1,26 @@
-@if(display) {
+@let user = user$();
+
 <mat-toolbar>
   <div class="tn-content">
-    <img src="assets/image/logo/{{logoType}}-logo.png" alt="eCha">
 
+    @if (user === null || undefined) {
+    <img src="assets/image/logo/default-logo.png" alt="eCha">
+
+    } @else {
+    <img src="assets/image/logo/white-logo.png" alt="eCha">
+    }
     <span class="spacer"></span>
 
+
     <div class="action">
-      @if (actionType == 'start') {
+      @if (user === null || undefined) {
 
       <button mat-stroked-button class="btn-ol-verde-escuro" [routerLink]="'auth/login'">Entrar</button>
       <button mat-flat-button class="btn-bg-verde-palmeira">Crie seu chá</button>
-
-      } @if (actionType == 'home') {
+      } @else {
 
       <button mat-stroked-button class="btn-ol-dark">Meu saldo</button>
       <button mat-button (click)="logout()"><mat-icon>logout</mat-icon></button>
-
       }
     </div>
 
@@ -24,4 +29,3 @@
     </div>
   </div>
 </mat-toolbar>
-}

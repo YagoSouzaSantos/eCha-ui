@@ -1,0 +1,32 @@
+$verde-palmeira: #ECF8E9;
+$verde-escuro: #152B11;
+
+
+.fa-container {
+    background-color: $verde-palmeira;
+    display: flex;
+    padding: 16px 0 0 0;
+    flex-direction: column;
+    justify-content:flex-end;
+    align-items: center;
+
+    img {
+        height: auto;
+        width: 36px;
+    }
+
+
+    a {
+        margin: 16px;
+        font-weight: 500;
+    }
+
+    span {
+        margin: 16px auto 8px auto;
+        font-size: 1.2em;
+    }
+}
+
+.link {
+    margin: 16px 0 8px 0
+}

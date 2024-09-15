@@ -16,7 +16,6 @@ body {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  background-color: aquamarine;
 }
 
 .spacer {
@@ -30,15 +29,6 @@ body {
   z-index: -1;
   width: 100%;
   height: 250px;
-}
-
-
-// area de conteúdo
-.ca {
-  // background-color: #fff;
-  width: 100%;
-  max-width: 1480px;
-
 }
 
 html, body { height: 100%; }

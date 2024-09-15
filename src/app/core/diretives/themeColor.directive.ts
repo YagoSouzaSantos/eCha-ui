@@ -37,11 +37,11 @@ export class ThemeColorDirective {
         break;
 
       case 'pink':
-        this.el.nativeElement.style.backgroundColor = '#fcc5e8';
+        this.el.nativeElement.style.backgroundColor = '#ba56b7';
         break;
 
       case 'gray':
-        this.el.nativeElement.style.backgroundColor = '#c9c7c9';
+        this.el.nativeElement.style.backgroundColor = '#4f4f4f';
         break;
 
       default:

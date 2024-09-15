@@ -1,10 +1,6 @@
 <app-top-nav />
-<div class="background-page" themeColor={{userThemeColor}}></div>
-
+<div class="background-page" themeColor={{user$()?.themeColor}}></div>
 <section class="ca">
   <div class="content-spacer"></div>
   <router-outlet />
-
-
-
 </section>

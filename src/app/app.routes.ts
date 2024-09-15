@@ -1,13 +1,13 @@
-import { GiftListContainerComponent } from './modules/gift-list/gift-list-container/gift-list-container.component';
 import { Routes } from '@angular/router';
-import { isAuthenticatedGuard } from './core/security/auth.guard';
+import { GiftListContainerComponent } from './modules/gift-list/gift-list-container/gift-list-container.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
-import { GiftListComponent } from './features/gift-list/container/gift-list.component';
-import { ProfileComponent } from './features/home/profile.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { LoginContainerComponent } from './modules/auth/container/login-container.component';
+import { MyListsComponent } from './modules/gift-list/my-lists/my-lists.component';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
+import { HomeComponent } from './modules/home/home.component';
+import { isAuthenticatedGuard } from './core/security/auth.guard';
 
 
 export const routes: Routes = [
@@ -26,20 +26,26 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'gift-list',
-    component: GiftListContainerComponent,
-    canActivate: [isAuthenticatedGuard()]
-  },
-  {
-    path: 'profile',
+    path: 'home',
+    component: HomeComponent,
     canActivate: [isAuthenticatedGuard()],
-    component: ProfileComponent,
     children: [
       {
         path: '',
-        component: GiftListComponent,
+        component: MyListsComponent,
       },
     ]
   },
-  { path: 'my-profile', component: MyProfileComponent},
+  {
+    path: 'nada',
+    component: GiftListContainerComponent,
+    // canActivate: [isAuthenticatedGuard()]
+    children: [
+      {
+        path: '',
+        component: MyListsComponent,
+      },
+    ]
+  },
+  { path: 'my-profile', component: MyProfileComponent },
 ];

@@ -1,0 +1,19 @@
+.container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.my-router-area {
+  width: 100%;
+  max-width: 1279px;
+  height: auto;
+}
+
+mat-drawer {
+  width: 380px;
+}

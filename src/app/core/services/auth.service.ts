@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment.development';
 import { Credentials } from '../../shared/interfaces/credentials';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
+import { SnackbarService } from '../../shared/services/snackbar.service';
 
 export type AuthUser = User | null | undefined;
 
@@ -18,6 +19,7 @@ interface AuthState {
 })
 export class AuthService {
   private http = inject(HttpClient)
+  private snackbarService = inject(SnackbarService);
   private router = inject(Router)
 
   private userSignal: WritableSignal<AuthUser> = signal<AuthUser>(null);
@@ -37,6 +39,7 @@ export class AuthService {
 
         if (user) {
           this.userSignal.set(user);
+          this.snackbarService.showSuccess('Usuário autenticado com sucesso.')
           return user;
         } else {
           throw new Error('Usuário ou senha inválidos');

@@ -1,0 +1,22 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="over" position="end">
+    <app-sidenav-menu />
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div class="background-page" themeColor={{user$()?.themeColor}}></div>
+    <app-toolbar [r_user]="user$()" />
+
+    <div class="content">
+      <div class="my-router-area">
+        <router-outlet />
+      </div>
+    </div>
+
+
+
+
+
+  </mat-drawer-content>
+</mat-drawer-container>
+<app-minimalist-footer />

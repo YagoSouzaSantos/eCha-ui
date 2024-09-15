@@ -10,7 +10,7 @@ export class SnackbarService {
 
   showSuccess(message: string): void {
     this.snackBar.open(message, '', {
-      duration: 5000,
+      duration: 3000,
       panelClass: ['snackbar','success-snackbar'],
       horizontalPosition: 'center',
       verticalPosition: 'top',
@@ -19,7 +19,7 @@ export class SnackbarService {
 
   showError(message: string): void {
     this.snackBar.open(message, '', {
-      duration: 5000,
+      duration: 3000,
       panelClass: ['snackbar','error-snackbar'],
       horizontalPosition: 'center',
       verticalPosition: 'top',
@@ -28,7 +28,7 @@ export class SnackbarService {
 
   showAlert(message: string): void {
     this.snackBar.open(message, '', {
-      duration: 5000,
+      duration: 3000,
       panelClass: ['snackbar','alert-snackbar'],
       horizontalPosition: 'center',
       verticalPosition: 'top',

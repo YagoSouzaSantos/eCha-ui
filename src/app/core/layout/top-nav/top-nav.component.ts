@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { TopNavImports } from './config/material';
+import { TopnavService } from './services/topnav.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -11,9 +12,12 @@ import { TopNavImports } from './config/material';
 })
 export class TopNavComponent {
   private authService = inject(AuthService)
+
   user$ = this.authService.user();
 
   logout() {
     this.authService.logout()
   }
+
+
 }

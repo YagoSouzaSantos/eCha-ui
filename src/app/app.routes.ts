@@ -8,6 +8,7 @@ import { MyListsComponent } from './modules/gift-list/my-lists/my-lists.componen
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
 import { HomeComponent } from './modules/home/home.component';
 import { isAuthenticatedGuard } from './core/security/auth.guard';
+import { CreateGiftListComponent } from './modules/gift-list/create-gift-list/create-gift-list.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,12 @@ export const routes: Routes = [
         component: MyListsComponent,
       },
     ]
+  },
+  {
+    path: 'creation',
+    component: CreateGiftListComponent,
+    canActivate: [isAuthenticatedGuard()],
+
   },
   {
     path: 'nada',

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class TopnavService {
   actionType$ = this.actionType.asObservable();
   logoType$ = this.logoType.asObservable();
 
-  configureTopNavBar(displayBar: boolean, actionType: string,logoType: string ): void {
+  configureTopNavBar(displayBar: boolean, actionType: string, logoType: string): void {
     this.displayBar.next(displayBar);
     this.actionType.next(actionType);
     this.logoType.next(logoType);

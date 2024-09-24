@@ -1,6 +1,6 @@
 <mat-drawer-container class="container">
-  <mat-drawer mode="over" position="end">
-    <app-sidenav-menu />
+  <mat-drawer #drawerSub mode="over" position="end">
+    <app-sidenav-menu [r_user]="user$()" />
   </mat-drawer>
 
   <mat-drawer-content>
@@ -12,10 +12,6 @@
         <router-outlet />
       </div>
     </div>
-
-
-
-
 
   </mat-drawer-content>
 </mat-drawer-container>

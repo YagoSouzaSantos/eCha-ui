@@ -1,1 +1,30 @@
-<p>sidenav-menu works!</p>
+<div class="container">
+    <section class="user-area">
+        <app-profile-picture class="profile"
+        [imageUrl]="user()!.imageURL"
+        [size]="48" />
+
+        <p> {{user()?.firstName}} {{user()?.lastName}} </p>
+    </section>
+
+
+    <section class="menu-area">
+
+
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="menu-area">
+
+ 
+
+    </section>
+
+    <mat-divider></mat-divider>
+
+
+    <button mat-button extended (click)="logout()">
+        <mat-icon>logout</mat-icon>Sair
+    </button>
+</div>

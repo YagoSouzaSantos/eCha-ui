@@ -3,7 +3,8 @@
 
   <span class="spacer"></span>
 
-    <app-profile-picture
+    <app-profile-picture class="profile"
+      (click)="toggleUserSidenav()"
       [imageUrl]="user()!.imageURL"
       [size]="48" />
 

@@ -1,9 +1,10 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ProfilePictureComponent } from "../../../../shared/material/profile-picture/profile-picture.component";
 import { AuthUser } from '../../../../core/services/auth.service';
+import { ProfilePictureComponent } from "../../../../shared/material/profile-picture/profile-picture.component";
+import { SidenavMenuService } from '../../Services/sidenav-menu.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,4 +15,10 @@ import { AuthUser } from '../../../../core/services/auth.service';
 })
 export class ToolbarComponent {
   user = input.required<AuthUser>( {alias: 'r_user'});
+  protected sidenavMenuService = inject(SidenavMenuService)
+
+
+  toggleUserSidenav() {
+    this.sidenavMenuService.toggleSidenav();
+  }
 }

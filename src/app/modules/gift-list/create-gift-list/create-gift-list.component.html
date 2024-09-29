@@ -1,7 +1,25 @@
-<div class="ca">
-  <div class="background"></div>
-  <div class="overlay"></div>
+<div class="background"></div>
+<app-background-card>
 
-<app-vertical-card></app-vertical-card>
-  
-</div>
+
+  <h2>APARÊNCIA DA LISTA DE PRESENTES</h2>
+  <h3>Vamos deixar a sua cara! Escolha sua cor favorita e nos mostre seu rostinho lindo.</h3>
+
+
+  <div class="row">
+    <app-profile-picture [imageUrl]="img" [size]="100" />
+
+    <div>
+
+      <div class="input-label">Seu e-mail</div>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Ex. Chá de casa nova da let">
+      </mat-form-field>
+    </div>
+    <app-select-color />
+  </div>
+
+
+  <p>Mensagem recebida no componente B: {{ message }}</p>
+</app-background-card>

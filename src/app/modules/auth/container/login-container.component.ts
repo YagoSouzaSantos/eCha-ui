@@ -2,14 +2,14 @@ import { TopnavService } from '../../../core/layout/top-nav/services/topnav.serv
 import { Component, inject, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { RouterOutlet } from '@angular/router';
+import { BackgroundCardComponent } from "../../../shared/components/background-card/background-card.component";
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatCardModule, RouterOutlet],
+  imports: [MatCardModule, RouterOutlet, BackgroundCardComponent],
   templateUrl: './login-container.component.html',
-  styleUrl: './login-container.component.scss'
 })
 export class LoginContainerComponent implements OnInit {
   topnavService = inject(TopnavService)

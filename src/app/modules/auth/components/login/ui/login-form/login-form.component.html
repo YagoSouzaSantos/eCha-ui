@@ -5,14 +5,14 @@
 </div>
 <form [formGroup]="loginForm">
   <div class="input-label">Seu e-mail</div>
-  <mat-form-field appearance="outline">
+  <mat-form-field>
     <input matNativeControl formControlName="email" type="email" placeholder="exemplo@email.com" />
     @if (loginForm.get('email')?.invalid) {
       <mat-error>{{getErrorMessage('email')}}</mat-error>
       }
   </mat-form-field>
   <div class="input-label">Senha</div>
-  <mat-form-field appearance="outline">
+  <mat-form-field>
     <input matNativeControl formControlName="password" type="password" placeholder="Informe sua senha aqui"/>
     @if (loginForm.get('password')?.invalid) {
       <mat-error>{{getErrorMessage('password')}}</mat-error>

@@ -32,6 +32,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/custom-theme.scss",
+              "src/styles/responsive-layout.scss",
               "src/styles/messages.scss",
               "src/styles/buttons.scss",
               "src/styles/colors.scss",

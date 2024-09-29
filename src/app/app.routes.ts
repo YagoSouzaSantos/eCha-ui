@@ -43,16 +43,5 @@ export const routes: Routes = [
     canActivate: [isAuthenticatedGuard()],
 
   },
-  {
-    path: 'nada',
-    component: GiftListContainerComponent,
-    // canActivate: [isAuthenticatedGuard()]
-    children: [
-      {
-        path: '',
-        component: MyListsComponent,
-      },
-    ]
-  },
   { path: 'my-profile', component: MyProfileComponent },
 ];

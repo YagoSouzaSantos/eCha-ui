@@ -44,6 +44,10 @@ export class ThemeColorDirective {
         this.el.nativeElement.style.backgroundColor = '#4f4f4f';
         break;
 
+      case 'login':
+        this.el.nativeElement.style.backgroundColor = '#59ba29';
+        break;
+
       default:
         this.el.nativeElement.style.backgroundColor = '#152B11';
         break;

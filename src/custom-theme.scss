@@ -55,4 +55,10 @@ $echa-ui-theme: mat.define-light-theme((
   background: rgb(219, 147, 14);
 }
 
-
+// Inputs
+.input-label {
+  text-align: start;
+  font-weight: 550;
+  max-width: 428.4px;
+  min-width: 300px;
+}

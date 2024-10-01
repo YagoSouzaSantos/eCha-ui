@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, inject } from '@angular/core';
+import { Directive, ElementRef, Input, SimpleChanges, inject } from '@angular/core';
 
 @Directive({ standalone: true, selector: '[themeColor]' })
 export class ThemeColorDirective {
@@ -6,8 +6,10 @@ export class ThemeColorDirective {
 
   constructor(private el: ElementRef) { }
 
-  ngOnInit() {
-    this.applyThemeColor();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['theme']) {
+      this.applyThemeColor();
+    }
   }
 
   private applyThemeColor() {
@@ -49,7 +51,7 @@ export class ThemeColorDirective {
         break;
 
       default:
-        this.el.nativeElement.style.backgroundColor = '#152B11';
+        this.el.nativeElement.style.backgroundColor = '#59ba29';
         break;
     }
   }

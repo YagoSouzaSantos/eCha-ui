@@ -1,0 +1,36 @@
+$action-button: #CBDFB2;
+$text-action-button: #12400B;
+$icon-color: #acacac;
+
+:host {
+  max-width: 480px;
+}
+.row { justify-content: center;}
+
+.full-width-button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.a {
+  width: 100%;
+}
+
+section {
+  margin-top: 22px;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.mat-mdc-unelevated-button {
+  background-color: $action-button !important;
+  color: $text-action-button !important;
+  font-weight: 450 !important;
+}

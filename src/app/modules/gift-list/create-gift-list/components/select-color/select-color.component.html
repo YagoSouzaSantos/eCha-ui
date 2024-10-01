@@ -1,1 +1,11 @@
-<button (click)="changeMessage()">Change Message</button>
+<div class="circle-buttons">
+  <button
+  *ngFor="let color of colors; let i = index"
+  [ngStyle]="{'background-color': color.value}"
+  class="circle"
+  [class.selected]="i === selectedColorIndex"
+  (click)="selectColor(i)"
+  (click)="backgroundService.setMessage(color.name)"
+  >
+</button>
+</div>

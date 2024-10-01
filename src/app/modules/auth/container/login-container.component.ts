@@ -2,7 +2,7 @@ import { TopnavService } from '../../../core/layout/top-nav/services/topnav.serv
 import { Component, inject, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { RouterOutlet } from '@angular/router';
-import { BackgroundCardComponent } from "../../../shared/components/background-card/background-card.component";
+import { BackgroundCardComponent } from "../../../shared/components/customizable-background/customizable-background.component";
 
 
 @Component({

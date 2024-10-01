@@ -1,0 +1,46 @@
+<form [formGroup]="newGiftListForm">
+
+  <div class="row gap-8">
+    <app-profile-picture class="collumn col-2" [imageUrl]="img" [size]="100" />
+
+    <div class="collumn col-10">
+      <div class="input-label">Título da lista de presentes</div>
+      <mat-form-field>
+        <input matInput placeholder="Ex. Chá de casa nova da let">
+      </mat-form-field>
+      <app-select-color/>
+    </div>
+  </div>
+
+  <section>
+
+    <div class="input-label">Fonte escolhida</div>
+
+    <mat-chip-listbox aria-label="Cutest dog breeds">
+      @for (dog of bestBoys; track dog) {
+        <mat-chip-option>{{dog}}</mat-chip-option>
+      }
+
+    </mat-chip-listbox>
+  </section>
+
+
+  <section>
+    <div class="input-label">Recadinho de agradecimento do recibo</div>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Deixe aqui uma mensagem carinhosa que vai aparecer pras pessoas que te ajudarem. Mostre um pouco da sua gratidão aos seus entes queridos <3" style="height: 116px;"></textarea>
+    </mat-form-field>
+
+
+  </section>
+
+  <button mat-flat-button class="full-width-button" >Pronto! </button>
+  <div class="item5"><button mat-button color="primary" class="full-width-button">Use as configurações padrão</button></div>
+
+</form>
+
+<!-- <button (click)="alert()" mat-button class="recovery-button">Esqueci minha senha</button> -->
+
+<!-- <button (click)="onSubmit($event)" [disabled]="loginStatus() === 'authenticating' || !loginForm.valid"
+      mat-flat-button class="full-width-button">Entrar
+    </button> -->

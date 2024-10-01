@@ -1,5 +1,5 @@
 .background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -12,7 +12,7 @@
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -23,8 +23,7 @@
 }
 
 section {
-  position: relative;
-  z-index: 1;
+  margin-top: 86px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,15 +41,3 @@ img {
   width: auto;
 }
 
-mat-card {
-  width: 100%;
-  max-width: 428.4px;
-  min-width: 300px;
-  padding: 16px;
-  height: auto;
-  aspect-ratio: 428.4 / 623.52;
-  max-height: 80vh;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-}

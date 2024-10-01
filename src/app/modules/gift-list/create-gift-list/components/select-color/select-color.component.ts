@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
-import { BackgroundService } from '../../services/background.service';
+import { Component, inject } from '@angular/core';
+import { BackgroundService } from '../../../../../shared/services/background.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-select-color',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './select-color.component.html',
   styleUrl: './select-color.component.scss'
 })
 export class SelectColorComponent {
-  constructor(private signalService: BackgroundService) {}
+  backgroundService = inject(BackgroundService)
+  selectedColorIndex: number = 0;
 
-  changeMessage() {
-    // Altera o valor do signal ao clicar no botão
-    this.signalService.setMessage('Novo valor da mensagem');
+  colors: { name: string, value: string }[] = [
+    { name: 'green', value: '#152B11' },
+    { name: 'red', value: '#A30000' },
+    { name: 'blue', value: '#041D4F' },
+    { name: 'yellow', value: '#d1ae24' },
+    { name: 'purple', value: '#461258' },
+    { name: 'orange', value: '#e35214' },
+    { name: 'pink', value: '#ba56b7' },
+    { name: 'gray', value: '#4f4f4f' }
+  ];
+
+  selectColor(index: number): void {
+    this.selectedColorIndex = index;
   }
-
 }
 

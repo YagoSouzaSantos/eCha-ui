@@ -1,11 +1,11 @@
-import { Component, effect, EventEmitter, inject, input, Output, output } from '@angular/core';
-import { MATERIAL } from '../../../../config/imports';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Credentials } from '../../../../../../shared/interfaces/credentials';
 import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
-import { LoginStatus } from '../../../../data-access/login.service';
-import { createLoginForm } from '../../../../config/login-form';
 import { FormValidation } from '../../../../../../shared/utils/form-validation';
+import { createLoginForm } from '../../../../config/form-functions';
+import { MATERIAL } from '../../../../config/imports';
+import { LoginStatus } from '../../../../data-access/login.service';
 
 
 @Component({

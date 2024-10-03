@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { createNewGiftListForm } from '../../utils/form-functions';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProfilePictureComponent } from '../../../../../shared/material/profile-picture/profile-picture.component';
+import { ProfilePictureComponent } from '../../../../../shared/components/profile-picture/profile-picture.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SelectColorComponent } from '../select-color/select-color.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
+import { SmoothBackGroundDirective } from '../../../../../core/diretives/smoothBackGround.directive';
+import { BackgroundService } from '../../../../../shared/services/background.service';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatChipsModule,
     MatButtonModule,
-
+    SmoothBackGroundDirective
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
@@ -30,6 +32,17 @@ export class FormComponent {
 
   readonly bestBoys: string[] = ['Tipografia 1', 'Tipografia 2', 'Tipografia 3'];
 
+
+  protected backgroundService = inject(BackgroundService)
+  
+  actionColor: string = 'green';
+
+  constructor() {
+    effect(() => {
+      this.actionColor = this.backgroundService.getMessageSignal()();
+      console.log('this.actionColor: ', this.actionColor);
+    });
+  }
 
   // @Output() login = new EventEmitter<Credentials>()
   private fb = inject(FormBuilder)

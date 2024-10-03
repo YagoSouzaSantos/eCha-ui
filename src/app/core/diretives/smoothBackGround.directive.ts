@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, SimpleChanges } from '@angular/core';
 
 @Directive({ standalone: true, selector: '[smoothBackGround]' })
 export class SmoothBackGroundDirective {
@@ -7,47 +7,49 @@ export class SmoothBackGroundDirective {
 
   constructor(private el: ElementRef) { }
 
-  ngOnInit() {
-    this.applyThemeColor();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['theme']) {
+      this.applyThemeColor();
+    }
   }
 
   private applyThemeColor() {
     switch (this.theme) {
       case 'green':
-        this.el.nativeElement.style.backgroundColor = '#d6ecb894'; //ok
+        this.el.nativeElement.style.backgroundColor = '#d6ecb894';
         break;
 
       case 'red':
-        this.el.nativeElement.style.backgroundColor = '#fcc2c2'; //ok
+        this.el.nativeElement.style.backgroundColor = '#fcc2c2';
         break;
 
       case 'blue':
-        this.el.nativeElement.style.backgroundColor = '#c2f2f1'; // ok
+        this.el.nativeElement.style.backgroundColor = '#c2f2f1';
 
         break;
 
       case 'yellow':
-        this.el.nativeElement.style.backgroundColor = '#fcf5c2'; //ok
+        this.el.nativeElement.style.backgroundColor = '#fcf5c2';
         break;
 
       case 'purple':
-        this.el.nativeElement.style.backgroundColor = '#dacdf7'; // ok
+        this.el.nativeElement.style.backgroundColor = '#dacdf7';
         break;
 
       case 'orange':
-        this.el.nativeElement.style.backgroundColor = '#fcdcc2'; //ok
+        this.el.nativeElement.style.backgroundColor = '#fcdcc2'; 
         break;
 
       case 'pink':
-        this.el.nativeElement.style.backgroundColor = '#f2bbf0'; //ok
+        this.el.nativeElement.style.backgroundColor = '#f2bbf0';
         break;
 
       case 'gray':
-        this.el.nativeElement.style.backgroundColor = '#c9c7c9';
+        this.el.nativeElement.style.backgroundColor = '#c9c9c9';
         break;
 
       default:
-        this.el.nativeElement.style.backgroundColor = '#152B11';
+        this.el.nativeElement.style.backgroundColor = '#d6ecb894';
         break;
     }
   }

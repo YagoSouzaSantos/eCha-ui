@@ -14,14 +14,14 @@ export class SelectColorComponent {
   selectedColorIndex: number = 0;
 
   colors: { name: string, value: string }[] = [
-    { name: 'green', value: '#152B11' },
-    { name: 'red', value: '#A30000' },
-    { name: 'blue', value: '#041D4F' },
-    { name: 'yellow', value: '#d1ae24' },
-    { name: 'purple', value: '#461258' },
-    { name: 'orange', value: '#e35214' },
-    { name: 'pink', value: '#ba56b7' },
-    { name: 'gray', value: '#4f4f4f' }
+    { name: 'green', value: '#59ba29' },
+    { name: 'red', value: '#FF3E3E' },
+    { name: 'blue', value: '#539ADC' },
+    { name: 'yellow', value: '#FCFF61' },
+    { name: 'purple', value: '#C376FF' },
+    { name: 'orange', value: '#FFA665' },
+    { name: 'pink', value: '#F9A5CD' },
+    { name: 'gray', value: '#828282' }
   ];
 
   selectColor(index: number): void {

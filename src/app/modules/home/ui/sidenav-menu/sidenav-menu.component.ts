@@ -1,4 +1,4 @@
-import { ProfilePictureComponent } from './../../../../shared/material/profile-picture/profile-picture.component';
+import { ProfilePictureComponent } from '../../../../shared/components/profile-picture/profile-picture.component';
 import { MatButtonModule } from '@angular/material/button';
 import { Component, inject, input } from '@angular/core';
 import { AuthService, AuthUser } from '../../../../core/services/auth.service';

@@ -1,7 +1,12 @@
 <form [formGroup]="newGiftListForm">
 
   <div class="row gap-8">
-    <app-profile-picture class="collumn col-2" [imageUrl]="img" [size]="100" />
+    <app-profile-picture
+      class="collumn col-2"
+      [imageUrl]="img"
+      [size]="100"
+      [r_editable]="true"
+    />
 
     <div class="collumn col-10">
       <div class="input-label">Título da lista de presentes</div>
@@ -35,7 +40,7 @@
   </section>
 
   <button mat-flat-button class="full-width-button" smoothBackGround={{actionColor}}> Pronto! </button>
-  <div class="item5"><button mat-button color="primary" class="full-width-button">Use as configurações padrão</button></div>
+  <div class="item5"><button mat-button textColor={{actionColor}} class="full-width-button">Use as configurações padrão</button></div>
 
 </form>
 

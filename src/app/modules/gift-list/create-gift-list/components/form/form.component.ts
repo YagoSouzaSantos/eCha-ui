@@ -9,6 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { SmoothBackGroundDirective } from '../../../../../core/diretives/smoothBackGround.directive';
 import { BackgroundService } from '../../../../../shared/services/background.service';
+import { TextColorDirective } from '../../../../../core/diretives/textColor.directive';
 
 @Component({
   selector: 'app-form',
@@ -22,19 +23,21 @@ import { BackgroundService } from '../../../../../shared/services/background.ser
     MatInputModule,
     MatChipsModule,
     MatButtonModule,
-    SmoothBackGroundDirective
+    SmoothBackGroundDirective,
+    TextColorDirective
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
-  img = 'https://s3-alpha-sig.figma.com/img/f575/8403/fce24b1aecbceb6f321309074ece69fe?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bbyLe53nFzvS1aA10dcWGEEaTBIhUDbjCBsMmnMfzJWZGw4FUPcj~jf73KBsc8KgDnpD0H01LiYitExKUzsazpH8j0zhaO1e7JIXBVAISbH4VTWAbUbHKATnXrR9qEqywk8oa7pp6KuZALQlboloxRcVzcu5XGo22hRwtTgMPXcEXlryybcG4-EtH2GyxY1n9kLToeSRsrY6~qfCGNPhGcy54st6V1XPPiiJ-EiR2OuXbDVr346Jj~PsbfMFiM7a0K74Gyc1Iob-mGrM5jVf-7rn5Lp37jbultqQVCohghldLPPACuWeEzYAeLXdJA3BBHzB96CuRVx9grTHfVM5sg__';
+  // img = 'https://s3-alpha-sig.figma.com/img/f575/8403/fce24b1aecbceb6f321309074ece69fe?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bbyLe53nFzvS1aA10dcWGEEaTBIhUDbjCBsMmnMfzJWZGw4FUPcj~jf73KBsc8KgDnpD0H01LiYitExKUzsazpH8j0zhaO1e7JIXBVAISbH4VTWAbUbHKATnXrR9qEqywk8oa7pp6KuZALQlboloxRcVzcu5XGo22hRwtTgMPXcEXlryybcG4-EtH2GyxY1n9kLToeSRsrY6~qfCGNPhGcy54st6V1XPPiiJ-EiR2OuXbDVr346Jj~PsbfMFiM7a0K74Gyc1Iob-mGrM5jVf-7rn5Lp37jbultqQVCohghldLPPACuWeEzYAeLXdJA3BBHzB96CuRVx9grTHfVM5sg__';
+img!: string;
 
   readonly bestBoys: string[] = ['Tipografia 1', 'Tipografia 2', 'Tipografia 3'];
 
 
   protected backgroundService = inject(BackgroundService)
-  
+
   actionColor: string = 'green';
 
   constructor() {

@@ -7,6 +7,10 @@ export class SmoothBackGroundDirective {
 
   constructor(private el: ElementRef) { }
 
+  ngOnInit() {
+    this.el.nativeElement.style.transition = 'background-color 0.8s ease';
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['theme']) {
       this.applyThemeColor();
@@ -37,7 +41,7 @@ export class SmoothBackGroundDirective {
         break;
 
       case 'orange':
-        this.el.nativeElement.style.backgroundColor = '#fcdcc2'; 
+        this.el.nativeElement.style.backgroundColor = '#fcdcc2';
         break;
 
       case 'pink':

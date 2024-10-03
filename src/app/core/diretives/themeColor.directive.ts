@@ -6,6 +6,10 @@ export class ThemeColorDirective {
 
   constructor(private el: ElementRef) { }
 
+  ngOnInit() {
+    this.el.nativeElement.style.transition = 'background-color 0.8s ease';
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['theme']) {
       this.applyThemeColor();

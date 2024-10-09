@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, EventEmitter, inject, Output } from '@angular/core';
 import { createNewGiftListForm } from '../../utils/form-functions';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfilePictureComponent } from '../../../../../shared/components/profile-picture/profile-picture.component';
@@ -10,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { SmoothBackGroundDirective } from '../../../../../core/diretives/smoothBackGround.directive';
 import { BackgroundService } from '../../../../../shared/services/background.service';
 import { TextColorDirective } from '../../../../../core/diretives/textColor.directive';
+import { GiftList } from '../../../../../core/interfaces/gift-list';
+import { FormValidation } from '../../../../../shared/utils/form-validation';
+import { SnackbarService } from '../../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-form',
@@ -30,15 +33,13 @@ import { TextColorDirective } from '../../../../../core/diretives/textColor.dire
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
-  // img = 'https://s3-alpha-sig.figma.com/img/f575/8403/fce24b1aecbceb6f321309074ece69fe?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bbyLe53nFzvS1aA10dcWGEEaTBIhUDbjCBsMmnMfzJWZGw4FUPcj~jf73KBsc8KgDnpD0H01LiYitExKUzsazpH8j0zhaO1e7JIXBVAISbH4VTWAbUbHKATnXrR9qEqywk8oa7pp6KuZALQlboloxRcVzcu5XGo22hRwtTgMPXcEXlryybcG4-EtH2GyxY1n9kLToeSRsrY6~qfCGNPhGcy54st6V1XPPiiJ-EiR2OuXbDVr346Jj~PsbfMFiM7a0K74Gyc1Iob-mGrM5jVf-7rn5Lp37jbultqQVCohghldLPPACuWeEzYAeLXdJA3BBHzB96CuRVx9grTHfVM5sg__';
-img!: string;
-
-  readonly bestBoys: string[] = ['Tipografia 1', 'Tipografia 2', 'Tipografia 3'];
-
-
   protected backgroundService = inject(BackgroundService)
+  private snackbarService = inject(SnackbarService);
+  private fb = inject(FormBuilder)
 
-  actionColor: string = 'green';
+  @Output() form = new EventEmitter<GiftList>()
+
+  newGiftListForm!: FormGroup
 
   constructor() {
     effect(() => {
@@ -47,13 +48,27 @@ img!: string;
     });
   }
 
-  // @Output() login = new EventEmitter<Credentials>()
-  private fb = inject(FormBuilder)
-  newGiftListForm!: FormGroup
-
   ngOnInit(): void {
     this.newGiftListForm = createNewGiftListForm(this.fb);
   }
 
+  onSubmit(event: Event) {
+    event.preventDefault();
+    const newGiftList: GiftList = this.newGiftListForm.getRawValue();
+    this.form.emit(newGiftList);
+  }
+
+  getErrorMessage(controlName: string): string {
+    const control = this.newGiftListForm.get(controlName);
+    return FormValidation.getErrorMessage(control);
+  }
+
+  // a se trabalhar
+
+  img!: string;
+
+  readonly bestBoys: string[] = ['Tipografia 1', 'Tipografia 2', 'Tipografia 3'];
+
+  actionColor: string = 'green';
 
 }

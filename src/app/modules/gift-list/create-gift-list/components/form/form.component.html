@@ -1,19 +1,18 @@
 <form [formGroup]="newGiftListForm">
 
   <div class="row gap-8">
-    <app-profile-picture
-      class="collumn col-2"
-      [imageUrl]="img"
-      [size]="100"
-      [r_editable]="true"
-    />
+    <app-profile-picture class="collumn col-2" [imageUrl]="img" [size]="100" [r_editable]="true" />
 
     <div class="collumn col-10">
       <div class="input-label">Título da lista de presentes</div>
       <mat-form-field>
-        <input matInput placeholder="Ex. Chá de casa nova da let">
+        <input matInput placeholder="Ex. Chá de casa nova da let" formControlName="title">
+        @if (newGiftListForm.get('title')?.invalid) {
+        <mat-error>{{getErrorMessage('title')}}</mat-error>
+        }
       </mat-form-field>
-      <app-select-color/>
+
+      <app-select-color />
     </div>
   </div>
 
@@ -23,7 +22,7 @@
 
     <mat-chip-listbox aria-label="Cutest dog breeds">
       @for (dog of bestBoys; track dog) {
-        <mat-chip-option smoothBackGround={{actionColor}}>{{dog}}</mat-chip-option>
+      <mat-chip-option smoothBackGround={{actionColor}}>{{dog}}</mat-chip-option>
       }
 
     </mat-chip-listbox>
@@ -33,14 +32,17 @@
   <section>
     <div class="input-label">Recadinho de agradecimento do recibo</div>
     <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Deixe aqui uma mensagem carinhosa que vai aparecer pras pessoas que te ajudarem. Mostre um pouco da sua gratidão aos seus entes queridos <3" style="height: 116px;"></textarea>
+      <textarea matInput
+        placeholder="Deixe aqui uma mensagem carinhosa que vai aparecer pras pessoas que te ajudarem. Mostre um pouco da sua gratidão aos seus entes queridos <3"
+        style="height: 116px;" formControlName="message"></textarea>
     </mat-form-field>
 
 
   </section>
 
-  <button mat-flat-button class="full-width-button" smoothBackGround={{actionColor}}> Pronto! </button>
-  <div class="item5"><button mat-button textColor={{actionColor}} class="full-width-button">Use as configurações padrão</button></div>
+  <button mat-flat-button class="full-width-button" smoothBackGround={{actionColor}}  (click)="onSubmit($event)" > Pronto! </button>
+  <div class="item5"><button mat-button textColor={{actionColor}} class="full-width-button">Use as configurações
+      padrão</button></div>
 
 </form>
 

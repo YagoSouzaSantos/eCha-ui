@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { map, Observable, throwError } from 'rxjs';
 import { catchError, of, tap } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
+
 import { Credentials } from '../../shared/interfaces/credentials';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
 import { SnackbarService } from '../../shared/services/snackbar.service';
+import { environment } from '../../../environments/environment';
 
 export type AuthUser = User | null | undefined;
 

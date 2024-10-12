@@ -11,6 +11,6 @@
   }
 
   @if (r_editable) {
-    <img [src]="icons.pencil" alt="Edit Icon" class="action-icon" />
+    <img [src]="icons.pencil" alt="Edit Icon" class="action-icon" (click)="openDialog()" />
   }
 </div>

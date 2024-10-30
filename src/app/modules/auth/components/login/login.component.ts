@@ -1,3 +1,4 @@
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Component, effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
@@ -20,8 +21,6 @@ import { MatCard } from '@angular/material/card';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  private authGoogleService = inject(AuthGoogleService);
-
   public loginService = inject(LoginService);
   public authService = inject(AuthService);
   private router = inject(Router);
@@ -39,5 +38,6 @@ export class LoginComponent {
   onLogin(credentials: Credentials) {
     this.loginService.authenticate(credentials);
   }
+
 }
 

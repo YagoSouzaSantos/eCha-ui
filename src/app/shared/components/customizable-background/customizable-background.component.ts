@@ -17,7 +17,7 @@ export class BackgroundCardComponent {
 
   constructor() {
     effect(() => {
-      this.backgroundColor = this.backgroundService.getMessageSignal()();
+      this.backgroundColor = this.backgroundService.getBgColorSignal()();
     });
   }
 }

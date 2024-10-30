@@ -1,11 +1,13 @@
 <div class="circle-buttons">
-  <button
-  *ngFor="let color of colors; let i = index"
-  [ngStyle]="{'background-color': color.value}"
-  class="circle"
-  [class.selected]="i === selectedColorIndex"
-  (click)="selectColor(i)"
-  (click)="backgroundService.setMessage(color.name)"
-  >
-</button>
+
+  @for (color of colors; track $index) {
+    <button
+      [ngStyle]="{'background-color': color.value}"
+      [class.selected]="$index === selectedColorIndex"
+      class="circle"
+      (click)="selectColor($index)"
+      (click)="backgroundService.setbgColorSignal(color.name)">
+    </button>
+  }
+
 </div>

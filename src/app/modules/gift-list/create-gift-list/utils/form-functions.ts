@@ -1,12 +1,12 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-export function createNewGiftListForm(fb: FormBuilder): FormGroup {
+export function creationForm(fb: FormBuilder): FormGroup {
   return fb.group({
     title: ['', [Validators.required]],
-    themeColor: ['', [Validators.required]],
-    // typography: [0, [Validators.required]],
     message: [''],
-    // photoUrl: [''],
-    // photo: ['']
+    themeColor: ['', [Validators.required]],
+    typography: [1,],
+    photoUrl: [null],
+    photo: [null],
   });
 }

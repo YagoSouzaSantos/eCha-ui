@@ -43,22 +43,20 @@ export class GiftListService {
 
   postGiftList(newItem: GiftList): Observable<GiftList> {
     return this.http.post<GiftList>(`${environment.apiUrl}/giftlists`, newItem).pipe(
-      tap(response => {
-        console.log('Resposta do POST:', response);
-        // Atualiza o estado usando changeState após a resposta
-        const currentState = this.giftListState.getValueState();
-        this.giftListState.changeState([...currentState, response]); // Adiciona o novo item ao estado
+      tap(() => {
+        this.snackbarService.showSuccess('Lista de presentes criada com sucesso.')
       }),
       catchError((error) => {
+        this.snackbarService.showError('Erro ao criar Lista de presentes.')
+
         console.error('Erro ao gravar dados:', error);
-        return of({} as GiftList); // Retorna um objeto vazio como GiftList
+        return of({} as GiftList);
       })
     );
   }
 
-  // Método que será chamado no componente para salvar a lista de presentes
   saveGiftList(newItem: GiftList) {
-    this.postGiftList(newItem).subscribe(); // Chama o postGiftList diretamente
+    this.postGiftList(newItem).subscribe();
   }
 
   getItemListToObservable(): Observable<GiftList[]> {

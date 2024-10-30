@@ -2,51 +2,48 @@ import { SnackbarService } from './../../../shared/services/snackbar.service';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGoogleService {
+  #oauthService = inject(OAuthService)
+  #router = inject(Router)
 
-  private oauthService = inject(OAuthService);
-  private router = inject(Router)
-
-  constructor(
-    private snackbarService: SnackbarService
-  ) {
+  constructor() {
     this.initLogin();
   }
 
   initLogin() {
+
     if (typeof window !== 'undefined') {
       const config: AuthConfig = {
         issuer: 'https://accounts.google.com',
         strictDiscoveryDocumentValidation: false,
-        clientId: '898090893485-h5ctlmbcrfb97nef6r2j988jlg0n1q85.apps.googleusercontent.com',
-        redirectUri: window.location.origin + '/my-profile',
+        clientId: environment.googleClientId,
+        redirectUri: window.location.origin + '/home',
         scope: 'openid profile email',
       };
 
-      this.oauthService.configure(config);
-      this.oauthService.setupAutomaticSilentRefresh();
-      this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    } else {
-     this.snackbarService.showError("window is not available, running in a non-browser environment.");
+      this.#oauthService.configure(config);
+      this.#oauthService.setupAutomaticSilentRefresh();
+      this.#oauthService.loadDiscoveryDocumentAndTryLogin();
     }
   }
 
-
   login() {
-    this.oauthService.initLoginFlow();
+    this.#oauthService.initLoginFlow();
   }
 
   logout() {
-    this.oauthService.logOut();
-    this.router.navigate(['/login'])
+    this.#oauthService.logOut();
+    this.#router.navigate(['auth/login'])
   }
 
   getProfile() {
-    return this.oauthService.getIdentityClaims();
+    const claims = this.#oauthService.getIdentityClaims();
+    return claims;
   }
 }

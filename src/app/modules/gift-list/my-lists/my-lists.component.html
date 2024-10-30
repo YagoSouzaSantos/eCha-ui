@@ -8,8 +8,22 @@
     <button class="btn-hover-effect" [routerLink]="'/creation'"><mat-icon>add</mat-icon><span>Criar lista</span></button>
   </div>
 
-  <div smoothBackGround={{userTheme!.themeColor}} class="msg-system slide-in-from-right">
-    <p>Nenhuma <strong>lista de presentes</strong> encontrada.</p>
-    <p>"É hora de planejar seus sonhos! Comece criando sua lista de presentes e veja como é fácil realizá-los."</p>
-  </div>
+<!--
+  @for (giftList of filteredList$ | async; track $index) {
+    <ng-container>
+      <p> {{giftList.title}} </p>
+
+    </ng-container>
+
+  } @empty { -->
+
+    <div smoothBackGround={{userTheme!.themeColor}} class="msg-system slide-in-from-right">
+      <p>Nenhuma <strong>lista de presentes</strong> encontrada.</p>
+      <p>"É hora de planejar seus sonhos! Comece criando sua lista de presentes e veja como é fácil realizá-los."</p>
+    </div>
+
+
+
+
+
 </section>

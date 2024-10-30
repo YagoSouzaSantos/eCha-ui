@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { BackgroundService } from '../../../../../shared/services/background.service';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { BackgroundService } from '../../../../../shared/services/background.service';
 
 @Component({
   selector: 'app-select-color',
@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './select-color.component.scss'
 })
 export class SelectColorComponent {
+  @Output() selectedColor = new EventEmitter<string>();
+
   backgroundService = inject(BackgroundService)
   selectedColorIndex: number = 0;
 
@@ -26,6 +28,8 @@ export class SelectColorComponent {
 
   selectColor(index: number): void {
     this.selectedColorIndex = index;
+    const selectedColorName = this.colors[index].name;
+    this.selectedColor.emit(selectedColorName);
   }
 }
 

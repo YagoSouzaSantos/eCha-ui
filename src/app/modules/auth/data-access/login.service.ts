@@ -3,7 +3,6 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Credentials } from '../../../shared/interfaces/credentials';
 import { catchError, EMPTY, Subject, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SnackbarService } from '../../../shared/services/snackbar.service';
 
 export type LoginStatus = 'pending' | 'authenticating' | 'success' | 'error';
 

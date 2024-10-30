@@ -21,6 +21,7 @@ export class SmoothBackGroundDirective {
     switch (this.theme) {
       case 'green':
         this.el.nativeElement.style.backgroundColor = '#d6ecb894';
+        this.el.nativeElement.style.color = '#152B11';
         break;
 
       case 'red':

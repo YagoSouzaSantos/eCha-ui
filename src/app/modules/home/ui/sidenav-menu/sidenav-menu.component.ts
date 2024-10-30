@@ -4,6 +4,7 @@ import { Component, inject, input } from '@angular/core';
 import { AuthService, AuthUser } from '../../../../core/services/auth.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthGoogleService } from '../../../auth/data-access/auth-google.service';
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -14,9 +15,12 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SidenavMenuComponent {
   user = input.required<AuthUser>( {alias: 'r_user'});
-  private authService = inject(AuthService)
+
+  #authService = inject(AuthService)
+  #authGoogleService = inject(AuthGoogleService);
 
   logout() {
-    this.authService.logout()
+    this.#authService.logout()
+    this.#authGoogleService.logout()
   }
 }

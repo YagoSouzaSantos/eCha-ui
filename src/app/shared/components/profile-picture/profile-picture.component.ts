@@ -1,42 +1,51 @@
-import { Component, inject, Input, model, signal } from '@angular/core';
-import { ICONS } from '../../icons/phosphoricons';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ICONS } from '../../icons/phosphoricons';
 import { ImageSelectionDialogComponent } from './image-selection-dialog/image-selection-dialog.component';
 
+export interface CustomImageData {
+  urlImage: string;
+  base64Image: string;
+}
 
 @Component({
   selector: 'app-profile-picture',
   standalone: true,
   imports: [],
   templateUrl: './profile-picture.component.html',
-  styleUrl: './profile-picture.component.scss'
+  styleUrls: ['./profile-picture.component.scss']
 })
 export class ProfilePictureComponent {
-  icons = ICONS;
-
   @Input() imageUrl!: string;
   @Input() size: number = 100;
   @Input({ required: true }) r_editable!: boolean;
+  @Input() themeColor!: string;
 
+  @Output() imageDataChange = new EventEmitter<CustomImageData>();
 
+  icons = ICONS;
+  base64Image!: string;
 
-  readonly animal = signal('');
-  readonly name = model('');
   readonly dialog = inject(MatDialog);
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ImageSelectionDialogComponent, {
-      data: {name: this.name(), animal: this.animal()},
+      data: {
+        urlImage: this.imageUrl,
+        base64Image: this.base64Image,
+      }
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
-        this.animal.set(result);
+      if (result) {
+        const imageData: CustomImageData = {
+          urlImage: result.urlImage,
+          base64Image: result.base64Image,
+        };
+        this.imageDataChange.emit(imageData);
+
+        this.imageUrl = imageData.urlImage;
+        this.base64Image = imageData.base64Image;
       }
     });
   }
-
-
-
 }

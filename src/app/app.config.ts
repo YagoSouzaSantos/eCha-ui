@@ -11,7 +11,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withHashLocation(), withComponentInputBinding()),
+    // provideRouter(routes, withHashLocation(), withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding()),
     provideAnimationsAsync(),
     provideOAuthClient(),
     provideHttpClient(

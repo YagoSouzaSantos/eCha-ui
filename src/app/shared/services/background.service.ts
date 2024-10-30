@@ -5,13 +5,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class BackgroundService {
-  private messageSignal = signal<string>('');
+  private bgColorSignal = signal<string>('green');
 
-  getMessageSignal() {
-    return this.messageSignal;
+  getBgColorSignal() {
+    return this.bgColorSignal;
   }
 
-  setMessage(value: string) {
-    this.messageSignal.set(value);
+  setbgColorSignal(value: string) {
+    this.bgColorSignal.set(value);
   }
 }

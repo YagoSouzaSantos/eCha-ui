@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { MyProfileComponent } from './pages/my-profile/my-profile.component';
-
 import { isAuthenticatedGuard } from './core/security/auth.guard';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { LoginContainerComponent } from './modules/auth/container/login-container.component';
@@ -8,7 +6,7 @@ import { CreateGiftListComponent } from './modules/gift-list/create-gift-list/cr
 import { MyListsComponent } from './modules/gift-list/my-lists/my-lists.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
-
+import { HomeGuardService } from './core/security/home-user.guard';
 
 export const routes: Routes = [
   {
@@ -28,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [isAuthenticatedGuard()],
+    canActivate: [HomeGuardService],
     children: [
       {
         path: '',
@@ -40,7 +38,5 @@ export const routes: Routes = [
     path: 'creation',
     component: CreateGiftListComponent,
     canActivate: [isAuthenticatedGuard()],
-
   },
-  { path: 'my-profile', component: MyProfileComponent },
 ];

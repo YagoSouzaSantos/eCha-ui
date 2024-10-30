@@ -1,1 +1,3 @@
-export interface GiftListFilter {}
+export interface GiftListFilter {
+  title: string;
+}

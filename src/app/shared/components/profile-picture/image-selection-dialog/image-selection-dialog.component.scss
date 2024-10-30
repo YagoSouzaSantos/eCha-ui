@@ -1,9 +1,10 @@
 :host {
   display: flex;
   flex-direction: column;
+  padding: 16px;
 }
 
-mat-dialog-content{
+mat-dialog-content {
   display: flex;
   flex-direction: column;
 }
@@ -11,4 +12,34 @@ mat-dialog-content{
 input {
   max-width: 360px;
   width: 100%;
+}
+
+button {
+  width: 100%;
+  margin: 8px 0 0 0;
+}
+
+.text {
+  text-align: center;
+  margin: 0 0 16px 0;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.mat-mdc-dialog-actions {
+  margin-top: 25px;
+}
+
+.file-path {
+  padding: 8px 0;
+  width: 100%;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -19,6 +19,15 @@ $verde-escuro: #152B11;
     a {
         margin: 16px;
         font-weight: 500;
+        color: #152B11;
+        text-decoration: none;
+    }
+
+    a:visited {
+      margin: 16px;
+      font-weight: 500;
+      color: #152B11;
+      text-decoration: none;
     }
 
     span {

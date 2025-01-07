@@ -3,10 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 export const TopNavImports = [
   MatToolbarModule,
   MatButtonModule,
+  MatMenuModule,
   MatIconModule,
   RouterLink,
   AsyncPipe

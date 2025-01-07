@@ -1,8 +1,16 @@
-<app-top-nav />
+<app-top-nav
+  [defaltLogoTemplate]="true"
+  [btn_enter]="true"
+  [btn_createYourTea]="true" />
+
+
+
 <div class="lp-area">
 
-  <p>landing-page works!</p>
-
+  <app-banner />
+  <app-loop-title />
+  <app-description />
+  <app-find-tea />
 </div>
 
 

@@ -1,18 +1,22 @@
 :host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 
   .mat-toolbar-row,
   .mat-toolbar-single-row {
     padding-top: 8px;
     justify-content: center;
-    background-color: transparent;
+    background-color: #FAFAFA;
   }
 
   .tn-content {
     display: flex;
     align-items: center;
-
     width: 100%;
-    max-width: 1480px;
+    max-width: 1090px;
   }
 
   button {
@@ -39,6 +43,12 @@
     }
     .sidenav-menu {
       display: block;
+    }
+    mat-icon {
+      color: #14241d;
+    }
+    .mat-mdc-mini-fab {
+      background-color: transparent;
     }
   }
 }

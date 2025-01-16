@@ -21,6 +21,9 @@ export class FormValidation {
       if (control.hasError('email')) {
         return `O campo deve ser um e-mail válido`;
       }
+      if (control.hasError('passwordsMismatch')) {
+        return `As senhas não coincidem.`;
+      }
 
       return '';
     }

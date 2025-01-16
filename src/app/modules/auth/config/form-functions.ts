@@ -1,8 +1,39 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+
 
 export function createLoginForm(fb: FormBuilder): FormGroup {
   return fb.group({
-    email: ['andre@gmail.com', [Validators.required, Validators.email]],
-    password: ['21069090', [Validators.required, Validators.minLength(5)]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(5)]]
   });
+}
+
+export function createRegisterForm(fb: FormBuilder): FormGroup {
+  return fb.group(
+    {
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', [Validators.required]]
+    },
+    {
+      validators: [matchPasswords('password', 'confirmPassword')],
+    }
+  );
+}
+
+export function matchPasswords(passwordField: string, confirmPasswordField: string): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const password = group.get(passwordField)?.value;
+    const confirmPassword = group.get(confirmPasswordField)?.value;
+
+    // Retorna um erro se as senhas não coincidirem e ambos os campos estiverem preenchidos
+    if (password && confirmPassword && password !== confirmPassword) {
+      return { passwordsMismatch: true };
+    }
+
+    // Retorna null se ambos os campos estiverem vazios ou se as senhas coincidirem
+    return null;
+  };
 }

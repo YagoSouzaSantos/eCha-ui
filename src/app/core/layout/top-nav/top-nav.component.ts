@@ -17,7 +17,6 @@ export class TopNavComponent {
   @Input() defaltLogoTemplate: boolean = true;
 
 
-
   user$ = this.authService.user();
 
   logout() {

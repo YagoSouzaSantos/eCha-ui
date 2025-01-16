@@ -7,12 +7,13 @@ import { createLoginForm } from '../../../../config/form-functions';
 import { MATERIAL } from '../../../../config/imports';
 import { LoginStatus } from '../../../../data-access/login.service';
 import { AuthGoogleService } from '../../../../data-access/auth-google.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [MATERIAL],
+  imports: [MATERIAL, RouterLink],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })

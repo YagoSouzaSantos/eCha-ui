@@ -7,6 +7,7 @@ import { MyListsComponent } from './modules/gift-list/my-lists/my-lists.componen
 import { HomeComponent } from './modules/home/home.component';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
 import { HomeGuardService } from './core/security/home-user.guard';
+import { RegisterComponent } from './modules/auth/components/register/register.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
       }
     ]
   },

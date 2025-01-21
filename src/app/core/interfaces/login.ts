@@ -1,4 +1,4 @@
-export interface Login {
+export interface DoLogin {
   email: string;
-  senha: string;
+  password: string;
 }

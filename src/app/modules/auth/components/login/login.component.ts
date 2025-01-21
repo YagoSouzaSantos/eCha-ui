@@ -1,16 +1,19 @@
-import { OAuthService } from 'angular-oauth2-oidc';
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../../core/services/auth.service';
+import { DoLogin } from './../../../../core/interfaces/login';
 
 
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { LoginFormComponent } from "./ui/login-form/login-form.component";
 
-import { Credentials } from '../../../../shared/interfaces/credentials';
-import { AuthGoogleService } from '../../data-access/auth-google.service';
-import { LoginService } from '../../data-access/login.service';
+
 import { MatCard } from '@angular/material/card';
+import { ResponseError } from '../../../../core/interfaces/responses/response-error';
+import { AuthenticationService } from '../../../../core/services/authentication.service';
+import { LoginService } from '../../../../core/services/login.service';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { ResponseAuth } from '../../../../core/interfaces/responses/response-auth';
+
 
 
 @Component({
@@ -21,22 +24,31 @@ import { MatCard } from '@angular/material/card';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  public loginService = inject(LoginService);
-  public authService = inject(AuthService);
-  private router = inject(Router);
+  #authenticationService = inject(AuthenticationService);
+  #loginService = inject(LoginService);
+  #router = inject(Router);
+  #snackbarService = inject(SnackbarService);
 
-  constructor() {
-    effect(() => {
-      const user = this.authService.user()();
-      console.log('user: ', user);
-      if (user !== null && user !== undefined) {
-        this.router.navigate(['home']);
-      }
+  doLogin(loLogin: DoLogin) {
+    this.#loginService.doLogin(loLogin).subscribe({
+      next: (response) => this.processSuccess(response),
+      error: (errorResponse) => this.processError(errorResponse)
     });
   }
 
-  onLogin(credentials: Credentials) {
-    this.loginService.authenticate(credentials);
+  private processSuccess(response: ResponseAuth): void {
+    if (response.tokens?.accessToken) {
+      this.#authenticationService.setTokensLocalStorage(response.tokens.accessToken);
+      this.#snackbarService.showSuccess('Login realizado com sucesso.');
+      this.#router.navigate(['/home']);
+    } else {
+      this.#snackbarService.showError('Resposta inválida do servidor.');
+    }
+  }
+
+  private processError(errorResponse: ResponseError): void {
+    const errorMessage = errorResponse.errors?.[0];
+    this.#snackbarService.showError(errorMessage);
   }
 
 }

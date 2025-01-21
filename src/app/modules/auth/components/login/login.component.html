@@ -4,5 +4,5 @@
   <h3>Vamos ver como seus presentes estão?</h3>
 </div>
 
-    <app-login-form [loginStatus]="loginService.status()" (login)="onLogin($event)" />
+    <app-login-form (login)="doLogin($event)" />
 </mat-card>

@@ -36,7 +36,7 @@ export class RegisterComponent {
     if (response.tokens?.accessToken) {
       this.#authenticationService.setTokensLocalStorage(response.tokens.accessToken);
       this.#snackbarService.showSuccess('Cadastro realizado com sucesso.');
-      this.#router.navigate(['/home']);
+      this.#router.navigate(['/creation']);
     } else {
       this.#snackbarService.showError('Resposta inválida do servidor.');
     }

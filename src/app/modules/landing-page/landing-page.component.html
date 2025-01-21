@@ -3,16 +3,15 @@
   [btn_enter]="true"
   [btn_createYourTea]="true" />
 
-
-
 <div class="lp-area">
+  <app-banner (eventClick)="clickFindOutMore()"/>
 
-  <app-banner />
-  <app-loop-title />
+  <div #loopTitle>
+    <app-loop-title/>
+  </div>
+
   <app-description />
   <app-find-tea />
 </div>
-
-
 
 <app-footer />

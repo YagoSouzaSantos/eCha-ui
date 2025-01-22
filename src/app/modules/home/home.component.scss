@@ -1,12 +1,8 @@
-.container {
-  height: 100vh;
-  overflow: hidden;
-}
-
 .content {
   min-height: 94vh;
-  display: flex;
+  max-width: 1200px;
   justify-content: center;
+  margin: 0 auto 0 auto;
 }
 
 .my-router-area {
@@ -17,4 +13,9 @@
 
 mat-drawer {
   width: 380px;
+}
+
+.fa { // filter area
+  max-width: 400px;
+  margin-left: auto;
 }

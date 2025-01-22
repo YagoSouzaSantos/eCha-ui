@@ -1,13 +1,12 @@
 <mat-toolbar>
-  <img src="assets/image/logo/white-logo.png" alt="eCha">
+  <div class="content">
+    <img src="assets/image/logo/default-logo.png" alt="eCha">
 
-  <span class="spacer"></span>
+    <span class="spacer"></span>
 
-    <app-profile-picture class="profile"
-      (click)="toggleUserSidenav()"
-      [imageUrl]="user()!.imageURL"
-      [size]="48"
-      [r_editable]="false"
-    />
+    <button mat-button (click)="alert()"><mat-icon>settings</mat-icon></button>
+
+    <app-profile-picture class="profile" (click)="alert()" [size]="48" [r_editable]="false" />
+  </div>
 
 </mat-toolbar>

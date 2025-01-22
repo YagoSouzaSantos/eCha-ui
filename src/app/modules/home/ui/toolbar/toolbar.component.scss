@@ -1,5 +1,5 @@
 mat-toolbar {
-  background-color: transparent;
+  background-color: #fff;
   color           : #fff;
   padding         : 16px;
 }
@@ -11,4 +11,12 @@ img {
 
 .profile:hover {
   cursor: pointer;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 0 auto;
 }

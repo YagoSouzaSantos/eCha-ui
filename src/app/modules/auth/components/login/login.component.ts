@@ -19,7 +19,7 @@ import { ResponseAuth } from '../../../../core/interfaces/responses/response-aut
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [MatProgressSpinner, LoginFormComponent, MatCard],
+  imports: [LoginFormComponent, MatCard],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

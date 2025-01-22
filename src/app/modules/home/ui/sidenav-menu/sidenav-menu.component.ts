@@ -1,7 +1,6 @@
-import { ProfilePictureComponent } from '../../../../shared/components/profile-picture/profile-picture.component';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Component, inject, input } from '@angular/core';
-import { AuthService, AuthUser } from '../../../../core/services/auth.service';
+import { ProfilePictureComponent } from '../../../../shared/components/profile-picture/profile-picture.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthGoogleService } from '../../../auth/data-access/auth-google.service';
@@ -14,13 +13,10 @@ import { AuthGoogleService } from '../../../auth/data-access/auth-google.service
   styleUrl: './sidenav-menu.component.scss'
 })
 export class SidenavMenuComponent {
-  user = input.required<AuthUser>( {alias: 'r_user'});
-
-  #authService = inject(AuthService)
+  user: any;
   #authGoogleService = inject(AuthGoogleService);
 
   logout() {
-    this.#authService.logout()
-    this.#authGoogleService.logout()
+
   }
 }

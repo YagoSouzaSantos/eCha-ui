@@ -28,12 +28,10 @@ export function matchPasswords(passwordField: string, confirmPasswordField: stri
     const password = group.get(passwordField)?.value;
     const confirmPassword = group.get(confirmPasswordField)?.value;
 
-    // Retorna um erro se as senhas não coincidirem e ambos os campos estiverem preenchidos
     if (password && confirmPassword && password !== confirmPassword) {
       return { passwordsMismatch: true };
     }
 
-    // Retorna null se ambos os campos estiverem vazios ou se as senhas coincidirem
     return null;
   };
 }

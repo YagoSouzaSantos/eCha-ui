@@ -34,12 +34,6 @@ export const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     // canActivate: [HomeGuardService],
-    children: [
-      {
-        path: '',
-        component: MyListsComponent,
-      },
-    ]
   },
   {
     path: 'creation',

@@ -1,0 +1,15 @@
+<h1>R$ {{ AmountRaised}} </h1>
+<span>Ninguém contribuiu ainda :(</span>
+<div
+  class="custom-progress-bar"
+  [style.height.px]="height"
+  [style.width.%]="width"
+  [style.backgroundColor]="backgroundColor"
+>
+  <div
+    class="progress"
+    [style.width.%]="value"
+    [style.backgroundColor]="progressColor"
+  ></div>
+</div>
+<span class="progress-label">{{ value }}%</span>

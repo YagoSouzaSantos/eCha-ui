@@ -29,6 +29,7 @@ export class LoginFormComponent {
 
   ngOnInit(): void {
     this.loginForm = createLoginForm(this.#fb);
+    this.loginStatus = false;
   }
 
   getErrorMessage(controlName: string): string {

@@ -1,0 +1,29 @@
+:host {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+
+  h1 {
+    font-size: 2.1em;
+    margin-bottom: 0;
+  }
+
+  .custom-progress-bar {
+    margin-top: 16px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress {
+    border-radius: 10px;
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  .progress-label {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+
+  }
+}

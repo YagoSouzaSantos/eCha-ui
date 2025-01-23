@@ -10,6 +10,7 @@ import { LandingPageComponent } from './modules/landing-page/landing-page.compon
 import { TermsOfServiceComponent } from './core/pages/terms-of-service/terms-of-service.component';
 import { UseOfCookiesComponent } from './core/pages/use-of-cookies/use-of-cookies.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
+import { EditorGiftListComponent } from './modules/gift-list/editor-gift-list/editor-gift-list.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
     path: 'creation',
     component: CreateGiftListComponent,
     // canActivate: [isAuthenticatedGuard()],
+  },
+  {
+    path: 'editor/:key',
+    component: EditorGiftListComponent
   },
   {
     path: 'donation/:key',

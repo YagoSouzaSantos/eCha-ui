@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { SmoothBackGroundDirective } from '../../../../core/diretives/smoothBackGround.directive';
-import { TextColorDirective } from '../../../../core/diretives/textColor.directive';
 
 export interface DialogData {
   themeColor: string;
@@ -17,7 +16,7 @@ export interface DialogData {
   selector: 'app-image-selection-dialog',
   standalone: true,
   imports: [
-    MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, MatDialogActions, MatDialogClose, SmoothBackGroundDirective, TextColorDirective
+    MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, MatDialogActions, SmoothBackGroundDirective
   ],
   templateUrl: './image-selection-dialog.component.html',
   styleUrl: './image-selection-dialog.component.scss',
@@ -48,13 +47,17 @@ export class ImageSelectionDialogComponent {
     reader.readAsDataURL(file);
   }
 
-  onSelectImage(): void {
+  onConfirm(): void {
+    const base64 = this.base64Image();
+    const url = base64 ? null : this.urlImage();
+
     this.dialogRef.close({
-      urlImage: this.urlImage(),
-      base64Image: this.base64Image(),
+      urlImage: url,
+      base64Image: base64,
       filePath: this.filePath(),
     });
   }
+
 
   onCancel(): void {
     this.dialogRef.close();

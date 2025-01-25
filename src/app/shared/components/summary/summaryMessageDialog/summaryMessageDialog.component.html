@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <h2>Vamos escrever um recadinho?</h2>
+  <p>Adicione uma mensagem aos visitantes da sua página. Falar sobre o chá, onde e quando vai ser, ou algo que os motive a colaborar é uma boa, também!</p>
+
+  <p class="field-title">Descrição do chá</p>
+  <mat-form-field class="full-width">
+    <textarea
+      matInput
+      placeholder="Deixe aqui a sua mensagem carinhosa <3"
+      [(ngModel)]="message">
+    </textarea>
+  </mat-form-field>
+
+  <button mat-flat-button smoothBackGround={{data.themeColor}} (click)="saveDate()">Salvar recadinho</button>
+  <button mat-button (click)="onCancel()">Cancelar Alterações</button>
+</mat-card>

@@ -8,10 +8,12 @@
   }
 
   .custom-progress-bar {
+    height: 8px;
     margin-top: 16px;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.377);
   }
 
   .progress {
@@ -24,6 +26,18 @@
     margin-top: 10px;
     font-size: 14px;
     text-align: center;
+  }
 
+  @media (max-width: 768px) {
+    color: black;
+
+    .content {
+      width: 320px;
+      margin: 16px auto 16px 8px;
+
+    }
+    .custom-progress-bar {
+      width: 360px;
+    }
   }
 }

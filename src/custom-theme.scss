@@ -3,38 +3,25 @@
 
 @include mat.core();
 
-// Colors
-$verde-palmeira: #CBDFB2;
-$azul-marinho: #007bff;
-$laranja-sol: #FF8C00;
-$roxo-ametista: #8E44AD;
-$amarelo-canario: #FFD700;
 
-$echa-ui-primary: mat.define-palette(mat.$green-palette);
-$echa-ui-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$echa-ui-warn: mat.define-palette(mat.$red-palette);
+// Define a cor primária baseada na paleta cinza
+$custom-primary-palette: mat.define-palette(mat.$grey-palette, 800); // Cinza escuro como primário
 
-// Additional color palettes
-$echa-ui-blue: mat.define-palette(mat.$blue-palette);
-$echa-ui-orange: mat.define-palette(mat.$orange-palette);
-$echa-ui-purple: mat.define-palette(mat.$purple-palette);
-$echa-ui-yellow: mat.define-palette(mat.$yellow-palette);
+// Define a cor de acentuação (opcional, pode ser outra cor)
+$custom-accent-palette: mat.define-palette(mat.$blue-palette, 500);
 
-$echa-ui-theme: mat.define-light-theme((
+// Define o tema claro (Light Theme) com a nova paleta
+$light-theme: mat.define-light-theme((
   color: (
-    primary: $echa-ui-primary,
-    accent: $echa-ui-accent,
-    verde-palmeira: $verde-palmeira,
-    warn: $echa-ui-warn,
-    blue: $echa-ui-blue,
-    orange: $echa-ui-orange,
-    purple: $echa-ui-purple,
-    yellow: $echa-ui-yellow
+    primary: $custom-primary-palette,
+    accent: $custom-accent-palette,
+    warn: mat.define-palette(mat.$red-palette),
   ),
-  typography: mat.define-typography-config(),
-  density: 0
 ));
-@include mat.all-component-themes($echa-ui-theme);
+
+// Aplica o tema a todos os componentes
+@include mat.all-component-themes($light-theme);
+
 
 // SnackBar modelos
 .snackbar {

@@ -23,7 +23,7 @@ export class ThemeColorDirective {
         break;
 
       case 'red':
-        this.el.nativeElement.style.backgroundColor = '#A30000';
+        this.el.nativeElement.style.backgroundColor = '#ad0505';
         break;
 
       case 'blue':
@@ -31,7 +31,7 @@ export class ThemeColorDirective {
         break;
 
       case 'yellow':
-        this.el.nativeElement.style.backgroundColor = '#d1ae24';
+        this.el.nativeElement.style.backgroundColor = '#e0c65c';
         break;
 
       case 'purple':
@@ -39,11 +39,11 @@ export class ThemeColorDirective {
         break;
 
       case 'orange':
-        this.el.nativeElement.style.backgroundColor = '#e35214';
+        this.el.nativeElement.style.backgroundColor = '#e07d53';
         break;
 
       case 'pink':
-        this.el.nativeElement.style.backgroundColor = '#ba56b7';
+        this.el.nativeElement.style.backgroundColor = '#c975c7';
         break;
 
       case 'gray':

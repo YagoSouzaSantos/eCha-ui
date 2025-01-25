@@ -1,15 +1,16 @@
-<h1>R$ {{ AmountRaised}} </h1>
-<span>Ninguém contribuiu ainda :(</span>
-<div
-  class="custom-progress-bar"
-  [style.height.px]="height"
-  [style.width.%]="width"
-  [style.backgroundColor]="backgroundColor"
->
-  <div
-    class="progress"
-    [style.width.%]="value"
-    [style.backgroundColor]="progressColor"
-  ></div>
+<div class="content">
+  <h1>R$ {{ r_valueCollected.toLocaleString('pt-BR') }}</h1>
+
+  @if(r_valueCollected == 0){ <span>Ninguém contribuiu ainda :(</span> }
+
+  <div class="custom-progress-bar">
+    <div
+      class="progress"
+      [style.width.%]="percentageValue"
+      [style.backgroundColor]="paletteByTheme()">
+    </div>
+  </div>
+
+  <span class="progress-label">{{ percentageValue }}%</span>
 </div>
-<span class="progress-label">{{ value }}%</span>
+

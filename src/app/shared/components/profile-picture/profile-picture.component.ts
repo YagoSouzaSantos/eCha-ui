@@ -16,7 +16,7 @@ export interface CustomImageData {
   styleUrls: ['./profile-picture.component.scss']
 })
 export class ProfilePictureComponent {
-  @Input() imageUrl!: string;
+  @Input() imageUrl!: string | null;
   @Input() size: number = 100;
   @Input({ required: true }) r_editable!: boolean;
   @Input() themeColor!: string;
@@ -31,6 +31,7 @@ export class ProfilePictureComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(ImageSelectionDialogComponent, {
       data: {
+        themeColor: this.themeColor,
         urlImage: this.imageUrl,
         base64Image: this.base64Image,
       }

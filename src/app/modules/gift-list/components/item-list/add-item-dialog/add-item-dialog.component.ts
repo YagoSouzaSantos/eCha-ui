@@ -31,11 +31,9 @@ export class AddItemDialogComponent {
   #snackbarService = inject(SnackbarService);
 
   categories: Category[] = [
-    { value: 'Eletrônicos', viewValue: 'Eletrônicos' },
     { value: 'Eletrodomésticos', viewValue: 'Eletrodomésticos' },
-    { value: 'Móveis', viewValue: 'Móveis' },
-    { value: 'Roupas', viewValue: 'Roupas' },
-    { value: 'Outros', viewValue: 'Outros' }
+    { value: 'Utensílios de Cozinha', viewValue: 'Utensílios de Cozinha' },
+    { value: 'Eletroportáteis', viewValue: 'Eletroportáteis' }
   ];
 
   newItem: Item = {

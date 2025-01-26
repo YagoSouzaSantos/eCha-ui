@@ -3,6 +3,7 @@ IFBA - Instituto Federal de Educação, Ciência e Tecnologia da Bahia Campus Eu
 
 ## Resumo
 O objetivo deste projeto é apresentar a interface desenvolvida para o eChá, um plataforma projetada para simplificar o processo de presentear amigos e familiares que estão se mudando para uma nova casa. O eChá permite aos usuários criar listas de presentes em um modelo similar a um chá de casa nova eletrônico, com opção de conversão em dinheiro para os presentes. A realização da celebração de forma eletrônica visa facilitar o compartilhamento e envio dos presentes escolhidos, tornando a experiência de presentear mais conveniente. Com uma interface intuitiva e recursos modernos, o eChá deverá promover uma maneira eficiente e personalizada de gerenciamento de listas de presentes para casa nova.
+
 ![Apresentação](assets/image/readme/presentation.png)
 
 ## Pré-requisitos

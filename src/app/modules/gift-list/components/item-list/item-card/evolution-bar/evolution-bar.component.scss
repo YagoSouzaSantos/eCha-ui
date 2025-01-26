@@ -1,24 +1,14 @@
 :host {
   font-family: 'Montserrat', sans-serif;
-  color: white;
-
-  h1 {
-    font-size: 2.1em;
-    margin-bottom: 0;
-  }
-
-  .content {
-    margin: auto 8px ;
-  }
 
   .custom-progress-bar {
     height: 8px;
-    max-width: 400px;
+    max-width: 300px;
     margin-top: 16px;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.377);
+    background-color: rgba(0, 0, 0, 0.151);
   }
 
   .progress {
@@ -34,14 +24,8 @@
   }
 
   @media (max-width: 768px) {
-    color: black;
-
-    .content {
-      width: 320px;
-      margin: 16px auto 16px auto;
-    }
     .custom-progress-bar {
-      width: 320px;
+      width: 100%;
     }
   }
 }

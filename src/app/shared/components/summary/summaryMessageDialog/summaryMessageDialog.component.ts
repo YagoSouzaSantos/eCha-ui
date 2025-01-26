@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { SmoothBackGroundDirective } from '../../../../core/diretives/smoothBackGround.directive';
+import { ThemeColorDirective } from '../../../../core/diretives/themeColor.directive';
 
 export interface DialogData {
   message: string;
@@ -17,24 +17,24 @@ export interface DialogData {
 @Component({
   selector: 'app-summary-message-dialog',
   standalone: true,
-  imports: [MatCardModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, SmoothBackGroundDirective],
+  imports: [MatCardModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, ThemeColorDirective],
   templateUrl: './summaryMessageDialog.component.html',
   styleUrl: './summaryMessageDialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SummaryMessageDialogComponent {
-    readonly dialogRef = inject(MatDialogRef<SummaryMessageDialogComponent>);
-    readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  readonly dialogRef = inject(MatDialogRef<SummaryMessageDialogComponent>);
+  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
-    message: string | null = null;
+  message: string | null = null;
 
-    saveDate(): void {
-      this.dialogRef.close({
-        message: this.message
-      });
-    }
+  saveDate(): void {
+    this.dialogRef.close({
+      message: this.message
+    });
+  }
 
-    onCancel(): void {
-      this.dialogRef.close();
-    }
+  onCancel(): void {
+    this.dialogRef.close();
+  }
 }

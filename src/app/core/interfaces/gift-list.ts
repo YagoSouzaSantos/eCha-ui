@@ -1,3 +1,5 @@
+import { Item } from "./item";
+
 export interface GiftList {
   id?: number;
   key: string;
@@ -11,4 +13,5 @@ export interface GiftList {
   totalValue: number;
   valueCollected: number;
   creator: string;
+  items: Item[];
 }

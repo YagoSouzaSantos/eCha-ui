@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { LoginContainerComponent } from './modules/auth/container/login-container.component';
-import { DonationComponent } from './modules/donation/donation.component';
+import { DonationComponent } from './modules/gift-list/donation/donation.component';
 import { CreateGiftListComponent } from './modules/gift-list/create-gift-list/create-gift-list.component';
 import { MyListsComponent } from './modules/gift-list/my-lists/my-lists.component';
 import { HomeComponent } from './modules/home/home.component';

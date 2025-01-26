@@ -2,7 +2,7 @@
   padding: 8px 16px;
   border-radius: 0 25px;
   text-align: center;
-  width: 95%;
+  width: 100%;
   max-width: 750px;
   flex-wrap: nowrap;
   word-wrap: break-word;
@@ -27,5 +27,11 @@
   100% {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .msg-system {
+    max-width: 360px;
   }
 }

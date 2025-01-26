@@ -1,18 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DoLogin } from './../../../../core/interfaces/login';
-
-
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { LoginFormComponent } from "./ui/login-form/login-form.component";
-
-
 import { MatCard } from '@angular/material/card';
+import { ResponseAuth } from '../../../../core/interfaces/responses/response-auth';
 import { ResponseError } from '../../../../core/interfaces/responses/response-error';
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { LoginService } from '../../../../core/services/login.service';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
-import { ResponseAuth } from '../../../../core/interfaces/responses/response-auth';
 
 
 

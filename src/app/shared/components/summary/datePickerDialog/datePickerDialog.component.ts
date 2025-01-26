@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { SmoothBackGroundDirective } from '../../../../core/diretives/smoothBackGround.directive';
+import { ThemeColorDirective } from '../../../../core/diretives/themeColor.directive';
 
 export interface DialogData {
   eventDate: string;
@@ -35,7 +35,7 @@ const MY_DATE_FORMATS = {
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
   ],
-  imports: [MatCardModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, SmoothBackGroundDirective],
+  imports: [MatCardModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, ThemeColorDirective],
   templateUrl: './datePickerDialog.component.html',
   styleUrl: './datePickerDialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

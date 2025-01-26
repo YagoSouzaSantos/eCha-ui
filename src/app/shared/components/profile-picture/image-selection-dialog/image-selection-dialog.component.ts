@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/materi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { SmoothBackGroundDirective } from '../../../../core/diretives/smoothBackGround.directive';
+import { ThemeColorDirective } from '../../../../core/diretives/themeColor.directive';
 
 export interface DialogData {
   themeColor: string;
@@ -16,7 +16,7 @@ export interface DialogData {
   selector: 'app-image-selection-dialog',
   standalone: true,
   imports: [
-    MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, MatDialogActions, SmoothBackGroundDirective
+    MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, MatDialogActions, ThemeColorDirective
   ],
   templateUrl: './image-selection-dialog.component.html',
   styleUrl: './image-selection-dialog.component.scss',

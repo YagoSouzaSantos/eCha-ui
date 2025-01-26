@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -14,9 +14,13 @@ import { SnackbarService } from '../../services/snackbar.service';
   styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
+  @Input() placeholder: string = '';
+
   #fb = inject(FormBuilder)
   #snackbarService = inject(SnackbarService);
   filterForm!: FormGroup
+
+
 
   ngOnInit(): void {
     this.filterForm = createFilterForm(this.#fb);

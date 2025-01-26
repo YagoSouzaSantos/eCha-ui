@@ -3,14 +3,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item } from '../../../../../core/interfaces/item';
 import { SnackbarService } from '../../../../../shared/services/snackbar.service';
 import { ADD_ITEM_IMPORTS } from './add-item-imports';
+import { Category } from '../../../../../core/interfaces/category';
 
 export interface DialogData {
   themeColor: string;
-}
-
-interface Category {
-  value: string;
-  viewValue: string;
+  item: Item;
 }
 
 @Component({
@@ -24,6 +21,12 @@ interface Category {
 export class AddItemDialogComponent {
   readonly dialogRef = inject(MatDialogRef<AddItemDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+
+  ngOnInit(): void {
+    if (this.data.item) {
+      this.newItem = { ...this.data.item };
+    }
+  }
 
   #snackbarService = inject(SnackbarService);
 
@@ -63,6 +66,11 @@ export class AddItemDialogComponent {
       }
     }
   }
+
+  onValueChange(value: number): void {
+    this.newItem.valueItem = value;
+  }
+
   save() {
     this.dialogRef.close(this.newItem);
   }

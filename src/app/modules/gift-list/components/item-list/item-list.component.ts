@@ -6,11 +6,13 @@ import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.compon
 import { MatDialog } from '@angular/material/dialog';
 import { ItemCardComponent } from "./item-card/item-card.component";
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { FilterComponent } from '../../../../shared/components/filter/filter.component';
+import { CategoryChipComponent } from "../../../../shared/components/category-chip/category-chip.component";
 
 @Component({
   selector: 'app-item-list',
   standalone: true,
-  imports: [MatButtonModule, SmoothBackGroundDirective, ItemCardComponent],
+  imports: [MatButtonModule, SmoothBackGroundDirective, ItemCardComponent, FilterComponent, CategoryChipComponent],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss'
 })
@@ -37,7 +39,21 @@ export class ItemListComponent {
   }
 
   handleEdit(item: Item) {
-    console.log('Edit clicked!', item);
+    const dialogRef = this.dialog.open(AddItemDialogComponent, {
+      data: {
+        themeColor: this.r_themeColor,
+        item
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((updatedItem: Item) => {
+      if (updatedItem) {
+        const index = this.r_items.findIndex(i => i.id === updatedItem.id);
+        if (index > -1) {
+          this.r_items[index] = updatedItem;
+        }
+      }
+    });
   }
 
   handleDelete(item: Item) {

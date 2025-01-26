@@ -1,7 +1,10 @@
 <form [formGroup]="filterForm" class="filter-area" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline" [floatLabel]="'always'">
-    <mat-label>Pesquisar</mat-label>
-    <input matInput formControlName="description" (keydown.enter)="onSubmit()">
+    <input
+      matInput
+      formControlName="description"
+      placeholder="{{placeholder}}"
+      (keydown.enter)="onSubmit()">
     <button mat-icon-button matSuffix type="submit">
       <mat-icon>search</mat-icon>
     </button>

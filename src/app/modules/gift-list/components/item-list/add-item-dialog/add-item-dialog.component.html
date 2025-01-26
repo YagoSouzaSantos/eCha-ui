@@ -15,12 +15,17 @@
 
     <div class="input-label">Valor</div>
     <mat-form-field>
+      <span matTextPrefix>R$ &nbsp;</span>
       <input matInput
-        type="number"
-        [(ngModel)]="newItem.valueItem"
-        name="value"
-        required />
+             type="number"
+             [(ngModel)]="newItem.valueItem"
+             (ngModelChange)="onValueChange($event)"
+             name="value"
+             required
+             step="0.01"
+             min="0" />
     </mat-form-field>
+
 
     <div class="input-label">Categoria</div>
     <mat-form-field>

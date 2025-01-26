@@ -1,5 +1,10 @@
 <div class="content">
-  <h1>Itens Restantes</h1>
+
+  <div class="fa">
+    <app-filter [placeholder]="'Pesquise por um item'"/>
+  </div>
+  <h1>Itens</h1>
+  <app-category-chip />
 
   <div class="{{r_themeColor}}-hover action">
     <button class="btn-hover-effect" (click)="showAddItemDialog()"><span>+ Adicionar item</span></button>

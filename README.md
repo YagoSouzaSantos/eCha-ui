@@ -1,27 +1,68 @@
-# EchaUi
+# eChá - Projeto Interdisciplinar
+IFBA - Instituto Federal de Educação, Ciência e Tecnologia da Bahia Campus Eunápolis
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+## Resumo
+O objetivo deste projeto é apresentar a interface desenvolvida para o eChá, um plataforma projetada para simplificar o processo de presentear amigos e familiares que estão se mudando para uma nova casa. O eChá permite aos usuários criar listas de presentes em um modelo similar a um chá de casa nova eletrônico, com opção de conversão em dinheiro para os presentes. A realização da celebração de forma eletrônica visa facilitar o compartilhamento e envio dos presentes escolhidos, tornando a experiência de presentear mais conveniente. Com uma interface intuitiva e recursos modernos, o eChá deverá promover uma maneira eficiente e personalizada de gerenciamento de listas de presentes para casa nova.
 
-## Development server
+## Pré-requisitos
+Verifique se você possui os seguintes softwares instalados:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Node.js](https://nodejs.org/) (Recomendada a versão v20.11.1 ou superior)
+- [Angular CLI](https://angular.io/cli) (se ainda não tiver, você pode instalá-lo globalmente com o comando `npm install -g @angular/cli`)
 
-## Code scaffolding
+O projeto foi desenvolvido na versão do Angular 18.1.4
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instalação
 
-## Build
+1. **Clone o repositório**:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```bash
+   git clone https://github.com/YagoSouzaSantos/eCha-ui.git
+   ```
+   ```bash
+   cd eCha-ui
+   ```
 
-## Running unit tests
+2. **Instale o Angular CLI caso não tenha**:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   Execute o seguinte comando:
 
-## Running end-to-end tests
+   ```bash
+   npm install -g @angular/cli
+   ```
+   
+2. **Instale as dependências**:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   Execute o seguinte comando para instalar todas as dependências necessárias do projeto:
 
-## Further help
+   ```bash
+   npm install
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. **Instale o Angular Material**:
+
+   Para instalar o Angular Material, execute o comando:
+
+   ```bash
+   ng add @angular/material
+   ```
+
+   Caso o material altere o arquivo styles.scss descarte as alterações pois isso pode impedir a execução do projeto
+
+## Executando o Projeto
+
+Para iniciar o servidor de desenvolvimento e executar o projeto, use o comando:
+
+```bash
+ng server
+```
+ou caso queira iniciar o aplicativo automaticamente em seu navegador padrão:
+```bash
+ng s -o
+```
+
+O aplicativo estará disponível em [http://localhost:4200](http://localhost:4200).
+
+## Tecnologias utilizadas
+- Angular versão 18.1.4
+- Angular Material

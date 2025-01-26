@@ -1,0 +1,23 @@
+<mat-toolbar  themeColor={{r_themeColor}}>
+  <div class="tn-content">
+
+    <img src="assets/image/logo/white-logo.png" alt="eCha">
+
+    <span class="spacer"></span>
+
+    <section class="action">
+      <button mat-stroked-button class="btn-ol-dark">Meu saldo</button>
+      <button mat-button (click)="logout()"><mat-icon>logout</mat-icon></button>
+    </section>
+
+    <div class="menu">
+      <button mat-mini-fab [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'auth/login'">Meu saldo</button>
+        <button mat-menu-item [routerLink]="'auth/register'">logout</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="background-page" themeColor={{r_themeColor}}></div>

@@ -1,0 +1,60 @@
+:host {
+  display: block;
+
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h2 {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    width: 100%;
+    display: flex;
+    padding: 8px;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    border: none;
+    border-radius: 0;
+  }
+
+  .image-area {
+    flex: 0 0 110px;
+    height: 110px;
+
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-right: 16px;
+    background-color: #ffffff;
+
+    img {
+      max-height: 110px;
+      height: 100%;
+      width: 110px;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .item-data {
+    width: 90%;
+    margin-left: 8px;
+  }
+
+  .action {
+    * {
+      font-size: 1.2em;
+    }
+
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

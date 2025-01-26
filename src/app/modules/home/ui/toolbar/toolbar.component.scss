@@ -1,0 +1,22 @@
+mat-toolbar {
+  background-color: #fff;
+  color           : #fff;
+  padding         : 16px;
+}
+
+img {
+  height: 48px;
+  width : auto;
+}
+
+.profile:hover {
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 0 auto;
+}

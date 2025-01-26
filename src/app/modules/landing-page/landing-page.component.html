@@ -1,0 +1,17 @@
+<app-top-nav
+  [defaltLogoTemplate]="true"
+  [btn_enter]="true"
+  [btn_createYourTea]="true" />
+
+<div class="lp-area">
+  <app-banner (eventClick)="clickFindOutMore()"/>
+
+  <div #loopTitle>
+    <app-loop-title/>
+  </div>
+
+  <app-description />
+  <app-find-tea />
+</div>
+
+<app-footer />

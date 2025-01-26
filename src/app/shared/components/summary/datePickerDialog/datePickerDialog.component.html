@@ -1,0 +1,17 @@
+<mat-card class="card">
+  <h2>Adicionar data do chá</h2>
+  <span>Defina aqui que dia o seu chá será realizado</span>
+  <mat-form-field class="datepicker">
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="dd/mm/aaaa"
+      [(ngModel)]="selectedDate"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-flat-button themeColor={{data.themeColor}} (click)="saveDate()">Salvar data</button>
+  <button mat-button (click)="onCancel()">Manter sem data por enquanto</button>
+</mat-card>

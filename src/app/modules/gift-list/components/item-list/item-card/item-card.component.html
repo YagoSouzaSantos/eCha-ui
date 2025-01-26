@@ -1,0 +1,30 @@
+<mat-card class="card" appearance="outlined">
+
+
+  <div class="image-area">
+    @if(r_item.image == null) {
+      <img [src]="r_item.imageUrl" />
+    }
+    @else {
+      <img [src]="r_item.image" />
+    }
+  </div>
+
+  <div class="item-data">
+    <h2>{{ r_item.name }}</h2>
+    <div><b>Valor:</b> R$ {{ r_item.valueItem.toLocaleString('pt-BR') }}</div>
+    <app-evolution-item-bar
+      [r_themeColor]="r_themeColor"
+      [r_valueItem]="r_item.valueItem"
+      [r_valueItemCollected]="r_item.valueItemCollected" />
+
+    <div class="action">
+      <button mat-button (click)="onClickEdit(r_item)"><i class="ph ph-pencil-simple"></i></button>
+      @if(r_item.valueItemCollected == 0) { <button mat-button (click)="onClickDelete(r_item)"><i class="ph ph-trash"></i></button> }
+      @else { <button mat-button (click)="onClickDelete(r_item)" disabled><i class="ph ph-trash"></i></button> }
+    </div>
+  </div>
+
+</mat-card>
+
+

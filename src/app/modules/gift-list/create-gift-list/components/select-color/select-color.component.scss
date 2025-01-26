@@ -1,0 +1,22 @@
+.circle-buttons {
+  display: flex;
+  gap: 10px;
+
+  .circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+      border-color: #505050;
+    }
+
+    &.selected {
+      border: 2px solid #000;
+    }
+  }
+}

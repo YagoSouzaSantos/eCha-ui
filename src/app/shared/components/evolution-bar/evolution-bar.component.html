@@ -1,0 +1,16 @@
+<div class="content">
+  <h1>R$ {{ r_valueCollected.toLocaleString('pt-BR') }}</h1>
+
+  @if(r_valueCollected == 0){ <span>Ninguém contribuiu ainda :(</span> }
+
+  <div class="custom-progress-bar">
+    <div
+      class="progress"
+      [style.width.%]="percentageValue"
+      [style.backgroundColor]="paletteByTheme()">
+    </div>
+  </div>
+
+  <span class="progress-label">{{ percentageValue }}%</span>
+</div>
+

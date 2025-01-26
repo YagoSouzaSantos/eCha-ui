@@ -1,0 +1,21 @@
+.content {
+  min-height: 94vh;
+  max-width: 1200px;
+  justify-content: center;
+  margin: 16px auto 0 auto;
+}
+
+.my-router-area {
+  width: 100%;
+  max-width: 1279px;
+  height: auto;
+}
+
+mat-drawer {
+  width: 380px;
+}
+
+.fa { // filter area
+  max-width: 400px;
+  margin-left: auto;
+}

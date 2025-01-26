@@ -1,0 +1,54 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    padding-top: 8px;
+    justify-content: center;
+    background-color: #FAFAFA;
+  }
+
+  .tn-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1090px;
+  }
+
+  button {
+    border-radius: 25px;
+    margin: 0 8px 0 8px;
+  }
+
+  mat-icon {
+    color: #fff;
+  }
+
+  img {
+    height: 48px;
+    width: auto;
+  }
+
+  .sidenav-menu {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .action {
+      display: none;
+    }
+    .sidenav-menu {
+      display: block;
+    }
+    mat-icon {
+      color: #14241d;
+    }
+    .mat-mdc-mini-fab {
+      background-color: transparent;
+    }
+  }
+}

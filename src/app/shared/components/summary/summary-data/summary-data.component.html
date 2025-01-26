@@ -1,0 +1,9 @@
+<div class="default-message" (onclick)="showEditDialog()">
+  @if(r_message == null) {
+  <p><u>Clique aqui para <b>adicionar uma mensagem</b> aos visitantes da sua página.</u> Falar sobre o chá, onde e
+    quando vai ser, ou algo que os motive a colaborar é uma boa, também!</p>
+  }
+  @else {
+    <p>{{r_message}}</p>
+  }
+</div>

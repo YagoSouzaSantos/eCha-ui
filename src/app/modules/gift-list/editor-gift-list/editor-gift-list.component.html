@@ -1,0 +1,22 @@
+<app-top-nav
+  [r_themeColor]="giftList.themeColor" />
+
+<div class="content">
+  <div>
+    <app-summary
+      [r_editable]="true"
+      [r_giftListData]="giftList" />
+  </div>
+
+  <div>
+    <app-evolution-bar
+      [r_totalValue]="giftList.totalValue"
+      [r_valueCollected]="giftList.valueCollected"
+      [r_themeColor]="giftList.themeColor"/>
+
+    <app-item-list
+      [r_themeColor]="giftList.themeColor"
+      [r_items]="giftList.items" />
+  </div>
+</div>
+<app-minimalist-footer />

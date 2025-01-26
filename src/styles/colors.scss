@@ -1,0 +1,57 @@
+//colors
+$verde-escuro: #152B11;
+$verde-palmeira: #CBDFB2;
+
+
+.btn-ol-dark {
+  color: #fff !important;
+  border-color: #fff !important;
+  font-weight: 300 !important;
+  background-color: transparent;
+}
+
+.btn-ol-verde-escuro {
+  color: $verde-escuro !important;
+  border-color: $verde-escuro !important;
+  background-color: transparent;
+}
+
+.btn-bg-verde-palmeira {
+  color: $verde-escuro !important;
+  background-color: $verde-palmeira !important;
+}
+
+.green {
+  background-color: #152B11;
+}
+
+.verde-claro {
+  background-color: #d6ecb894;
+}
+
+// importante
+.green-hover :hover{
+  background-color: #d6ecb894;
+}
+.blue-hover :hover{
+  background-color: #c2f2f1;
+}
+.purple-hover :hover{
+  background-color: #dacdf7;
+}
+.yellow-hover :hover{
+  background-color: #fcf5c2;
+}
+.red-hover :hover{
+  background-color: #fcc2c2;
+}
+.orange-hover :hover{
+  background-color: #fcdcc2;
+}
+.pink-hover :hover{
+  background-color: #f2bbf0;
+}
+.gray-hover :hover{
+  background-color: #c9c9c9;
+}
+

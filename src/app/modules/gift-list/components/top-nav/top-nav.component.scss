@@ -1,0 +1,51 @@
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    padding-top: 8px;
+    justify-content: center;
+    background-color: transparent;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .tn-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  button {
+    border-radius: 25px;
+    margin: 0 8px 0 8px;
+  }
+
+  mat-icon {
+    color: #fff;
+  }
+
+  img {
+    height: 48px;
+    width: auto;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .action {
+      display: none;
+    }
+
+    .menu {
+      display: block;
+    }
+
+    .mat-mdc-mini-fab {
+      background-color: transparent;
+    }
+  }

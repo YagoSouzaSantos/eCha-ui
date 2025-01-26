@@ -1,0 +1,13 @@
+<div class="circle-buttons">
+
+  @for (color of colors; track $index) {
+    <button
+      [ngStyle]="{'background-color': color.value}"
+      [class.selected]="$index === selectedColorIndex"
+      class="circle"
+      (click)="selectColor($index)"
+      (click)="backgroundService.setbgColorSignal(color.name)">
+    </button>
+  }
+
+</div>

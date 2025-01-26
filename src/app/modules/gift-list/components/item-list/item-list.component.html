@@ -1,0 +1,26 @@
+<div class="content">
+
+  <div class="fa">
+    <app-filter [placeholder]="'Pesquise por um item'"/>
+  </div>
+  <h1>Itens</h1>
+  <app-category-chip />
+
+  <div class="{{r_themeColor}}-hover action">
+    <button class="btn-hover-effect" (click)="showAddItemDialog()"><span>+ Adicionar item</span></button>
+  </div>
+
+  @for (item of r_items; track $index) {
+    <app-item-card
+      [r_themeColor]="r_themeColor"
+      [r_item]="item"
+      (eventEditClick)="handleEdit($event)"
+      (eventDeleteClick)="handleDelete($event)"
+    />
+  } @empty {
+    <div smoothBackGround='{{r_themeColor}}' class="msg-system slide-in-from-right">
+      <p>Nenhum <b>item</b> encontrado em sua lista de presentes..</p>
+      <p>"Que tal começar agora? Adicione os itens dos seus sonhos e veja como é fácil realizá-los!"</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,11 @@
+<div>
+  <p class="line-one">Quer apoiar um ente querido seu?</p>
+  <p class="line-two">Coloque o código do chá dele aqui!</p>
+
+  <mat-form-field class="input">
+    <input matInput placeholder="Ex: SD516SD2" #inputKey (keyup.enter)="navigateToDonation(inputKey.value)">
+    <mat-icon matSuffix (click)="navigateToDonation(inputKey.value)">arrow_forward</mat-icon>
+  </mat-form-field>
+
+</div>
+

@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Adicionar item à lista de presentes</h2>
+
+<mat-dialog-content>
+
+  <form class="form" #itemForm="ngForm">
+    <div class="input-label">Nome do presente</div>
+    <mat-form-field>
+      <input matInput
+        [(ngModel)]="newItem.name"
+        name="name"
+        required
+        placeholder="ex.: Geladeira, Cortinas, Pão por um ano, ..."
+        />
+    </mat-form-field>
+
+    <div class="input-label">Valor</div>
+    <mat-form-field>
+      <span matTextPrefix>R$ &nbsp;</span>
+      <input matInput
+             type="number"
+             [(ngModel)]="newItem.valueItem"
+             (ngModelChange)="onValueChange($event)"
+             name="value"
+             required
+             step="0.01"
+             min="0" />
+    </mat-form-field>
+
+
+    <div class="input-label">Categoria</div>
+    <mat-form-field>
+      <mat-select Categoria
+        name="category"
+        required
+        placeholder="Selecione uma das opções" >
+        @for (category of categories; track category) {
+          <mat-option [value]="category.value">{{category.viewValue}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+
+
+    <div class="input-label">Anexar imagem</div>
+
+    @if(newItem.image == null) {
+      <button mat-stroked-button (click)="fileInput.click()">
+        <i class="ph ph-upload-simple"></i> Clique para anexar uma imagem
+      </button>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden />
+    }
+    @else {
+      <button class="image-view" mat-stroked-button>
+        <img [src]="newItem.image" />
+      </button>
+    }
+
+
+
+    <div class="input-label">(Alternativo) Url da imagem do item</div>
+    <mat-form-field>
+      <input matInput
+        [(ngModel)]="newItem.imageUrl"
+        name="imageUrl"
+        placeholder="Cole o url da imagem aqui"/>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      themeColor={{data.themeColor}}
+      (click)="save()"
+      [disabled]="!itemForm.valid" >
+      Salvar item
+    </button>
+    <button mat-button (click)="cancel()">Cancelar</button>
+  </form>
+</mat-dialog-content>
+
+

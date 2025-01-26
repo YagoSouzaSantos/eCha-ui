@@ -1,0 +1,20 @@
+<div class="profile-container">
+  @if ((imageUrl == null || undefined) && (base64Image == null || undefined) ) {
+  <div [style.width.px]="size" [style.height.px]="size" class="default">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMCIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMTYsNDBINDBBMTYsMTYsMCwwLDAsMjQsNTZWMjAwYTE2LDE2LDAsMCwwLDE2LDE2SDIxNmExNiwxNiwwLDAsMCwxNi0xNlY1NkExNiwxNiwwLDAsMCwyMTYsNDBabTAsMTZWMTU4Ljc1bC0yNi4wNy0yNi4wNmExNiwxNiwwLDAsMC0yMi42MywwbC0yMCwyMC00NC00NGExNiwxNiwwLDAsMC0yMi42MiwwTDQwLDE0OS4zN1Y1NlpNNDAsMTcybDUyLTUyLDgwLDgwSDQwWm0xNzYsMjhIMTk0LjYzbC0zNi0zNiwyMC0yMEwyMTYsMTgxLjM4VjIwMFpNMTQ0LDEwMGExMiwxMiwwLDEsMSwxMiwxMkExMiwxMiwwLDAsMSwxNDQsMTAwWiI+PC9wYXRoPjwvc3ZnPg==">
+  </div>
+  }
+  @else {
+
+  @if(imageUrl) {
+  <img [src]="imageUrl" [style.width.px]="size" [style.height.px]="size" class="profile-picture" />
+  }
+  @else {
+  <img [src]="base64Image" [style.width.px]="size" [style.height.px]="size" class="profile-picture" />
+  }
+  }
+
+  @if (r_editable) {
+  <img [src]="icons.pencil" alt="Edit Icon" class="action-icon" (click)="openDialog()" />
+  }
+</div>

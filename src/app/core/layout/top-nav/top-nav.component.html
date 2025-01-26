@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <div class="tn-content">
+
+    @if (defaltLogoTemplate) { <img src="assets/image/logo/default-logo.png" alt="eCha"> }
+    @else { <img src="assets/image/logo/white-logo.png" alt="eCha"> }
+
+    <span class="spacer"></span>
+
+    <section class="action">
+
+      @if (btn_enter) { <button mat-stroked-button class="btn-ol-verde-escuro" [routerLink]="'auth/login'">Entrar</button> }
+      @if (btn_createYourTea) { <button mat-flat-button class="btn-bg-verde-palmeira" [routerLink]="'auth/register'">Crie seu chá</button> }
+
+      <!-- <button mat-stroked-button class="btn-ol-dark">Meu saldo</button> -->
+      <!-- <button mat-button (click)="logout()"><mat-icon>logout</mat-icon></button> -->
+
+    </section>
+
+    <div class="sidenav-menu">
+      <button mat-mini-fab [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'auth/login'">Entrar</button>
+        <button mat-menu-item [routerLink]="'auth/register'">Crie seu chá</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

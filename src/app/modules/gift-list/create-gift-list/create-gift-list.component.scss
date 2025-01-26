@@ -1,0 +1,22 @@
+mat-card {
+  padding: 50px 25px;
+  max-width: 500px;
+  margin-bottom: 22px;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+
+@media (max-width: 480px) {
+  mat-card {
+    width: 100%;
+    max-width: 370px;
+  }
+}

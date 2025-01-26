@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  text-align: center;
+
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+
+  .card {
+    padding: 16px;
+    height: auto;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .datepicker {
+    margin: 16px auto;
+    width: 260px;
+  }
+
+  button {
+    margin-bottom: 12px;
+    width: 260px;
+  }
+}

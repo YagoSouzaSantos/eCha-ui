@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+
+@include mat.core();
+
+
+// Define a cor primária baseada na paleta cinza
+$custom-primary-palette: mat.define-palette(mat.$grey-palette, 800); // Cinza escuro como primário
+
+// Define a cor de acentuação (opcional, pode ser outra cor)
+$custom-accent-palette: mat.define-palette(mat.$blue-palette, 500);
+
+// Define o tema claro (Light Theme) com a nova paleta
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary-palette,
+    accent: $custom-accent-palette,
+    warn: mat.define-palette(mat.$red-palette),
+  ),
+));
+
+// Aplica o tema a todos os componentes
+@include mat.all-component-themes($light-theme);
+
+
+// SnackBar modelos
+.snackbar {
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+.snackbar * {
+  background-color: transparent !important;
+}
+
+.error-snackbar {
+  background: rgba(196, 0, 0, 0.712);
+}
+.success-snackbar {
+  background: rgba(5, 99, 55, 0.925);
+}
+.alert-snackbar {
+  background: rgb(219, 147, 14);
+}
+
+// Inputs
+.input-label {
+  text-align: start;
+  font-weight: 550;
+  max-width: 428.4px;
+  min-width: 300px;
+}

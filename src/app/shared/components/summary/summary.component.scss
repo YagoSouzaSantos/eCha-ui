@@ -1,0 +1,35 @@
+.user-image {
+  margin: 15px auto;
+}
+
+button {
+  margin: 3px 0;
+}
+
+.mat-mdc-outlined-button {
+    border: 2px solid #1d1d1d;
+}
+
+p {
+  text-align: center;
+  font-weight: 600;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+span {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 8px;
+}
+
+.dateEvent:hover {
+  cursor: pointer;
+}
+

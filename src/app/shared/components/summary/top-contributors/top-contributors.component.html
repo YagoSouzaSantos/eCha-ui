@@ -1,0 +1,12 @@
+<h3>Top Colaboradores:</h3>
+
+@for (message of r_messageList; track $index) {
+  <li> {{ message.name }}</li>
+} @empty {
+  <mat-card>
+    <img matCardImage src="assets/image/svg/{{r_theme}}/top-contributors.svg">
+  </mat-card>
+  <p>Compartilhe o código do seu chá e obtenha o seu <b>primeiro colaborador!</b></p>
+}
+
+

@@ -1,0 +1,19 @@
+<div class="content">
+  <h1>R$ {{ r_valueCollected.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</h1>
+  <h2> {{ r_contributorCount }} pessoas já contribuiram!</h2>
+
+  <div class="custom-progress-bar">
+    <div
+      class="progress"
+      [style.width.%]="percentageValue"
+      [style.backgroundColor]="paletteByTheme()">
+    </div>
+  </div>
+
+  <div class="bar-description">
+    <div> {{ percentageValue }}% </div>
+
+    @if (calculateDaysUntil(r_eventDate)) { <div>{{ remainingDays }} dias até o chá</div> }
+  </div>
+</div>
+

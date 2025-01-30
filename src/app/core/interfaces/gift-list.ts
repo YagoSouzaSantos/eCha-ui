@@ -6,7 +6,7 @@ export interface GiftList {
   title: string;
   themeColor: string;
   typography: number;
-  message: string;
+  message: string | null;
   photoUrl: string | null;
   photo: string | null;
   eventDate: Date | null;

@@ -9,8 +9,4 @@ import { Component, Input } from '@angular/core';
 })
 export class SummaryDataComponent {
   @Input({required: true}) r_message!: string | null;
-
-  showEditDialog() {
-
-  }
 }

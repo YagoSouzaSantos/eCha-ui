@@ -1,0 +1,12 @@
+<div class="content">
+
+  <app-profile-picture
+    [imageUrl]="r_hostImage"
+    [r_editable]="false" />
+
+  <div class="message-bubble" smoothBackGround="{{ r_themeColor }}">
+    <div class="bubble-triangle" smoothBackGround="{{ r_themeColor }}"></div>
+    {{ r_hostMessage }}
+    @if (r_editable) { <button mat-raised-button (click)="showHostMessageDialog()"><i class="ph ph-pencil-simple"></i>  Editar mensagem</button> }
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<app-top-nav
+  [defaltLogoTemplate]="true"
+  [btn_enter]="true"
+  [btn_createYourTea]="true" />
+
+<div class="content">
+
+  <app-bulletin-board-evolution-bar
+    [r_totalValue]="bulletinBoard.totalValue"
+    [r_valueCollected]="bulletinBoard.collectedValue"
+    [r_themeColor]="bulletinBoard.themeColor"
+    [r_contributorCount]="bulletinBoard.contributorCount"
+    [r_eventDate]="bulletinBoard.eventDate"/>
+
+  <app-host-message
+    [r_editable]="editable"
+    [r_hostMessage]="bulletinBoard.hostMessage"
+    [r_hostImage]="bulletinBoard.hostImage"
+    [r_themeColor]="bulletinBoard.themeColor" />
+
+  <app-messages
+    [r_editable]="editable"
+    [r_themeColor]="bulletinBoard.themeColor"
+    [r_messages]="bulletinBoard.messages"  />
+</div>
+<app-minimalist-footer />
+
+

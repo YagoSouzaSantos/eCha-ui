@@ -41,6 +41,7 @@ export class AddItemDialogComponent {
     name: '',
     valueItem: 0,
     valueItemCollected: 0,
+    remainingValue: 700,
     category: '',
     image: null,
     imageUrl: null

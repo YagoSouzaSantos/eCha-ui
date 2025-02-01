@@ -1,15 +1,54 @@
-h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-}
+:host {
+  * {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+  }
 
-p {
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-}
+  h3 {
+    font-weight: 600;
+  }
 
-mat-card {
-  border: none;
-  box-shadow: none;
-  margin: 20px 0;
+  p {
+    text-align: center;
+  }
+
+  mat-card {
+    border: none;
+    box-shadow: none;
+    margin: 20px 0;
+  }
+
+  .list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+
+    p {
+      text-align: left;
+      font-size: 0.9em;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 275px;
+    }
+  }
+
+  .msg-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+  }
 }

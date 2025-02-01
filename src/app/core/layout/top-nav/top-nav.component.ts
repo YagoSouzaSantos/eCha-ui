@@ -1,25 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { TOPNAV } from './imports';
+import { Router } from '@angular/router';
 
-import { TopNavImports } from './config/material';
 
 @Component({
   selector: 'app-top-nav',
   standalone: true,
-  imports: [TopNavImports],
+  imports: [TOPNAV],
   templateUrl: './top-nav.component.html',
-  styleUrls: ['./top-nav.component.scss', '/src/styles/colors.scss']
+  styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent {
-
-
-  @Input() btn_enter: boolean = false;
-  @Input() btn_createYourTea: boolean = false;
+  @Input({ required: true }) r_themeColor!: string;
+  @Input() extendedBackground: boolean = false;
   @Input() defaltLogoTemplate: boolean = true;
+  @Input() user: boolean = false;
 
+  #router = inject(Router)
 
-  user$ : any;
-
-  logout() {
-
+  onExit() {
+    this.#router.navigate(['/home']);
   }
+
+  getBalance() { }
 }

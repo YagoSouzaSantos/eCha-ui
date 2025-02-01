@@ -6,12 +6,13 @@ export interface GiftList {
   title: string;
   themeColor: string;
   typography: number;
-  message: string;
+  message: string | null;
   photoUrl: string | null;
   photo: string | null;
   eventDate: Date | null;
   totalValue: number;
   valueCollected: number;
+  contributorCount: number;
   creator: string;
   items: Item[];
 }

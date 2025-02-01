@@ -1,3 +1,3 @@
 <mat-chip-set>
-  @for (category of categories; track category) { <mat-chip  (click)="onSubmit()">{{category.viewValue}}</mat-chip> }
+  @for (category of categories; track category) { <mat-chip  (click)="onSubmit(category.viewValue)">{{category.viewValue}}</mat-chip> }
 </mat-chip-set>

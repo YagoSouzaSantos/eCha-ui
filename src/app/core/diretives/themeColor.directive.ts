@@ -60,6 +60,11 @@ export class ThemeColorDirective {
         this.el.nativeElement.style.color = '#fff';
         break;
 
+      case 'white':
+        this.el.nativeElement.style.backgroundColor = '#FFF';
+        this.el.nativeElement.style.color = '#152B11';
+        break;
+
       default:
         this.el.nativeElement.style.backgroundColor = '#59ba29';
         this.el.nativeElement.style.color = '#fff';

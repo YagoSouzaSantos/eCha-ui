@@ -11,6 +11,7 @@ import { TermsOfServiceComponent } from './core/pages/terms-of-service/terms-of-
 import { UseOfCookiesComponent } from './core/pages/use-of-cookies/use-of-cookies.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 import { EditorGiftListComponent } from './modules/gift-list/editor-gift-list/editor-gift-list.component';
+import { BulletinBoardComponent } from './modules/bulletin-board/bulletin-board.component';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,10 @@ export const routes: Routes = [
   {
     path: 'donation/:key',
     component: DonationComponent
+  },
+  {
+    path: 'bulletin-board/:key',
+    component: BulletinBoardComponent
   },
   // {
   //   path: 'terms-of-service',

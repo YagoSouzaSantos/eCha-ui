@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { GiftListFilter } from '../../../core/interfaces/gift-list-filter';
 
+
 @Injectable({
   providedIn: 'root'
 })

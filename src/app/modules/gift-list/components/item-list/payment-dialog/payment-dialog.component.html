@@ -1,0 +1,113 @@
+<h2 mat-dialog-title>Comprar {{ data.item.name }} </h2>
+<mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
+  <mat-radio-button value="1">
+    Pagar valor total de R${{ data.item.remainingValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}
+  </mat-radio-button>
+
+  <div class="radio-input-container">
+    <mat-radio-button value="2">Pagar valor personalizado</mat-radio-button>
+    <mat-form-field>
+      <span matTextPrefix>R$ &nbsp;</span>
+      <input matInput
+             type="number"
+             name="value"
+             required
+             step="0.01"
+             min="0"
+             [(ngModel)]="customValue"
+             [disabled]="selectedOption !== '2'" />
+    </mat-form-field>
+  </div>
+</mat-radio-group>
+
+<mat-dialog-content class="content">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Cartão de crédito </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="payment-form">
+        <mat-form-field>
+          <mat-label>Número do cartão</mat-label>
+          <input matInput
+                 type="text"
+                 [(ngModel)]="cardDetails.number"
+                 name="cardNumber"
+                 maxlength="16"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 (keypress)="allowOnlyNumbers($event)"
+                 (input)="formatCardNumber()"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Validade</mat-label>
+          <input matInput
+                 type="text"
+                 [(ngModel)]="cardDetails.expiry"
+                 name="cardExpiry"
+                 maxlength="5"
+                 inputmode="numeric"
+                 pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$"
+                 (keypress)="allowOnlyNumbers($event)"
+                 (input)="formatExpiryDate()"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>CVV</mat-label>
+          <input matInput
+                 type="text"
+                 [(ngModel)]="cardDetails.cvv"
+                 name="cardCVV"
+                 maxlength="3"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 (keypress)="allowOnlyNumbers($event)"
+                 (input)="formatCVV()"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Titular do cartão</mat-label>
+          <input matInput type="text" [(ngModel)]="cardDetails.holder" name="cardHolder" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Parcelamento</mat-label>
+          <mat-select [(ngModel)]="cardDetails.installments" name="installments">
+            @for(i of installments;track i) {
+              <mat-option [value]="i">{{ i }}x</mat-option>
+
+            }
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Pagamento PIX </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form >
+        <mat-form-field>
+          <mat-label>Nome do pagador</mat-label>
+          <input matInput type="text" [(ngModel)]="pixDetails.payerName" name="payerName" required>
+        </mat-form-field>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button
+    mat-button
+    themeColor="{{data.themeColor}}"
+    (click)="confirmPayment()"
+    [disabled]="!isFormValid()">
+    Confirmar Pagamento <i class="ph ph-currency-circle-dollar"></i>
+  </button>
+</mat-dialog-actions>

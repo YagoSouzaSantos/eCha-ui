@@ -50,3 +50,17 @@ $light-theme: mat.define-light-theme((
   max-width: 428.4px;
   min-width: 300px;
 }
+
+.btn-ol-dark {
+  color: #fff !important;
+  border-color: #fff !important;
+  font-weight: 300 !important;
+  background-color: transparent;
+}
+
+.btn-ol-dark-secondary {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  font-weight: 300 !important;
+  background-color: rgba(255, 255, 255, 0.158) !important;
+}

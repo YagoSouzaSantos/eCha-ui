@@ -1,16 +1,11 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { FooterComponent } from "../../core/layout/footer/footer.component";
-import { TopNavComponent } from "../../core/layout/top-nav/top-nav.component";
-import { BannerComponent } from './components/banner/banner.component';
-import { DescriptionComponent } from './components/description/description.component';
-import { FindTeaComponent } from './components/find-tea/find-tea.component';
-import { LoopTitleComponent } from './components/loop-title/loop-title.component';
+import { LANDING_PAGE } from './imports';
 
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [TopNavComponent, FooterComponent, BannerComponent, LoopTitleComponent, DescriptionComponent, FindTeaComponent],
+  imports: [LANDING_PAGE],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })

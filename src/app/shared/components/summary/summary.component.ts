@@ -1,21 +1,17 @@
-import { DatePipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { GiftList } from '../../../core/interfaces/gift-list';
-import { VerticalCardComponent } from '../../material/vertical-card/vertical-card.component';
+import { Message } from '../../../core/interfaces/message';
 import { SnackbarService } from '../../services/snackbar.service';
-import { ProfilePictureComponent } from '../profile-picture/profile-picture.component';
-import { MessageList } from './../../../core/interfaces/MessageList ';
+import { bulletinBoardExample } from '../../tests/bulletin-board';
 import { DatePickerDialogComponent } from './datePickerDialog/datePickerDialog.component';
-import { SummaryDataComponent } from "./summary-data/summary-data.component";
+import { SUMMARY } from './imports';
 import { SummaryMessageDialogComponent } from './summaryMessageDialog/summaryMessageDialog.component';
-import { TopContributorsComponent } from "./top-contributors/top-contributors.component";
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [VerticalCardComponent, TopContributorsComponent, ProfilePictureComponent, MatButton, SummaryDataComponent, DatePipe],
+  imports: [SUMMARY],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
@@ -26,7 +22,8 @@ export class SummaryComponent {
   #snackbarService = inject(SnackbarService);
   readonly dialog = inject(MatDialog);
 
-  ml: MessageList[] = []
+  remainingDays: number | null = null
+  ml: Message[] = bulletinBoardExample.messages;
 
   share() {
     const url = `${window.location.origin}/donation/${this.r_giftListData.key}`;
@@ -42,30 +39,50 @@ export class SummaryComponent {
   }
 
   showSummaryMessageDialog() {
-    const dialogRef = this.dialog.open(SummaryMessageDialogComponent, {
-      data: {
-        message: this.r_giftListData.message,
-        themeColor: this.r_giftListData.themeColor
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.r_giftListData.message = result.message
-      }
-    });
+    if (this.r_editable) {
+      const dialogRef = this.dialog.open(SummaryMessageDialogComponent, {
+        data: {
+          message: this.r_giftListData.message,
+          themeColor: this.r_giftListData.themeColor
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.r_giftListData.message = result.message
+        }
+      });
+    }
   }
 
   showEventDateDialog() {
-    const dialogRef = this.dialog.open(DatePickerDialogComponent, {
-      data: {
-        eventDate: this.r_giftListData.eventDate,
-        themeColor: this.r_giftListData.themeColor
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.r_giftListData.eventDate = result.eventDate
-      }
-    });
+    if (this.r_editable) {
+      const dialogRef = this.dialog.open(DatePickerDialogComponent, {
+        data: {
+          eventDate: this.r_giftListData.eventDate,
+          themeColor: this.r_giftListData.themeColor
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.r_giftListData.eventDate = result.eventDate
+        }
+      });
+    }
+  }
+
+  calculateDaysUntil(targetDate: Date): boolean {
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+    targetDate.setHours(0, 0, 0, 0);
+
+    if (today > targetDate) {
+      return false;
+    }
+    const diffInTime = targetDate.getTime() - today.getTime();
+
+    this.remainingDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
+
+    return true;
   }
 }

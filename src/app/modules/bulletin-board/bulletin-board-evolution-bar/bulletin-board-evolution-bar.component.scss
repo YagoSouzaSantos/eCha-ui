@@ -1,0 +1,56 @@
+:host {
+  font-family: 'Montserrat', sans-serif;
+
+  h1 {
+    font-size: 2.1em;
+    margin-bottom: 0;
+  }
+
+  h1,h2 {
+    text-align: center;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 8px auto 5px auto;
+  }
+
+  .custom-progress-bar {
+    height: 8px;
+    width: 100%;
+    margin: 16px auto 5px auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.151);
+  }
+
+  .progress {
+    border-radius: 10px;
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  .progress-label {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .bar-description {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 768px) {
+    color: black;
+
+    .content {
+      width: 320px;
+      margin: 16px auto 16px auto;
+    }
+    .custom-progress-bar {
+      width: 320px;
+    }
+  }
+}

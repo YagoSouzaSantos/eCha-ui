@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar  themeColor={{r_themeColor}}>
   <div class="tn-content">
 
     @if (defaltLogoTemplate) { <img src="assets/image/logo/default-logo.png" alt="eCha"> }
@@ -8,20 +8,36 @@
 
     <section class="action">
 
-      @if (btn_enter) { <button mat-stroked-button class="btn-ol-verde-escuro" [routerLink]="'auth/login'">Entrar</button> }
-      @if (btn_createYourTea) { <button mat-flat-button class="btn-bg-verde-palmeira" [routerLink]="'auth/register'">Crie seu chá</button> }
+      @if (user) {
+        <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button>
+        <button mat-button (click)="onExit()"><mat-icon>logout</mat-icon></button>
+      } @else {
 
-      <!-- <button mat-stroked-button class="btn-ol-dark">Meu saldo</button> -->
-      <!-- <button mat-button (click)="logout()"><mat-icon>logout</mat-icon></button> -->
-
+        @if( r_themeColor == 'white') {
+          <button mat-stroked-button class="btn-ol-verde-escuro" [routerLink]="'/auth/login'">Entrar</button>
+          <button mat-flat-button class="btn-bg-verde-palmeira" [routerLink]="'/auth/register'">Crie seu chá</button>
+        }@else {
+          <button mat-stroked-button class="btn-ol-dark" [routerLink]="'/auth/login'">Entrar</button>
+          <button mat-stroked-button class="btn-ol-dark-secondary" [routerLink]="'/auth/register'">Crie seu chá</button>
+        }
+      }
     </section>
 
-    <div class="sidenav-menu">
-      <button mat-mini-fab [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <div class="menu">
+      <button mat-mini-fab [matMenuTriggerFor]="menu"><mat-icon [ngClass]=" r_themeColor == 'white' ? 'white-icon' : 'icon-user'">menu</mat-icon></button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="'auth/login'">Entrar</button>
-        <button mat-menu-item [routerLink]="'auth/register'">Crie seu chá</button>
+
+        @if (user) {
+          <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button>
+          <button mat-button (click)="onExit()"><mat-icon>Sair para Home</mat-icon></button>
+        } @else {
+          <button mat-menu-item [routerLink]="'/auth/login'">Entrar</button>
+          <button mat-menu-item [routerLink]="'/auth/register'">Crie seu chá</button>
+        }
+
       </mat-menu>
     </div>
   </div>
 </mat-toolbar>
+@if(extendedBackground) { <div class="background-page" themeColor={{r_themeColor}}></div> }
+

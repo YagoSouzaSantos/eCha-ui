@@ -1,0 +1,38 @@
+<div class="messages-container">
+  <h1>Recadinhos deixados</h1>
+
+  @if(r_editable) { <button mat-button (click)="viewContributionHistory()">Histórico de contribuições  <i class="ph ph-arrow-right"></i></button> }
+
+  @for (message of r_messages; track $index) {
+  <div class="message-wrapper" [ngClass]="{ 'left': $index % 2 === 0, 'right': $index % 2 !== 0 }">
+
+    @if ($index % 2 === 0) {
+      <span class="msg-icon" textColor="{{r_themeColor}}"><i class="{{message.icon}}"></i></span>
+      <div class="message-content" smoothBackGround="{{r_themeColor}}">
+        <p><b>{{message.contributor}}</b></p>
+        <p>“{{ message.message }}”</p>
+      </div>
+
+      @if (r_editable) {
+        <button mat-button (click)="toggleVisibility(message)">
+          <i class="ph" [ngClass]="{'ph-eye': message.visible, 'ph-eye-closed': !message.visible}"></i>
+        </button>
+      }
+    } @else {
+
+      @if (r_editable) {
+        <button mat-button (click)="toggleVisibility(message)">
+          <i class="ph" [ngClass]="{'ph-eye': message.visible, 'ph-eye-closed': !message.visible}"></i>
+        </button>
+      }
+      <div class="message-content" smoothBackGround="{{r_themeColor}}">
+        <p><b>{{message.contributor}}</b></p>
+        <p class="message">“{{ message.message }}”</p>
+      </div>
+      <span class="msg-icon" textColor="{{r_themeColor}}"><i class="{{message.icon}}"></i></span>
+    }
+
+  </div>
+
+  }
+</div>

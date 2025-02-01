@@ -1,29 +1,28 @@
 <app-vertical-card>
-
   <app-profile-picture class="user-image"
     [imageUrl]="r_giftListData.photoUrl"
-    [r_editable]="true"
+    [r_editable]="r_editable"
     [size]="110"
-    [themeColor]="r_giftListData.themeColor"
-
-    />
+    [themeColor]="r_giftListData.themeColor" />
 
   <h2> {{ r_giftListData.title}} </h2>
   <span> Por <b>{{ r_giftListData.creator}}</b></span>
 
   <button mat-stroked-button (click)="share()">Compartilhar</button>
 
-    @if(r_giftListData.eventDate == null){
-      <button mat-button (click)="showEventDateDialog()">Adicionar data do chá</button>
-    } @else {
-      <div (click)="showEventDateDialog()" class="dateEvent">
-        <p>{{r_giftListData.eventDate | date:'dd/MM/yyyy'}}</p>
-      </div>
-    }
+  @if(r_giftListData.eventDate == null && r_editable){
+    <button mat-button (click)="showEventDateDialog()">Adicionar data do chá</button>
+  } @else {
+    <div (click)="showEventDateDialog()" class="dateEvent">
+      @if (r_giftListData.eventDate && calculateDaysUntil(r_giftListData.eventDate)) { <p>{{ remainingDays }} dias até o chá</p> }
+    </div>
+  }
 
   <app-summary-data [r_message]="r_giftListData.message" (click)="showSummaryMessageDialog()"/>
 
   <app-top-contributors
+    [r_editable]="r_editable"
+    [r_key]="r_giftListData.key"
     [r_messageList]="ml"
     [r_theme]="r_giftListData.themeColor" />
 

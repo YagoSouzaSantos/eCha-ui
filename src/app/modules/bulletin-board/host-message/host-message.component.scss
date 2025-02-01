@@ -1,0 +1,47 @@
+.content {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 24px auto;
+}
+
+.message-bubble {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: fit-content;
+  max-width: 700px;
+  margin: 20px auto;
+  font-size: 1.2em;
+}
+
+.bubble-triangle {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+button {
+  margin: 15px auto 0 auto;
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .message-bubble {
+    margin: 8px;
+  }
+}

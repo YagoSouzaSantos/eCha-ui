@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -15,24 +15,13 @@ import { SnackbarService } from '../../services/snackbar.service';
 })
 export class FilterComponent {
   @Input() placeholder: string = '';
+  @Output() filterChange = new EventEmitter<string>();
 
-  #fb = inject(FormBuilder)
-  #snackbarService = inject(SnackbarService);
-  filterForm!: FormGroup
+  #fb = inject(FormBuilder);
+  filterControl = this.#fb.control('');
 
-
-
-  ngOnInit(): void {
-    this.filterForm = createFilterForm(this.#fb);
+  submit(): void {
+    const value = this.filterControl.value?.trim();
+    this.filterChange.emit(value);
   }
-
-  onSubmit(): void {
-    this.alert()
-  }
-
-  alert(): void {
-    this.#snackbarService.showAlert('Método não implementado!');
-  }
-
-
 }

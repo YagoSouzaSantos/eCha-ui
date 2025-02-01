@@ -1,0 +1,18 @@
+<mat-card class="card">
+  <h2>Histórico de contribuições</h2>
+  <p>Aqui estão todas pessoas com pagamento confirmado até então!</p>
+
+  <section class="messages">
+    @for (message of messages; track $index) {
+    <div>
+      <p class="contributor"><b>{{ message.contributor }}</b></p>
+      <div class="contribution-data">
+        <span>Valor da contribuição</span>
+        <span> R${{ message.value.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</span>
+      </div>
+    </div>
+    }
+  </section>
+
+  <button mat-stroked-button (click)="onCancel()">Voltar <i class="ph ph-arrow-u-down-left"></i></button>
+</mat-card>

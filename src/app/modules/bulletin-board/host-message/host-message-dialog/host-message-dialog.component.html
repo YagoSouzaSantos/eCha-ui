@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <h2>Editar mensagem</h2>
+  <p>Essa mensagem ficará visível para todos que visitarem seu mural de recados, então capriche!</p>
+
+  <p class="field-title">Recadinho de agradecimento</p>
+  <mat-form-field class="full-width">
+    <textarea
+      matInput
+      placeholder="Deixe aqui a sua mensagem carinhosa <3"
+      [(ngModel)]="message">
+    </textarea>
+  </mat-form-field>
+
+  <button mat-flat-button themeColor={{data.themeColor}} (click)="saveDate()">Salvar recadinho</button>
+  <button mat-button (click)="onCancel()">Cancelar Alterações</button>
+</mat-card>

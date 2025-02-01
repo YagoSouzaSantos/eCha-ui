@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, shareReplay } from 'rxjs';
-import { GiftList } from '../../../core/interfaces/gift-list';
+import { GiftList } from '../../../../core/interfaces/gift-list';
 
 
 @Injectable({

@@ -1,12 +1,10 @@
-<form [formGroup]="filterForm" class="filter-area" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline" [floatLabel]="'always'">
-    <input
-      matInput
-      formControlName="description"
-      placeholder="{{placeholder}}"
-      (keydown.enter)="onSubmit()">
-    <button mat-icon-button matSuffix type="submit">
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field>
-</form>
+<mat-form-field appearance="outline" [floatLabel]="'always'">
+  <input
+    matInput
+    [formControl]="filterControl"
+    [placeholder]="placeholder"
+    (keydown.enter)="submit()">
+  <button mat-icon-button matSuffix (click)="submit()">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>

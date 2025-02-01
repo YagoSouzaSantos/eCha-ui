@@ -1,16 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { Message } from '../../../core/interfaces/message';
-import { MatButtonModule } from '@angular/material/button';
-import { TextColorDirective } from '../../../core/diretives/textColor.directive';
-import { SmoothBackGroundDirective } from '../../../core/diretives/smoothBackGround.directive';
 import { MatDialog } from '@angular/material/dialog';
+import { Message } from '../../../core/interfaces/message';
 import { ContributionHistoryDialogComponent } from '../contribution-history-dialog/contribution-history-dialog.component';
+import { BULLETIN_BOARD_SHARED, MESSAGES } from '../imports';
 
 @Component({
   selector: 'app-messages',
   standalone: true,
-  imports: [CommonModule,MatButtonModule,TextColorDirective,SmoothBackGroundDirective],
+  imports: [MESSAGES, BULLETIN_BOARD_SHARED],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss'
 })
@@ -26,11 +23,11 @@ export class MessagesComponent {
   }
 
   viewContributionHistory() {
-      this.dialog.open(ContributionHistoryDialogComponent, {
-        data: {
-          messages: this.r_messages,
-          themeColor: this.r_themeColor
-        }
-      });
-    }
+    this.dialog.open(ContributionHistoryDialogComponent, {
+      data: {
+        messages: this.r_messages,
+        themeColor: this.r_themeColor
+      }
+    });
+  }
 }

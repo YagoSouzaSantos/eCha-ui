@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
-import { GiftListService } from '../data-access/gift-list.service';
 import { CardComponent } from "./card/card.component";
 
 
@@ -19,9 +18,5 @@ import { CardComponent } from "./card/card.component";
 })
 export class MyListsComponent {
 
-  protected giftListService = inject(GiftListService)
-
-  protected user$: any
-  protected filteredList$ = this.giftListService.getFilteredList$
 
 }

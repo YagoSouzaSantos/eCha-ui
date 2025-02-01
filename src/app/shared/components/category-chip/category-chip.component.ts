@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { Category } from '../../../core/interfaces/category';
 import { SnackbarService } from '../../services/snackbar.service';
@@ -12,20 +12,15 @@ import { SnackbarService } from '../../services/snackbar.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryChipComponent {
-  #snackbarService = inject(SnackbarService);
+  @Output() filterChange = new EventEmitter<string>();
 
-  categories: Category [] = [
+  categories: Category[] = [
     { value: 'Eletrodomésticos', viewValue: 'Eletrodomésticos' },
     { value: 'Utensílios de Cozinha', viewValue: 'Utensílios de Cozinha' },
     { value: 'Eletroportáteis', viewValue: 'Eletroportáteis' }
   ];
 
-  onSubmit(): void {
-    this.alert()
+  onSubmit(value: string): void {
+      this.filterChange.emit(value);
   }
-
-  alert(): void {
-    this.#snackbarService.showAlert('Método não implementado!');
-  }
-
 }

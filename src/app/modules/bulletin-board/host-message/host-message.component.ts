@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { SmoothBackGroundDirective } from '../../../core/diretives/smoothBackGround.directive';
-import { ProfilePictureComponent } from '../../../shared/components/profile-picture/profile-picture.component';
+import { BULLETIN_BOARD_SHARED, HOST_MESSAGE } from '../imports';
 import { HostMessageDialogComponent } from './host-message-dialog/host-message-dialog.component';
 
 @Component({
   selector: 'app-host-message',
   standalone: true,
-  imports: [ProfilePictureComponent, SmoothBackGroundDirective, MatButtonModule],
+  imports: [HOST_MESSAGE, BULLETIN_BOARD_SHARED],
   templateUrl: './host-message.component.html',
   styleUrl: './host-message.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

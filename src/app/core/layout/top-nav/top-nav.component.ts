@@ -1,23 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { TOPNAV } from './imports';
+import { Router } from '@angular/router';
 
-import { TopNavImports } from './config/material';
 
 @Component({
   selector: 'app-top-nav',
   standalone: true,
-  imports: [TopNavImports],
+  imports: [TOPNAV],
   templateUrl: './top-nav.component.html',
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent {
-  @Input() user: boolean = false;
-  @Input() defaltLogoTemplate: boolean = true;
-  @Input({required: true}) r_themeColor!: string;
+  @Input({ required: true }) r_themeColor!: string;
   @Input() extendedBackground: boolean = false;
+  @Input() defaltLogoTemplate: boolean = true;
+  @Input() user: boolean = false;
 
-  user$ : any;
+  #router = inject(Router)
 
-  logout() { }
+  onExit() {
+    this.#router.navigate(['/home']);
+  }
 
   getBalance() { }
 }

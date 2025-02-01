@@ -9,12 +9,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './evolution-bar.component.scss'
 })
 export class EvolutionBarComponent implements OnChanges {
-  @Input({ required: true }) r_totalValue!: number;
+  @Input({ required: true }) r_contributorCount!: number;
   @Input({ required: true }) r_valueCollected!: number;
+  @Input({ required: true }) r_totalValue!: number;
   @Input({ required: true }) r_themeColor!: string;
 
   percentageValue: number = 0;
-
   height: number = 8;
   width: number = 100;
   backgroundColor: string = '';

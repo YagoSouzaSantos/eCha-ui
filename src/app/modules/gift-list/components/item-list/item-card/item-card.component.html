@@ -1,4 +1,4 @@
-<mat-card class="card" appearance="outlined">
+<mat-card class="card" appearance="outlined" (click)="openPaymentDialog(r_item)" [ngClass]=" !r_editable ? 'hover-action' : ''">
   <div class="image-area">
     @if(r_item.image == null) {
       <img [src]="r_item.imageUrl" />
@@ -17,11 +17,14 @@
       [r_valueItem]="r_item.valueItem"
       [r_valueItemCollected]="r_item.valueItemCollected" />
 
-    <div class="action">
-      <button mat-button (click)="onClickEdit(r_item)"><i class="ph ph-pencil-simple"></i></button>
-      @if(r_item.valueItemCollected == 0) { <button mat-button (click)="onClickDelete(r_item)"><i class="ph ph-trash"></i></button> }
-      @else { <button mat-button (click)="onClickDelete(r_item)" disabled><i class="ph ph-trash"></i></button> }
-    </div>
+    @if (r_editable) {
+      <div class="action">
+        <button mat-button (click)="onClickEdit(r_item)"><i class="ph ph-pencil-simple"></i></button>
+
+        @if(r_item.valueItemCollected == 0) { <button mat-button (click)="onClickDelete(r_item)"><i class="ph ph-trash"></i></button> }
+        @else { <button mat-button (click)="onClickDelete(r_item)" disabled><i class="ph ph-trash"></i></button> }
+      </div>
+    }
   </div>
 </mat-card>
 

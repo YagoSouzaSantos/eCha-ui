@@ -1,5 +1,5 @@
 .content {
-  margin: 80px 8px;
+  margin: 50px 8px;
   padding: 20px;
   width: 100%;
   max-width: 700px;
@@ -24,6 +24,10 @@ h1 {
   max-width: 300px;
   margin-bottom: 0;
   margin-left: auto;
+}
+
+app-item-card {
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {

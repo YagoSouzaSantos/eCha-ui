@@ -1,0 +1,42 @@
+:host {
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .radio-input-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .radio-group {
+    margin-left: 16px;
+  }
+
+  button {
+    margin: 0 auto;
+    width: 320px;
+  }
+
+  .payment-form {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr;
+  }
+
+  .mat-mdc-form-field {
+    width: 100%;
+    max-width: 500px;
+  }
+
+.actions {
+  margin: 20px 0;
+}
+
+  @media (min-width: 600px) {
+    .payment-form {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+
+}

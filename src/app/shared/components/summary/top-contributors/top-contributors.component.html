@@ -1,13 +1,22 @@
 <h3>Top Colaboradores:</h3>
 
-@for (message of r_messageList; track $index) {
-  <li> {{ message.name }}</li>
+@for (message of _r_messageList.slice(0, 5); track $index) {
+  <div class="list-row">
+    <span class="msg-icon" textColor="{{ r_theme }}">
+      <i class="{{ message.icon }}"></i>
+    </span>
+    <div>
+      <p class="title">{{ message.contributor }}</p>
+      <p>“{{ message.message }}”</p>
+    </div>
+  </div>
 } @empty {
   <mat-card>
-    <img matCardImage src="assets/image/svg/{{r_theme}}/top-contributors.svg">
+    <img matCardImage src="assets/image/svg/{{ r_theme }}/top-contributors.svg">
   </mat-card>
   <p>Compartilhe o código do seu chá e obtenha o seu <b>primeiro colaborador!</b></p>
 }
-<button (click)="goToBulletinBoard()">ir para o histórico</button>
 
-
+@if (_r_messageList.length > 0) {
+  <button mat-button (click)="goToBulletinBoard()">Ver todos <i class="ph ph-arrow-right"></i></button>
+}

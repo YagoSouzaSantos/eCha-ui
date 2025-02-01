@@ -1,2 +1,27 @@
 <app-top-nav
-  [r_themeColor]="giftList.themeColor" />
+  [r_themeColor]="giftList.themeColor"
+  [extendedBackground]="true"
+  [defaltLogoTemplate]="false"
+  [user]="false" />
+
+<div class="content">
+  <div>
+    <app-summary
+      [r_editable]="false"
+      [r_giftListData]="giftList" />
+  </div>
+
+  <div>
+    <app-evolution-bar
+      [r_totalValue]="giftList.totalValue"
+      [r_valueCollected]="giftList.valueCollected"
+      [r_themeColor]="giftList.themeColor"
+      [r_contributorCount]="giftList.contributorCount"/>
+
+    <app-item-list
+      [r_editable]="false"
+      [r_themeColor]="giftList.themeColor"
+      [r_items]="giftList.items" />
+  </div>
+</div>
+<app-minimalist-footer />

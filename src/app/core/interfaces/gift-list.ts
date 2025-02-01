@@ -12,6 +12,7 @@ export interface GiftList {
   eventDate: Date | null;
   totalValue: number;
   valueCollected: number;
+  contributorCount: number;
   creator: string;
   items: Item[];
 }

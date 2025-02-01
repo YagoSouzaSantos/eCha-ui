@@ -6,4 +6,5 @@ export interface Item {
   imageUrl: string | null;
   valueItem: number;
   valueItemCollected: number;
+  remainingValue : number;
 }

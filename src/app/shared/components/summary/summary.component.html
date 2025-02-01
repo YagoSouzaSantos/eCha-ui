@@ -24,6 +24,7 @@
   <app-summary-data [r_message]="r_giftListData.message" (click)="showSummaryMessageDialog()"/>
 
   <app-top-contributors
+    [r_key]="r_giftListData.key"
     [r_messageList]="ml"
     [r_theme]="r_giftListData.themeColor" />
 

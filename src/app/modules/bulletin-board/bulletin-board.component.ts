@@ -1,11 +1,11 @@
-import { GiftList } from './../../core/interfaces/gift-list';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BulletinBoard } from '../../core/interfaces/bulletin-board';
 import { MinimalistFooterComponent } from "../../core/layout/minimalist-footer/minimalist-footer.component";
 import { TopNavComponent } from '../../core/layout/top-nav/top-nav.component';
 import { BulletinBoardEvolutionBarComponent } from "./bulletin-board-evolution-bar/bulletin-board-evolution-bar.component";
 import { HostMessageComponent } from "./host-message/host-message.component";
 import { MessagesComponent } from './messages/messages.component';
+import { BulletinBoardStateService } from './services/bulletin-board-state.service';
 
 
 const BULLETIN: BulletinBoard = {
@@ -87,5 +87,13 @@ const BULLETIN: BulletinBoard = {
 })
 export class BulletinBoardComponent {
   bulletinBoard: BulletinBoard = BULLETIN;
-  editable:boolean = true
+  editable: boolean = false;
+
+  #bulletinBoardStateService = inject(BulletinBoardStateService);
+
+  ngOnInit() {
+    this.#bulletinBoardStateService.modelState$.subscribe((value) => {
+      this.editable = value;
+    });
+  }
 }

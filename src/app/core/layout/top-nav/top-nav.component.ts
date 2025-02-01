@@ -7,19 +7,17 @@ import { TopNavImports } from './config/material';
   standalone: true,
   imports: [TopNavImports],
   templateUrl: './top-nav.component.html',
-  styleUrls: ['./top-nav.component.scss', '/src/styles/colors.scss']
+  styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent {
-
-
-  @Input() btn_enter: boolean = false;
-  @Input() btn_createYourTea: boolean = false;
+  @Input() user: boolean = false;
   @Input() defaltLogoTemplate: boolean = true;
-
+  @Input({required: true}) r_themeColor!: string;
+  @Input() extendedBackground: boolean = false;
 
   user$ : any;
 
-  logout() {
+  logout() { }
 
-  }
+  getBalance() { }
 }

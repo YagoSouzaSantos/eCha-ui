@@ -3,9 +3,17 @@
     font-family: 'Montserrat', sans-serif;
   }
 
+  h2 {
+    text-align: center;
+  }
+
   .radio-input-container {
     display: flex;
     align-items: center;
+
+    .mat-mdc-form-field {
+      margin-left: 16px;
+    }
   }
 
   .radio-group {
@@ -23,14 +31,16 @@
     grid-template-columns: 1fr;
   }
 
-  .mat-mdc-form-field {
-    width: 100%;
-    max-width: 500px;
+  .payment-pix {
+    .mat-mdc-form-field {
+      width: 100%;
+      max-width: 500px;
+    }
   }
 
-.actions {
-  margin: 20px 0;
-}
+  .actions {
+    margin: 20px 0;
+  }
 
   @media (min-width: 600px) {
     .payment-form {

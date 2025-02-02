@@ -1,26 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item } from '../../../../../core/interfaces/item';
+
+import { PaymentData } from '../../../../../core/interfaces/payment-data';
 import { DIALOG } from '../../imports';
 
 export interface DialogData {
   themeColor: string;
   item: Item;
-}
-
-interface PaymentData {
-  method: string;
-  amount: number;
-  cardDetails?: {
-    number: string;
-    expiry: string;
-    cvv: string;
-    holder: string;
-    installments: number;
-  };
-  pixDetails?: {
-    payerName: string;
-  };
 }
 
 @Component({
@@ -79,55 +66,55 @@ export class PaymentDialogComponent {
   allowOnlyNumbers(event: KeyboardEvent) {
     const allowedKeys = ['Backspace', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight', 'Delete'];
     if (allowedKeys.indexOf(event.key) !== -1 || /^[0-9]$/.test(event.key)) {
-      return; // Permite a tecla ou número
+      return;
     }
-    event.preventDefault(); // Previne a entrada de qualquer outro caractere
+    event.preventDefault();
   }
-
   formatExpiryDate() {
-    const value = this.cardDetails.expiry.replace(/\D/g, ''); // Remove caracteres não numéricos
+    const value = this.cardDetails.expiry.replace(/\D/g, '');
     if (value.length > 4) {
-      this.cardDetails.expiry = value.slice(0, 4); // Limita a 4 dígitos
+      this.cardDetails.expiry = value.slice(0, 4);
     } else if (value.length >= 2) {
-      this.cardDetails.expiry = value.slice(0, 2) + '/' + value.slice(2, 4); // Formata para MM/AA
+      this.cardDetails.expiry = value.slice(0, 2) + '/' + value.slice(2, 4);
     } else {
-      this.cardDetails.expiry = value; // Se tiver menos de 2 dígitos, não formata
+      this.cardDetails.expiry = value;
     }
   }
-
-
   formatCardNumber() {
     this.cardDetails.number = this.cardDetails.number.replace(/\D/g, '').slice(0, 16);
   }
-
   formatCVV() {
     this.cardDetails.cvv = this.cardDetails.cvv.replace(/\D/g, '').slice(0, 3);
   }
+  isFormValid(): boolean {
+    if (!this.selectedOption) return false;
 
+    const isAmountValid = this.selectedOption === '1' || (this.selectedOption === '2' && this.customValue > 0);
 
-    // Método para verificar a validação do formulário
-    isFormValid(): boolean {
-      const isCardPayment = this.selectedOption === '1' || (this.selectedOption === '2' && this.customValue > 0);
-
-      const cardValid = this.isCardDetailsValid();
-      const pixValid = this.isPixDetailsValid();
-
-      return isCardPayment ? cardValid : pixValid;
+    if (this.isCreditCardSelected()) {
+      return isAmountValid && this.isCardDetailsValid();
+    } else if (this.isPixSelected()) {
+      return isAmountValid && this.isPixDetailsValid();
     }
 
-    // Validação dos detalhes do cartão
-    private isCardDetailsValid(): boolean {
-      return (
-        this.cardDetails.number.length === 16 &&
-        /^[0-9]{2}\/[0-9]{2}$/.test(this.cardDetails.expiry) &&
-        this.cardDetails.cvv.length === 3 &&
-        this.cardDetails.holder.trim().length > 0 &&
-        this.cardDetails.installments > 0
-      );
-    }
-
-    // Validação dos detalhes do PIX
-    private isPixDetailsValid(): boolean {
-      return this.pixDetails.payerName.trim().length > 0;
-    }
+    return false;
+  }
+  private isCardDetailsValid(): boolean {
+    return (
+      this.cardDetails.number.length === 16 &&
+      /^[0-9]{2}\/[0-9]{2}$/.test(this.cardDetails.expiry) &&
+      this.cardDetails.cvv.length === 3 &&
+      this.cardDetails.holder.trim().length > 0 &&
+      this.cardDetails.installments > 0
+    );
+  }
+  private isPixDetailsValid(): boolean {
+    return this.pixDetails.payerName.trim().length > 0;
+  }
+  private isCreditCardSelected(): boolean {
+    return this.selectedOption !== '' && this.cardDetails.number !== '';
+  }
+  private isPixSelected(): boolean {
+    return this.selectedOption !== '' && this.pixDetails.payerName !== '';
+  }
 }

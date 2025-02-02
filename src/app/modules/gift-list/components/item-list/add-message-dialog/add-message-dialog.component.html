@@ -1,0 +1,48 @@
+@if(!messageRead){
+<app-payment-confirmation [r_themeColor]="data.themeColor" (messageRead)="onMessageRead()" />
+
+} @else {
+
+<div class="dialog-content">
+  <h2 mat-dialog-title>Vamos escrever um recadinho?</h2>
+
+  <div class="selected-icon">
+    <i class="{{ selectedIcon }}" textColor="{{data.themeColor}}"></i>
+  </div>
+  <button mat-flat-button smoothBackGround="{{data.themeColor}}" [matMenuTriggerFor]="iconMenu">
+    <i class="ph ph-pencil-simple"></i> Selecionar ícone
+  </button>
+
+  <mat-menu #iconMenu="matMenu" class="icon-menu">
+    <div class="icon-grid">
+
+      @for(item of iconList; track $index){
+      <i class="{{ item.icon }} menu-item" (click)="selectIcon(item.icon)"></i>
+      }
+    </div>
+  </mat-menu>
+
+  <p class="instructions">
+    Muito obrigada pela sua contribuição! Registre um bilhetinho pra ficar no <b>mural de entes queridos</b> que
+    ajudaram {{ data.creatorName }} com um ícone que te represente:
+  </p>
+
+  <form [formGroup]="messageForm">
+    <div class="input-label">Nome</div>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="name" placeholder="Seu nome, ou um apelido também">
+    </mat-form-field>
+
+    <div class="input-label">Mensagem</div>
+    <mat-form-field class="full-width">
+      <textarea matInput formControlName="message" placeholder="Deixe aqui a sua mensagem carinhosa <3"></textarea>
+    </mat-form-field>
+
+    <button class="action-button" mat-button themeColor="{{data.themeColor}}" [disabled]="messageForm.invalid"
+      (click)="saveMessage()">
+      Salvar recadinho
+    </button>
+  </form>
+
+</div>
+}

@@ -1,0 +1,20 @@
+<div class="dialog-content">
+  <h2 mat-dialog-title>Vamos checar aqui, valeu!</h2>
+
+  <div class="image-container">
+    <img matCardImage [src]="'assets/image/svg/' + r_themeColor + '/payment-confirmation.svg'" alt="Pagamento PIX">
+  </div>
+
+  <p class="pix-instructions">
+    Assim que o pagamento for confirmado, lhe enviaremos, junto com o recibo,
+    <b>um recadinho especial que Maria separou para você</b>. Obrigada por fazer parte desse sonho!
+  </p>
+
+  <button
+    mat-button
+    themeColor="{{r_themeColor}}"
+    (click)="submitEvent()" >
+    Fechar
+  </button>
+
+</div>

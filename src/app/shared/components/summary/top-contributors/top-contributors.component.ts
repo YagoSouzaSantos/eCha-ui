@@ -27,9 +27,8 @@ export class TopContributorsComponent {
   #bulletinBoardStateService = inject(BulletinBoardStateService);
   #router = inject(Router);
 
-
   goToBulletinBoard() {
-    this.#bulletinBoardStateService.setModelState(true);
+    this.#bulletinBoardStateService.setModelState(this.r_editable);
     this.#router.navigate(['/bulletin-board', this.r_key]);
   }
 }

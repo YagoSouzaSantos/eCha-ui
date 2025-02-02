@@ -1,0 +1,29 @@
+<div class="dialog-content">
+  <h2 mat-dialog-title>FAZ O PIX</h2>
+
+  <div class="image-container">
+    <img matCardImage [src]="'assets/image/svg/' + data.themeColor + '/payment-pix.svg'" alt="Pagamento PIX">
+  </div>
+
+  <p class="pix-instructions">
+    Copie a nossa chave Pix aqui ou no seu e-mail e cole-a no app do seu banco. Faz o Pix!
+  </p>
+
+    <mat-form-field class="full-width"  smoothBackGround="{{data.themeColor}}" (click)="share()">
+      <textarea
+        matInput
+        disabled
+        [value]="pixKeyToPast">
+      </textarea>
+      <mat-icon matSuffix>content_copy</mat-icon>
+    </mat-form-field>
+
+
+  <button
+    mat-button
+    themeColor="{{data.themeColor}}"
+    (click)="onConfirm()" >
+    Já paguei!
+  </button>
+
+</div>

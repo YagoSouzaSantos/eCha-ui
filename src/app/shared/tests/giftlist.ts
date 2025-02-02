@@ -4,7 +4,7 @@ export const giftListExample: GiftList = {
   id: 1,
   key: "qwertyuiop",
   title: "Apartamento novo",
-  themeColor: "yellow",
+  themeColor: "red",
   typography: 1,
   message: "Para deixar o meu novo ninho ainda mais aconchegante, estou preparando um Chá de Casa Nova. Será uma tarde recheada de alegria, boas risadas para celebrarmos juntos essa nova etapa. Em vez de presentes, contribuam com valores para os itens que nos ajudarão a dar vida ao nosso novo lar.",
   photoUrl: "https://img.freepik.com/fotos-gratis/jovem-morena-caucasiana-sorridente-gesticulando-sinal-de-mao-da-vitoria-isolado-na-parede-rosa_141793-70785.jpg?t=st=1738412005~exp=1738415605~hmac=38c79acc22f97477c3882da27064765fc9e05d8ea63d5f34b7e9864e81f7a3f1&w=1380",

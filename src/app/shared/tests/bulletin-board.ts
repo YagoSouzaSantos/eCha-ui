@@ -7,7 +7,7 @@ export const bulletinBoardExample: BulletinBoard = {
   totalValue: 1465,
   collectedValue: 465,
   contributorCount: 8,
-  themeColor: 'blue',
+  themeColor: 'red',
   eventDate: new Date('2025-03-01T10:00:00'),
   messages: [
     {

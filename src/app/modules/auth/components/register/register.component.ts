@@ -7,6 +7,7 @@ import { RegisterFormComponent } from "./ui/register-form/register-form.componen
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { ResponseAuth } from '../../../../core/interfaces/responses/response-auth';
 import { Router } from '@angular/router';
+import { User } from '../../../../core/interfaces/user';
 
 
 @Component({
@@ -17,11 +18,10 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-
-  #registerService = inject(RegisterService);
-  #router = inject(Router);
   #authenticationService = inject(AuthenticationService);
   #snackbarService = inject(SnackbarService);
+  #registerService = inject(RegisterService);
+  #router = inject(Router);
 
   onRegister(register: Register) {
     this.#registerService.createUser(register).subscribe({
@@ -32,16 +32,13 @@ export class RegisterComponent {
     });
   }
 
-  private processSuccess(response: ResponseAuth): void {
-    if (response.tokens?.accessToken) {
-      this.#authenticationService.setTokensLocalStorage(response.tokens.accessToken);
+  private processSuccess(response: User): void {
+    if (response) {
+      this.#authenticationService.setUserLocalStorage(response);
       this.#snackbarService.showSuccess('Cadastro realizado com sucesso.');
       this.#router.navigate(['/creation']);
     } else {
       this.#snackbarService.showError('Resposta inválida do servidor.');
     }
   }
-
-
-
 }

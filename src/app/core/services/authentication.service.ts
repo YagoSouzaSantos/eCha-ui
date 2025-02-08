@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../../shared/services/local-storage.service';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class AuthenticationService extends LocalStorageService {
 
   setTokensLocalStorage(token: string) {
       this.saveTokensLocalstorage(token)
+  }
+
+  setUserLocalStorage(user: User): void {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 }

@@ -1,16 +1,25 @@
 <mat-toolbar themeColor="green">
   <div class="content">
-    <img src="assets/image/logo/white-logo.png" alt="eCha"  [routerLink]="'/home'">
+    <img
+      src="assets/image/logo/white-logo.png"
+      matTooltip="Ir para Página Inicial"
+      alt="eCha"
+      [routerLink]="'/home'">
 
     <span class="spacer"></span>
 
-    <button mat-icon-button (click)="alert()"><mat-icon>notifications</mat-icon></button>
+    <button
+      matTooltip="Exibir notificações"
+      mat-icon-button
+      (click)="alert()"><mat-icon>notifications</mat-icon></button>
 
     <button
       mat-icon-button
+      matTooltip="Preferências do usuário"
       [routerLink]="'/profile'"><mat-icon>settings</mat-icon></button>
 
     <app-profile-picture [matMenuTriggerFor]="menu"
+      matTooltip="{{r_user.name}}"
       class="profile"
       [size]="48"
       [r_editable]="false"

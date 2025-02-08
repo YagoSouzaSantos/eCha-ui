@@ -9,11 +9,12 @@ import {MatMenuModule} from '@angular/material/menu';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
 import { User } from '../../../../core/interfaces/user';
 import { RouterLink } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [ThemeColorDirective, MatToolbarModule, MatIconModule, MatButtonModule, ProfilePictureComponent, MatMenuModule, RouterLink],
+  imports: [ThemeColorDirective, MatToolbarModule, MatIconModule, MatButtonModule, ProfilePictureComponent, MatMenuModule, RouterLink, MatTooltipModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })

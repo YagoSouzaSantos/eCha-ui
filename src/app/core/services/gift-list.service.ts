@@ -8,7 +8,7 @@ import { GiftList } from '../interfaces/gift-list';
   providedIn: 'root'
 })
 export class GiftListService {
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
 
   createGiftList(newGiftList: GiftList): Observable<GiftList> {
     return this.http.post<GiftList>(`${environment.apiUrl}/List`, newGiftList);
@@ -16,5 +16,9 @@ export class GiftListService {
 
   getAllGiftLists(): Observable<GiftList[]> {
     return this.http.get<GiftList[]>(`${environment.apiUrl}/List`);
+  }
+
+  getGiftListById(id: string): Observable<GiftList> {
+    return this.http.get<GiftList>(`${environment.apiUrl}/List/${id}`);
   }
 }

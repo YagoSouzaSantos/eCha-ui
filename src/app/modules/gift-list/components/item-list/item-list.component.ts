@@ -19,7 +19,7 @@ import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dial
 export class ItemListComponent implements OnInit {
   @Input({ required: true }) r_editable: boolean = false;
   @Input({ required: true }) r_themeColor!: string;
-  @Input({ required: true }) r_items: Item[] = [];
+  @Input({ required: true }) r_items!: Item[];
 
   readonly dialog = inject(MatDialog);
   #snackbarService = inject(SnackbarService);

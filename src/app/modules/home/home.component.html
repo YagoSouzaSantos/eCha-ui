@@ -1,13 +1,43 @@
-<app-toolbar />
+<app-toolbar [r_user]="getUser()" />
 
 <div class="content">
 
   <div class="fa">
-    <app-filter />
+    <app-filter [placeholder]="'Pesquise por uma lista de presentes'" (filterChange)="onFilter($event)" />
   </div>
-<app-my-lists></app-my-lists>
 
+  <div class="gift-lists">
+    <h2>Minhas listas de presentes</h2>
 
+    <div class="action">
+      <button mat-raised-button themeColor='green' [routerLink]="'/creation'">
+        <mat-icon>add</mat-icon>Criar lista</button>
+    </div>
+
+    <div class="cards-ctn">
+      @if(giftLists$() === null) { <mat-progress-bar mode="query"></mat-progress-bar> }
+
+      @for (item of filteredGiftLists$(); track $index) {
+        <app-card [r_giftList]="item" />
+
+      }@empty {
+
+          @if (filterValue != '' ) {
+          <div class="msg-system slide-in-from-right">
+            <p>Nenhuma <b>lista de presentes</b> encontrada para a busca <b>{{ filterValue }}</b> ..</p>
+          </div>
+          }
+          @else {
+
+          @if (giftLists$() != null) {
+          <div smoothBackGround='green' class="msg-system slide-in-from-right">
+            <p>Nenhuma <strong>lista de presentes</strong> encontrada.</p>
+            <p>"É hora de planejar seus sonhos! Comece criando sua lista de presentes e veja como é fácil realizá-los."</p>
+          </div>
+          }
+        }
+      }
+    </div>
+  </div>
 </div>
-
 <app-minimalist-footer />

@@ -16,7 +16,8 @@ export interface CustomImageData {
   styleUrls: ['./profile-picture.component.scss']
 })
 export class ProfilePictureComponent {
-  @Input() imageUrl!: string | null;
+  @Input() image!: string | null;
+  @Input({ required: true }) r_iconName!: string;
   @Input() size: number = 100;
   @Input({ required: true }) r_editable!: boolean;
   @Input() themeColor!: string;
@@ -32,7 +33,7 @@ export class ProfilePictureComponent {
     const dialogRef = this.dialog.open(ImageSelectionDialogComponent, {
       data: {
         themeColor: this.themeColor,
-        urlImage: this.imageUrl,
+        urlImage: this.image,
         base64Image: this.base64Image,
       }
     });
@@ -44,7 +45,7 @@ export class ProfilePictureComponent {
         };
         this.imageDataChange.emit(imageData);
 
-        this.imageUrl = imageData.urlImage;
+        this.image = imageData.urlImage;
         this.base64Image = imageData.base64Image;
       }
     });

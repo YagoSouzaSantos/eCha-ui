@@ -9,6 +9,10 @@ img {
   width : auto;
 }
 
+img:hover {
+  cursor: pointer;
+}
+
 .profile:hover {
   cursor: pointer;
 }
@@ -19,4 +23,8 @@ img {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto 0 auto;
+}
+
+button {
+  margin: 0 6px;
 }

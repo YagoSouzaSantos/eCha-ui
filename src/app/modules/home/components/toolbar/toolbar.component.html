@@ -1,0 +1,26 @@
+<mat-toolbar themeColor="green">
+  <div class="content">
+    <img src="assets/image/logo/white-logo.png" alt="eCha"  [routerLink]="'/home'">
+
+    <span class="spacer"></span>
+
+    <button mat-icon-button (click)="alert()"><mat-icon>notifications</mat-icon></button>
+
+    <button
+      mat-icon-button
+      [routerLink]="'/profile'"><mat-icon>settings</mat-icon></button>
+
+    <app-profile-picture [matMenuTriggerFor]="menu"
+      class="profile"
+      [size]="48"
+      [r_editable]="false"
+      [r_iconName]="'ph ph-user'" />
+
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Sair</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

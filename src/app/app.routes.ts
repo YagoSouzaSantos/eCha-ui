@@ -1,17 +1,16 @@
 import { Routes } from '@angular/router';
+import { NotFoundComponent } from './core/pages/not-found/not-found.component';
+import { isAuthenticatedGuard } from './core/security/auth.guard';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { LoginContainerComponent } from './modules/auth/container/login-container.component';
-import { DonationComponent } from './modules/gift-list/donation/donation.component';
+import { BulletinBoardComponent } from './modules/bulletin-board/bulletin-board.component';
 import { CreateGiftListComponent } from './modules/gift-list/create-gift-list/create-gift-list.component';
-import { MyListsComponent } from './modules/gift-list/my-lists/my-lists.component';
+import { DonationComponent } from './modules/gift-list/donation/donation.component';
+import { EditorGiftListComponent } from './modules/gift-list/editor-gift-list/editor-gift-list.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
-import { TermsOfServiceComponent } from './core/pages/terms-of-service/terms-of-service.component';
-import { UseOfCookiesComponent } from './core/pages/use-of-cookies/use-of-cookies.component';
-import { NotFoundComponent } from './core/pages/not-found/not-found.component';
-import { EditorGiftListComponent } from './modules/gift-list/editor-gift-list/editor-gift-list.component';
-import { BulletinBoardComponent } from './modules/bulletin-board/bulletin-board.component';
+import { ManageProfileComponent } from './modules/manage-profile/manage-profile.component';
 
 export const routes: Routes = [
   {
@@ -33,26 +32,32 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    // canActivate: [HomeGuardService],
-  },
-  {
-    path: 'creation',
-    component: CreateGiftListComponent,
-    // canActivate: [isAuthenticatedGuard()],
-  },
-  {
-    path: 'editor/:key',
-    component: EditorGiftListComponent
-  },
-  {
     path: 'donation/:key',
     component: DonationComponent
   },
   {
     path: 'bulletin-board/:key',
     component: BulletinBoardComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [isAuthenticatedGuard()],
+  },
+  {
+    path: 'creation',
+    component: CreateGiftListComponent,
+    canActivate: [isAuthenticatedGuard()],
+  },
+  {
+    path: 'editor/:key',
+    component: EditorGiftListComponent,
+    canActivate: [isAuthenticatedGuard()],
+  },
+  {
+    path: 'profile',
+    component: ManageProfileComponent,
+    canActivate: [isAuthenticatedGuard()],
   },
   // {
   //   path: 'terms-of-service',

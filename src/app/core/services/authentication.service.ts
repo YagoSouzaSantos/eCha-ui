@@ -6,19 +6,25 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class AuthenticationService extends LocalStorageService {
-
-  // logout(){
-  //   this.clearTokensSessionStorage()
-  //   this.mainLayoutService.setLayoutMainState(false)
-  //   this.JWTService.clearToken()
-  //   this.route.navigate(['/authentication'])
-  // }
-
   setTokensLocalStorage(token: string) {
       this.saveTokensLocalstorage(token)
   }
 
   setUserLocalStorage(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  isUserAuthenticated(): boolean {
+    return localStorage.getItem('user') !== null;
+  }
+
+  getUser(): User {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
+
+  logout(): void {
+    localStorage.removeItem('user');
+    window.location.reload();
   }
 }

@@ -6,6 +6,7 @@ import { BackgroundService } from '../../../../../shared/services/background.ser
 import { FormValidation } from '../../../../../shared/utils/form-validation';
 import { creationForm } from '../../utils/form-functions';
 import { IMPORTS } from './form-imports';
+import { AuthenticationService } from '../../../../../core/services/authentication.service';
 
 @Component({
   selector: 'app-form',
@@ -17,7 +18,8 @@ import { IMPORTS } from './form-imports';
 export class FormComponent {
   @Output() form = new EventEmitter<GiftList>()
 
-  protected backgroundService = inject(BackgroundService)
+  #backgroundService = inject(BackgroundService)
+  #authenticationService = inject(AuthenticationService);
   private fb = inject(FormBuilder)
 
   currentTheme!: string;
@@ -25,12 +27,12 @@ export class FormComponent {
 
   constructor() {
     effect(() => {
-      this.currentTheme = this.backgroundService.getBgColorSignal()();
+      this.currentTheme = this.#backgroundService.getBgColorSignal()();
     });
   }
 
   ngOnInit(): void {
-    this.creationForm = creationForm(this.fb);
+    this.creationForm = creationForm(this.fb, this.#authenticationService);
   }
 
   onSubmit(event: Event) {
@@ -46,18 +48,22 @@ export class FormComponent {
 
   onImageDataChange(imageData: CustomImageData): void {
     this.creationForm.patchValue({
-      photo: imageData.base64Image,
+      image: imageData.base64Image,
       photoUrl: imageData.urlImage
     });
   }
 
   onColorChange(color: string): void {
-    console.log(color);
     this.creationForm.patchValue({
-    themeColor: color
-  });
+      highlightColor: color
+    });
   }
 
-  readonly bestBoys: string[] = ['Tipografia 1', 'Tipografia 2', 'Tipografia 3'];
+  readonly fonts: { fontId: number; name: string }[] = [
+    { fontId: 1, name: 'Tipografia 1' },
+    { fontId: 2, name: 'Tipografia 2' },
+    { fontId: 3, name: 'Tipografia 3' }
+  ];
+
 
 }

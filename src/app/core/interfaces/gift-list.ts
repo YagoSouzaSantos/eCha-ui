@@ -1,14 +1,15 @@
 import { Item } from "./item";
 
 export interface GiftList {
-  id?: number;
+  id: number;
+  userId: number;
   key: string;
   title: string;
-  themeColor: string;
+  highlightColor: string;
   typography: number;
-  message: string | null;
+  description: string | null;
   photoUrl: string | null;
-  photo: string | null;
+  image: string | null;
   eventDate: Date | null;
   totalValue: number;
   valueCollected: number;

@@ -1,9 +1,10 @@
 <app-vertical-card>
   <app-profile-picture class="user-image"
-    [imageUrl]="r_giftListData.photoUrl"
+    [image]="r_giftListData.photoUrl"
     [r_editable]="r_editable"
+    [r_iconName]="'ph ph-image-square'"
     [size]="110"
-    [themeColor]="r_giftListData.themeColor" />
+    [themeColor]="r_giftListData.highlightColor" />
 
   <h2> {{ r_giftListData.title}} </h2>
   <span> Por <b>{{ r_giftListData.creator}}</b></span>
@@ -18,12 +19,12 @@
     </div>
   }
 
-  <app-summary-data [r_message]="r_giftListData.message" (click)="showSummaryMessageDialog()"/>
+  <app-summary-data [r_message]="r_giftListData.description" (click)="showSummaryMessageDialog()"/>
 
   <app-top-contributors
     [r_editable]="r_editable"
     [r_key]="r_giftListData.key"
     [r_messageList]="ml"
-    [r_theme]="r_giftListData.themeColor" />
+    [r_theme]="r_giftListData.highlightColor" />
 
 </app-vertical-card>

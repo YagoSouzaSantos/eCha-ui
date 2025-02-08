@@ -1,28 +1,33 @@
-import { Component, inject } from '@angular/core';
+import { ThemeColorDirective } from './../../../../core/diretives/themeColor.directive';
+import { Component, inject, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProfilePictureComponent } from "../../../../shared/components/profile-picture/profile-picture.component";
-import { SidenavMenuService } from '../../Services/sidenav-menu.service';
+import {MatMenuModule} from '@angular/material/menu';
+
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { User } from '../../../../core/interfaces/user';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule, ProfilePictureComponent],
+  imports: [ThemeColorDirective, MatToolbarModule, MatIconModule, MatButtonModule, ProfilePictureComponent, MatMenuModule, RouterLink],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  user: any
-  #sidenavMenuService = inject(SidenavMenuService)
+  @Input({required: true}) r_user!: User;
+
   #snackbarService = inject(SnackbarService);
 
   alert(): void {
     this.#snackbarService.showAlert('Método não implementado!');
   }
 
-  toggleUserSidenav() {
-    this.#sidenavMenuService.toggleSidenav();
+  logout() {
+
   }
+
 }

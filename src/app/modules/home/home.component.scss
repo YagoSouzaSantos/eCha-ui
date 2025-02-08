@@ -5,17 +5,50 @@
   margin: 16px auto 0 auto;
 }
 
-.my-router-area {
-  width: 100%;
-  max-width: 1279px;
-  height: auto;
-}
-
-mat-drawer {
-  width: 380px;
-}
-
 .fa { // filter area
   max-width: 400px;
   margin-left: auto;
+}
+
+// gift lists
+.gift-lists {
+  min-height: 600px;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 25px;
+  background-color: #fff;
+}
+
+.action {
+  margin: 50px 0 16px 0;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+button {
+  color: #fff !important;
+}
+
+.cards-ctn {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+}
+
+@media (max-width: 1023px) {
+  .cards-ctn {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cards-ctn {
+    grid-template-columns: 1fr;
+  }
+  .fa {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,5 +1,5 @@
 <app-top-nav
-  [r_themeColor]="giftList.themeColor"
+  [r_themeColor]="giftList.highlightColor"
   [extendedBackground]="true"
   [defaltLogoTemplate]="false"
   [user]="true" />
@@ -15,12 +15,12 @@
     <app-evolution-bar
       [r_totalValue]="giftList.totalValue"
       [r_valueCollected]="giftList.valueCollected"
-      [r_themeColor]="giftList.themeColor"
+      [r_themeColor]="giftList.highlightColor"
       [r_contributorCount]="giftList.contributorCount" />
 
     <app-item-list
       [r_editable]="true"
-      [r_themeColor]="giftList.themeColor"
+      [r_themeColor]="giftList.highlightColor"
       [r_items]="giftList.items" />
   </div>
 </div>

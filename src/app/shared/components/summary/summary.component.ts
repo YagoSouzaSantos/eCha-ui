@@ -42,13 +42,13 @@ export class SummaryComponent {
     if (this.r_editable) {
       const dialogRef = this.dialog.open(SummaryMessageDialogComponent, {
         data: {
-          message: this.r_giftListData.message,
-          themeColor: this.r_giftListData.themeColor
+          message: this.r_giftListData.description,
+          themeColor: this.r_giftListData.highlightColor
         }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.r_giftListData.message = result.message
+          this.r_giftListData.description = result.message
         }
       });
     }
@@ -59,7 +59,7 @@ export class SummaryComponent {
       const dialogRef = this.dialog.open(DatePickerDialogComponent, {
         data: {
           eventDate: this.r_giftListData.eventDate,
-          themeColor: this.r_giftListData.themeColor
+          themeColor: this.r_giftListData.highlightColor
         }
       });
       dialogRef.afterClosed().subscribe(result => {

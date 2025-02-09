@@ -26,7 +26,7 @@ export class SummaryMessageDialogComponent {
   readonly dialogRef = inject(MatDialogRef<SummaryMessageDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
-  message: string | null = null;
+  message: string | null = this.data.message;
 
   saveDate(): void {
     this.dialogRef.close({

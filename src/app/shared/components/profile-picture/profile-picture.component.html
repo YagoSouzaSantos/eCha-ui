@@ -1,20 +1,16 @@
 <div class="profile-container">
-  @if ((image == null || undefined) && (base64Image == null || undefined) ) {
-  <div [style.width.px]="size" [style.height.px]="size" class="default">
-    <i class="{{r_iconName}}"></i>
-  </div>
+  @if (!image) {
+    <div [style.width.px]="size" [style.height.px]="size" class="default">
+      <i class="{{ r_iconName }}"></i>
+    </div>
   }
   @else {
-
-  @if(image) {
-  <img [src]="image" [style.width.px]="size" [style.height.px]="size" class="profile-picture" />
-  }
-  @else {
-  <img [src]="base64Image" [style.width.px]="size" [style.height.px]="size" class="profile-picture" />
-  }
+    <img [src]="image" [style.width.px]="size" [style.height.px]="size" class="profile-picture" />
   }
 
   @if (r_editable) {
-  <img [src]="icons.pencil" alt="Edit Icon" class="action-icon" (click)="openDialog()" />
+    <div  class="action-icon" (click)="openDialog()">
+      <i class="ph ph-pencil-simple"></i>
+    </div>
   }
 </div>

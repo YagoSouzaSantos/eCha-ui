@@ -1,12 +1,7 @@
-import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ICONS } from '../../icons/phosphoricons';
 import { ImageSelectionDialogComponent } from './image-selection-dialog/image-selection-dialog.component';
-
-export interface CustomImageData {
-  urlImage: string;
-  base64Image: string;
-}
+import { ProfilePictureDialog } from '../../interfaces/profile-picture-dialog';
 
 @Component({
   selector: 'app-profile-picture',
@@ -22,10 +17,7 @@ export class ProfilePictureComponent {
   @Input({ required: true }) r_editable!: boolean;
   @Input() themeColor!: string;
 
-  @Output() imageDataChange = new EventEmitter<CustomImageData>();
-
-  icons = ICONS;
-  base64Image!: string;
+  @Output() imageDataChange = new EventEmitter<ProfilePictureDialog>();
 
   readonly dialog = inject(MatDialog);
 
@@ -33,20 +25,17 @@ export class ProfilePictureComponent {
     const dialogRef = this.dialog.open(ImageSelectionDialogComponent, {
       data: {
         themeColor: this.themeColor,
-        urlImage: this.image,
-        base64Image: this.base64Image,
+        urlImage: ''
       }
     });
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const imageData: CustomImageData = {
-          urlImage: result.urlImage,
-          base64Image: result.base64Image,
+        const imageData: ProfilePictureDialog = {
+          image: result.base64Image || result.urlImage
         };
         this.imageDataChange.emit(imageData);
-
-        this.image = imageData.urlImage;
-        this.base64Image = imageData.base64Image;
+        this.image = imageData.image;
       }
     });
   }

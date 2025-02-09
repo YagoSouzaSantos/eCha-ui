@@ -8,6 +8,7 @@ import { ResponseError } from '../../../../core/interfaces/responses/response-er
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { LoginService } from '../../../../core/services/login.service';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { User } from '../../../../core/interfaces/user';
 
 
 
@@ -25,16 +26,16 @@ export class LoginComponent {
   #snackbarService = inject(SnackbarService);
 
   doLogin(loLogin: DoLogin) {
-    this.#loginService.doLogin(loLogin).subscribe({
+    this.#loginService.doLoginByGetUsers(loLogin).subscribe({
       next: (response) => this.processSuccess(response),
       error: (errorResponse) => this.processError(errorResponse)
     });
   }
 
-  private processSuccess(response: ResponseAuth): void {
-    if (response.tokens?.accessToken) {
-      this.#authenticationService.setTokensLocalStorage(response.tokens.accessToken);
-      this.#snackbarService.showSuccess('Login realizado com sucesso.');
+  private processSuccess(response: User): void {
+    if (response) {
+      this.#authenticationService.setUserLocalStorage(response);
+      this.#snackbarService.showSuccess('Cadastro realizado com sucesso.');
       this.#router.navigate(['/home']);
     } else {
       this.#snackbarService.showError('Resposta inválida do servidor.');

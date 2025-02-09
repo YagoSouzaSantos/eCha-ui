@@ -26,7 +26,7 @@ export class SummaryComponent {
   ml: Message[] = bulletinBoardExample.messages;
 
   share() {
-    const url = `${window.location.origin}/donation/${this.r_giftListData.key}`;
+    const url = `${window.location.origin}/donation/${this.r_giftListData.id}`;
 
     navigator.clipboard.writeText(url).then(
       () => {

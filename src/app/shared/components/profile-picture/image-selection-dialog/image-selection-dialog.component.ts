@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogActions, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ThemeColorDirective } from '../../../../core/diretives/themeColor.directive';
+import { SmoothBackGroundDirective } from '../../../../core/diretives/smoothBackGround.directive';
 
 export interface DialogData {
   themeColor: string;
@@ -16,7 +17,7 @@ export interface DialogData {
   selector: 'app-image-selection-dialog',
   standalone: true,
   imports: [
-    MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, MatDialogActions, ThemeColorDirective
+    MatFormFieldModule, MatIconModule, MatInputModule, FormsModule, MatButtonModule, MatDialogModule, ThemeColorDirective, SmoothBackGroundDirective
   ],
   templateUrl: './image-selection-dialog.component.html',
   styleUrl: './image-selection-dialog.component.scss',
@@ -37,15 +38,16 @@ export class ImageSelectionDialogComponent {
     }
 
     const file = input.files[0];
-    this.filePath.set(file.name);
-
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.base64Image.set(e.target.result as string);
+      this.urlImage.set(''); // Limpa a URL, pois uma imagem foi selecionada
+      this.onConfirm(); // Confirma automaticamente
     };
 
     reader.readAsDataURL(file);
   }
+
 
   onConfirm(): void {
     const base64 = this.base64Image();
@@ -54,10 +56,8 @@ export class ImageSelectionDialogComponent {
     this.dialogRef.close({
       urlImage: url,
       base64Image: base64,
-      filePath: this.filePath(),
     });
   }
-
 
   onCancel(): void {
     this.dialogRef.close();

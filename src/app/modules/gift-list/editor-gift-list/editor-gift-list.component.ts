@@ -9,6 +9,7 @@ import { ItemListComponent } from '../components/item-list/item-list.component';
 import { GiftListService } from '../../../core/services/gift-list.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { GIFT_LIST } from '../../../core/constants/gift-list';
 
 @Component({
   selector: 'app-editor-gift-list',
@@ -21,7 +22,7 @@ export class EditorGiftListComponent {
   #giftListService = inject(GiftListService);
   #route = inject(ActivatedRoute);
 
-  giftList$ = signal<GiftList | null>(null);
+  giftList$ = signal<GiftList>(GIFT_LIST);
 
   constructor() {
     this.getGiftListById();
@@ -32,9 +33,13 @@ export class EditorGiftListComponent {
     const id = this.#route.snapshot.paramMap.get('key');
     if (id) {
       this.#giftListService.getGiftListById(id).subscribe({
-        next: (giftList) => this.giftList$.set(giftList),
+        next: (giftList) => {
+          this.giftList$.set(giftList);
+          console.log('Gift List:', giftList);
+        },
         error: (error) => console.error('Erro ao buscar lista:', error),
       });
     }
   }
+
 }

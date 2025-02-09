@@ -1,5 +1,5 @@
 <div class="content">
-  <h1>R$ {{ r_valueCollected.toLocaleString('pt-BR') }}</h1>
+  <h1>R$ {{ r_valueCollected?.toLocaleString('pt-BR') }}</h1>
 
   @if(r_valueCollected == 0){ <span>Ninguém contribuiu ainda :(</span> }
   @else { <h2> {{ r_contributorCount }} pessoas já contribuiram!</h2> }

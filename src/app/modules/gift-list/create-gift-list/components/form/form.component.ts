@@ -1,12 +1,12 @@
 import { Component, effect, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GiftList } from '../../../../../core/interfaces/gift-list';
-import { CustomImageData } from '../../../../../shared/components/profile-picture/profile-picture.component';
 import { BackgroundService } from '../../../../../shared/services/background.service';
 import { FormValidation } from '../../../../../shared/utils/form-validation';
 import { creationForm } from '../../utils/form-functions';
 import { IMPORTS } from './form-imports';
 import { AuthenticationService } from '../../../../../core/services/authentication.service';
+import { ProfilePictureDialog } from '../../../../../shared/interfaces/profile-picture-dialog';
 
 @Component({
   selector: 'app-form',
@@ -46,10 +46,9 @@ export class FormComponent {
     return FormValidation.getErrorMessage(control);
   }
 
-  onImageDataChange(imageData: CustomImageData): void {
+  onImageDataChange(imageData: ProfilePictureDialog): void {
     this.creationForm.patchValue({
-      image: imageData.base64Image,
-      photoUrl: imageData.urlImage
+      image: imageData.image
     });
   }
 

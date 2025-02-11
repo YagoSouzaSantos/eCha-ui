@@ -15,7 +15,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { User } from '../../core/interfaces/user';
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -28,7 +27,6 @@ import { User } from '../../core/interfaces/user';
 export class HomeComponent {
   #giftListService = inject(GiftListService);
   #authenticationService = inject(AuthenticationService);
-
   giftLists$ = signal<GiftList[] | null>(null);
   filteredGiftLists$ = signal<GiftList[] | null>(null);
   filterValue: string = '';

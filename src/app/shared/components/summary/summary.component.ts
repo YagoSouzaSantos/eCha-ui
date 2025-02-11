@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GiftList } from '../../../core/interfaces/gift-list';
 import { Message } from '../../../core/interfaces/message';
@@ -13,7 +13,8 @@ import { SummaryMessageDialogComponent } from './summaryMessageDialog/summaryMes
   standalone: true,
   imports: [SUMMARY],
   templateUrl: './summary.component.html',
-  styleUrl: './summary.component.scss'
+  styleUrl: './summary.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SummaryComponent {
   @Input({ required: true }) r_editable!: boolean;
@@ -23,7 +24,7 @@ export class SummaryComponent {
   readonly dialog = inject(MatDialog);
 
   remainingDays: number | null = null
-  ml: Message[] = bulletinBoardExample.messages;
+  ml: Message[] = []
 
   share() {
     const url = `${window.location.origin}/donation/${this.r_giftListData.id}`;

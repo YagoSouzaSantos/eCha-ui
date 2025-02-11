@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageSelectionDialogComponent } from './image-selection-dialog/image-selection-dialog.component';
 import { ProfilePictureDialog } from '../../interfaces/profile-picture-dialog';
@@ -8,7 +8,8 @@ import { ProfilePictureDialog } from '../../interfaces/profile-picture-dialog';
   standalone: true,
   imports: [],
   templateUrl: './profile-picture.component.html',
-  styleUrls: ['./profile-picture.component.scss']
+  styleUrls: ['./profile-picture.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfilePictureComponent {
   @Input() image!: string | null;

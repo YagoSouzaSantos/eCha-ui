@@ -35,7 +35,7 @@ export class LoginComponent {
   private processSuccess(response: User): void {
     if (response) {
       this.#authenticationService.setUserLocalStorage(response);
-      this.#snackbarService.showSuccess('Cadastro realizado com sucesso.');
+      this.#snackbarService.showSuccess('Bem-vindo ao eChá!');
       this.#router.navigate(['/home']);
     } else {
       this.#snackbarService.showError('Resposta inválida do servidor.');

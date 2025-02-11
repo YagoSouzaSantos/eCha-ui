@@ -4,6 +4,7 @@ import { Item } from '../../../../../core/interfaces/item';
 import { SnackbarService } from '../../../../../shared/services/snackbar.service';
 import { ADD_ITEM_IMPORTS } from './add-item-imports';
 import { Category } from '../../../../../core/interfaces/category';
+import { CategoryService } from '../../../../../core/services/category.service';
 
 export interface DialogData {
   themeColor: string;
@@ -21,20 +22,23 @@ export interface DialogData {
 export class AddItemDialogComponent {
   readonly dialogRef = inject(MatDialogRef<AddItemDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  #categoryService = inject(CategoryService);
+  #snackbarService = inject(SnackbarService);
+
+  categories: Category[] = [];
 
   ngOnInit(): void {
     if (this.data.item) {
       this.newItem = { ...this.data.item };
     }
+
+    this.#categoryService.getAllCategories().subscribe({
+      next: (data) => this.categories = data,
+      error: (err) => {
+        console.error('Erro ao buscar categorias:', err);
+      },
+    });
   }
-
-  #snackbarService = inject(SnackbarService);
-
-  categories: Category[] = [
-    { value: 'Eletrodomésticos', viewValue: 'Eletrodomésticos' },
-    { value: 'Utensílios de Cozinha', viewValue: 'Utensílios de Cozinha' },
-    { value: 'Eletroportáteis', viewValue: 'Eletroportáteis' }
-  ];
 
   newItem: Item = {
     id: 0,

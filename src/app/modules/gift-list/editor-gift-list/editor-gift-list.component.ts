@@ -1,5 +1,5 @@
 import { GiftList } from './../../../core/interfaces/gift-list';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { MinimalistFooterComponent } from "../../../core/layout/minimalist-footer/minimalist-footer.component";
 import { SummaryComponent } from "../../../shared/components/summary/summary.component";
 import { EvolutionBarComponent } from "../../../shared/components/evolution-bar/evolution-bar.component";
@@ -16,7 +16,8 @@ import { GIFT_LIST } from '../../../core/constants/gift-list';
   standalone: true,
   imports: [MinimalistFooterComponent, TopNavComponent, SummaryComponent, EvolutionBarComponent, ItemListComponent, MatProgressBarModule, CommonModule],
   templateUrl: './editor-gift-list.component.html',
-  styleUrl: './editor-gift-list.component.scss'
+  styleUrl: './editor-gift-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorGiftListComponent {
   #giftListService = inject(GiftListService);
@@ -26,7 +27,14 @@ export class EditorGiftListComponent {
 
   constructor() {
     this.getGiftListById();
-    console.log(this.giftList$());
+
+    effect(() => {
+      const currentGiftList = this.giftList$();
+      if (currentGiftList && currentGiftList.id) {
+        console.log('Atualizando a lista de presentes:', currentGiftList);
+        this.updateGiftList(currentGiftList.id, currentGiftList);
+      }
+    });
   }
 
   getGiftListById() {
@@ -36,10 +44,25 @@ export class EditorGiftListComponent {
         next: (giftList) => {
           this.giftList$.set(giftList);
           console.log('Gift List:', giftList);
+          this.scrollToTop();
         },
         error: (error) => console.error('Erro ao buscar lista:', error),
       });
     }
   }
 
+  private updateGiftList(id: string, updatedGiftList: GiftList): void {
+    this.#giftListService.updateGiftList(id, updatedGiftList).subscribe({
+      next: (response) => {
+        console.log('Gift List atualizado com sucesso:', response);
+      },
+      error: (error) => {
+        console.error('Erro ao atualizar Gift List:', error);
+      },
+    });
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

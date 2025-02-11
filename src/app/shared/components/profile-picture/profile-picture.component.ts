@@ -8,15 +8,14 @@ import { ProfilePictureDialog } from '../../interfaces/profile-picture-dialog';
   standalone: true,
   imports: [],
   templateUrl: './profile-picture.component.html',
-  styleUrls: ['./profile-picture.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./profile-picture.component.scss']
 })
 export class ProfilePictureComponent {
-  @Input() image!: string | null;
   @Input({ required: true }) r_iconName!: string;
-  @Input() size: number = 100;
   @Input({ required: true }) r_editable!: boolean;
-  @Input() themeColor!: string;
+  @Input() r_themeColor!: string;
+  @Input() image!: string | null;
+  @Input() size: number = 100;
 
   @Output() imageDataChange = new EventEmitter<ProfilePictureDialog>();
 
@@ -25,7 +24,7 @@ export class ProfilePictureComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(ImageSelectionDialogComponent, {
       data: {
-        themeColor: this.themeColor,
+        themeColor: this.r_themeColor,
         urlImage: ''
       }
     });

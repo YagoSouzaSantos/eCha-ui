@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GiftList } from '../../../core/interfaces/gift-list';
 import { Message } from '../../../core/interfaces/message';
 import { SnackbarService } from '../../services/snackbar.service';
-import { bulletinBoardExample } from '../../tests/bulletin-board';
 import { DatePickerDialogComponent } from './datePickerDialog/datePickerDialog.component';
 import { SUMMARY } from './imports';
 import { SummaryMessageDialogComponent } from './summaryMessageDialog/summaryMessageDialog.component';
@@ -14,11 +13,12 @@ import { SummaryMessageDialogComponent } from './summaryMessageDialog/summaryMes
   imports: [SUMMARY],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class SummaryComponent {
   @Input({ required: true }) r_editable!: boolean;
   @Input({ required: true }) r_giftListData!: GiftList;
+  @Output() save: EventEmitter<void> = new EventEmitter<void>();
 
   #snackbarService = inject(SnackbarService);
   readonly dialog = inject(MatDialog);
@@ -85,5 +85,9 @@ export class SummaryComponent {
     this.remainingDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
     return true;
+  }
+
+  saveGiftList() {
+    this.save.emit();
   }
 }

@@ -1,6 +1,6 @@
 @let giftList = giftList$();
 
-@if(!giftList) {
+@if (!giftList) {
   <div class="loading">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
@@ -15,7 +15,8 @@
     <div>
       <app-summary
         [r_editable]="true"
-        [r_giftListData]="giftList" />
+        [r_giftListData]="giftList"
+        (save)="updateGiftList()" />
     </div>
 
     <div>
@@ -31,6 +32,8 @@
         [r_items]="giftList.items ?? []" />
     </div>
   </div>
+
+
 }
 
 <app-minimalist-footer />

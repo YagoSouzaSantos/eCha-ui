@@ -1,11 +1,22 @@
 <app-vertical-card>
 
+  @if(r_editable) {
+    <button
+      mat-icon-button
+      themeColor="{{r_giftListData.highlightColor}}"
+      matTooltip="Salvar Alterações"
+      (click)="saveGiftList()">
+      <i class="ph ph-floppy-disk"></i>
+    </button>
+  }
+
   <app-profile-picture class="user-image"
     [image]="r_giftListData.image"
     [r_editable]="r_editable"
     [r_iconName]="'ph ph-image-square'"
     [size]="110"
-    [themeColor]="r_giftListData.highlightColor" />
+    [r_themeColor]="r_giftListData.highlightColor"
+     />
 
   <h2> {{ r_giftListData.title}} </h2>
   <span> Por <b>{{ r_giftListData.creator}}</b></span>
@@ -27,5 +38,4 @@
     [r_key]="r_giftListData.id"
     [r_messageList]="ml"
     [r_theme]="r_giftListData.highlightColor" />
-
 </app-vertical-card>

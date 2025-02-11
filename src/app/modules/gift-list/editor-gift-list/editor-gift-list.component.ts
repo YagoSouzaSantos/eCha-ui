@@ -1,40 +1,29 @@
-import { GiftList } from './../../../core/interfaces/gift-list';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, OnInit, signal } from '@angular/core';
-import { MinimalistFooterComponent } from "../../../core/layout/minimalist-footer/minimalist-footer.component";
-import { SummaryComponent } from "../../../shared/components/summary/summary.component";
-import { EvolutionBarComponent } from "../../../shared/components/evolution-bar/evolution-bar.component";
-import { TopNavComponent } from '../../../core/layout/top-nav/top-nav.component';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ItemListComponent } from '../components/item-list/item-list.component';
-import { GiftListService } from '../../../core/services/gift-list.service';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { GIFT_LIST } from '../../../core/constants/gift-list';
+import { GiftListService } from '../../../core/services/gift-list.service';
+import { GiftList } from './../../../core/interfaces/gift-list';
+import { EDITOR_GIFT_LIST } from './imports';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-editor-gift-list',
   standalone: true,
-  imports: [MinimalistFooterComponent, TopNavComponent, SummaryComponent, EvolutionBarComponent, ItemListComponent, MatProgressBarModule, CommonModule],
+  imports: [EDITOR_GIFT_LIST],
   templateUrl: './editor-gift-list.component.html',
-  styleUrl: './editor-gift-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./editor-gift-list.component.scss'],
 })
-export class EditorGiftListComponent {
+export class EditorGiftListComponent implements OnInit {
   #giftListService = inject(GiftListService);
+  #snackbarService = inject(SnackbarService);
   #route = inject(ActivatedRoute);
 
   giftList$ = signal<GiftList>(GIFT_LIST);
 
-  constructor() {
-    this.getGiftListById();
+  constructor() { }
 
-    effect(() => {
-      const currentGiftList = this.giftList$();
-      if (currentGiftList && currentGiftList.id) {
-        console.log('Atualizando a lista de presentes:', currentGiftList);
-        this.updateGiftList(currentGiftList.id, currentGiftList);
-      }
-    });
+  ngOnInit(): void {
+    this.getGiftListById();
   }
 
   getGiftListById() {
@@ -43,23 +32,23 @@ export class EditorGiftListComponent {
       this.#giftListService.getGiftListById(id).subscribe({
         next: (giftList) => {
           this.giftList$.set(giftList);
-          console.log('Gift List:', giftList);
           this.scrollToTop();
         },
-        error: (error) => console.error('Erro ao buscar lista:', error),
+        error: () => this.#snackbarService.showError('Erro ao carregar lista.'),
       });
     }
   }
 
-  private updateGiftList(id: string, updatedGiftList: GiftList): void {
-    this.#giftListService.updateGiftList(id, updatedGiftList).subscribe({
-      next: (response) => {
-        console.log('Gift List atualizado com sucesso:', response);
-      },
-      error: (error) => {
-        console.error('Erro ao atualizar Gift List:', error);
-      },
-    });
+  updateGiftList(): void {
+    const currentGiftList = this.giftList$();
+    if (currentGiftList && currentGiftList.id) {
+      this.#giftListService.updateGiftList(currentGiftList.id, currentGiftList).subscribe({
+        next: () =>  this.#snackbarService.showSuccess('Lista de presentes atualizada com sucesso.'),
+        error: () => this.#snackbarService.showError('Erro ao atualizar lista de presentes.')
+      });
+    } else {
+      this.#snackbarService.showError('Lista de presentes não disponível.')
+    }
   }
 
   private scrollToTop(): void {

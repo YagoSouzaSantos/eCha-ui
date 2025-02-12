@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Item } from '../../../../core/interfaces/item';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
@@ -8,6 +8,7 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
 import { AddMessageDialogComponent } from './add-message-dialog/add-message-dialog.component';
 import { PaymentData } from '../../../../core/interfaces/payment-data';
 import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dialog.component';
+import { Category } from '../../../../core/interfaces/category';
 
 @Component({
   selector: 'app-item-list',
@@ -16,7 +17,7 @@ import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dial
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss'
 })
-export class ItemListComponent implements OnInit {
+export class ItemListComponent implements OnInit, OnChanges {
   @Input({ required: true }) r_editable: boolean = false;
   @Input({ required: true }) r_themeColor!: string;
   @Input({ required: true }) r_items!: Item[];
@@ -31,6 +32,12 @@ export class ItemListComponent implements OnInit {
     this.filteredItems = [...this.r_items];
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['r_items']) {
+      this.filteredItems = [...this.r_items];
+    }
+  }
+
   onFilter(value: string): void {
     this.filterValue = value;
 
@@ -43,14 +50,14 @@ export class ItemListComponent implements OnInit {
     }
   }
 
-  onChipFilter(value: string): void {
-    this.filterValue = value;
+  onChipFilter(category: Category): void {
+    this.filterValue = category.name;
 
-    if (!value.trim()) {
+    if (category.id === null || category.id === undefined || category.id === 0) {
       this.filteredItems = [...this.r_items];
     } else {
       this.filteredItems = this.r_items.filter(item =>
-        item.category.toLowerCase().includes(value.toLowerCase())
+        item.categoryId === category.id
       );
     }
   }

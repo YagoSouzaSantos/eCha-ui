@@ -6,6 +6,7 @@ import { SnackbarService } from '../../services/snackbar.service';
 import { DatePickerDialogComponent } from './datePickerDialog/datePickerDialog.component';
 import { SUMMARY } from './imports';
 import { SummaryMessageDialogComponent } from './summaryMessageDialog/summaryMessageDialog.component';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-summary',
@@ -71,20 +72,30 @@ export class SummaryComponent {
     }
   }
 
-  calculateDaysUntil(targetDate: Date): boolean {
+  calculateDaysUntil(targetDate: string | Date | null): boolean {
+    if (!targetDate) return false;
+
+    const target = typeof targetDate === "string" ? new Date(targetDate) : targetDate;
+
+    if (isNaN(target.getTime())) return false;
+
     const today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
+    target.setUTCHours(0, 0, 0, 0);
 
-    today.setHours(0, 0, 0, 0);
-    targetDate.setHours(0, 0, 0, 0);
-
-    if (today > targetDate) {
+    if (today > target) {
       return false;
     }
-    const diffInTime = targetDate.getTime() - today.getTime();
 
+    const diffInTime = target.getTime() - today.getTime();
     this.remainingDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
     return true;
+  }
+
+  onImageChange(event: { image: string }) {
+    console.log('Imagem recebida:', event.image);
+    this.r_giftListData.image = event.image; // Exemplo de atribuição
   }
 
   saveGiftList() {

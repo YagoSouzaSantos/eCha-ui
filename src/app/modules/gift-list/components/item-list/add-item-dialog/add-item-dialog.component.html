@@ -18,7 +18,7 @@
       <span matTextPrefix>R$ &nbsp;</span>
       <input matInput
              type="number"
-             [(ngModel)]="newItem.valueItem"
+             [(ngModel)]="newItem.totalValue"
              (ngModelChange)="onValueChange($event)"
              name="value"
              required
@@ -52,12 +52,10 @@
       </button>
     }
 
-
-
     <div class="input-label">(Alternativo) Url da imagem do item</div>
     <mat-form-field>
       <input matInput
-        [(ngModel)]="newItem.imageUrl"
+        [(ngModel)]="newItem.image"
         name="imageUrl"
         placeholder="Cole o url da imagem aqui"/>
     </mat-form-field>

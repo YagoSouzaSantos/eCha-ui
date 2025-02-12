@@ -41,13 +41,12 @@ export class ImageSelectionDialogComponent {
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.base64Image.set(e.target.result as string);
-      this.urlImage.set(''); // Limpa a URL, pois uma imagem foi selecionada
-      this.onConfirm(); // Confirma automaticamente
+      this.urlImage.set('');
+      this.onConfirm();
     };
 
     reader.readAsDataURL(file);
   }
-
 
   onConfirm(): void {
     const base64 = this.base64Image();

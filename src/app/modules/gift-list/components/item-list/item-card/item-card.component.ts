@@ -1,9 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { Item } from '../../../../../core/interfaces/item';
-import { EvolutionBarComponent } from './evolution-bar/evolution-bar.component';
-import { CommonModule } from '@angular/common';
 import { DIALOG } from '../../imports';
 
 @Component({
@@ -35,5 +31,9 @@ export class ItemCardComponent {
     if (!this.r_editable) {
       this.eventPaymentClick.emit(item);
     }
+  }
+
+  isBase64Image(image: string): boolean {
+    return image.startsWith('data:image/');
   }
 }

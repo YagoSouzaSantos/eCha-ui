@@ -16,6 +16,7 @@
     [r_iconName]="'ph ph-image-square'"
     [size]="110"
     [r_themeColor]="r_giftListData.highlightColor"
+    (imageDataChange)="onImageChange($event)"
      />
 
   <h2> {{ r_giftListData.title}} </h2>

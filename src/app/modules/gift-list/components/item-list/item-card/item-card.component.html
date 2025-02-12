@@ -1,4 +1,4 @@
-<mat-card class="card" appearance="outlined" (click)="openPaymentDialog(r_item)" [ngClass]=" !r_editable ? 'hover-action' : ''">
+<!-- <mat-card class="card" appearance="outlined" (click)="openPaymentDialog(r_item)" [ngClass]=" !r_editable ? 'hover-action' : ''">
   <div class="image-area">
     @if(r_item.image == null) {
       <img [src]="r_item.imageUrl" />
@@ -28,4 +28,27 @@
   </div>
 </mat-card>
 
+ -->
+ <mat-card class="card" appearance="outlined" (click)="openPaymentDialog(r_item)" [ngClass]="!r_editable ? 'hover-action' : ''">
+  <div class="image-area">
+    <img *ngIf="r_item.image" [src]="r_item.image" [ngClass]="{'base64-image': isBase64Image(r_item.image)}" />
+    <ng-container *ngIf="!r_item.image">
+      <img src="assets/image/svg/others/gift.svg" />
+    </ng-container>
+  </div>
 
+  <div class="item-data">
+    <h2>{{ r_item.name }}</h2>
+    <div><b>Valor:</b> R$ {{ r_item.totalValue ? r_item.totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : '0,00' }}</div>
+
+    <app-evolution-item-bar
+      [r_themeColor]="r_themeColor"
+      [r_valueItem]="r_item.totalValue"
+      [r_valueItemCollected]="r_item.valueItemCollected" />
+
+    <div *ngIf="r_editable" class="action">
+      <button mat-button (click)="onClickEdit(r_item)"><i class="ph ph-pencil-simple"></i></button>
+      <button mat-button (click)="onClickDelete(r_item)" [disabled]="r_item.valueItemCollected > 0"><i class="ph ph-trash"></i></button>
+    </div>
+  </div>
+</mat-card>

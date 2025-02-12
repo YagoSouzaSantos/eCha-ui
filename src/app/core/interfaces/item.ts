@@ -1,10 +1,10 @@
 export interface Item {
   id: number;
   name: string;
-  category: string;
+  listId: string;
+  categoryId: number;
   image: string | null;
-  imageUrl: string | null;
-  valueItem: number;
+  totalValue: number;
   valueItemCollected: number;
   remainingValue : number;
 }

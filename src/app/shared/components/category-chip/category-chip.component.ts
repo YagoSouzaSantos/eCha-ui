@@ -12,7 +12,7 @@ import { CategoryService } from '../../../core/services/category.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryChipComponent {
-  @Output() filterChange = new EventEmitter<string>();
+  @Output() filterChange = new EventEmitter<Category>();
   #categoryService = inject(CategoryService);
 
   categories = signal<Category[]>([]);
@@ -26,7 +26,7 @@ export class CategoryChipComponent {
     });
   }
 
-  onSubmit(value: string): void {
-    this.filterChange.emit(value);
+  onSubmit(category: Category): void {
+    this.filterChange.emit(category);
   }
 }

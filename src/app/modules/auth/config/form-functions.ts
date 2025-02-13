@@ -17,8 +17,6 @@ export function createRegisterForm(fb: FormBuilder): FormGroup {
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', [Validators.required]],
       contactNumber: [''],
-      cpf: [''],
-      pixKey: [''],
       authenticationMethodId: [1]
     },
     {

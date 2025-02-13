@@ -9,6 +9,7 @@ import { AddMessageDialogComponent } from './add-message-dialog/add-message-dial
 import { PaymentData } from '../../../../core/interfaces/payment-data';
 import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dialog.component';
 import { Category } from '../../../../core/interfaces/category';
+import { ItemService } from '../../../../core/services/item.service';
 
 @Component({
   selector: 'app-item-list',
@@ -24,6 +25,7 @@ export class ItemListComponent implements OnInit, OnChanges {
 
   readonly dialog = inject(MatDialog);
   #snackbarService = inject(SnackbarService);
+  #itemService = inject(ItemService);
 
   filteredItems: Item[] = [];
   filterValue: string = '';

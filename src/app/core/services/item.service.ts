@@ -13,6 +13,9 @@ export class ItemService {
   addItem(item: Item): Observable<Item> {
     return this.http.post<Item>(`${environment.apiUrl}/item`, item);
   }
+  // addItem(item: Item): void {
+  //   console.log('item: ', item);
+  // }
 
   getItemByListId(id: string): Observable<Item[]> {
     return this.http.get<Item[]>(`${environment.apiUrl}/item`).pipe(

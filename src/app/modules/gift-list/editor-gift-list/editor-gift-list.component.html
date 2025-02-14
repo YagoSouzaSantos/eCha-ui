@@ -26,10 +26,17 @@
         [r_themeColor]="giftList.highlightColor"
         [r_contributorCount]="giftList.contributorCount" />
 
+      <div class="select-color">
+        <app-select-color (selectedColor)="onSelectColor($event)"/>
+      </div>
+
       <app-item-list
         [r_editable]="true"
+        [r_listId]="giftList.id"
         [r_themeColor]="giftList.highlightColor"
-        [r_items]="giftList.items" />
+        [r_items]="giftList.items"
+        (itemAdded)="addItem($event)"
+        (itemUpdated)="updateItem($event)" />
 
     </div>
   </div>

@@ -10,6 +10,7 @@ import { ItemService } from '../../../../../core/services/item.service';
 export interface DialogData {
   themeColor: string;
   item: Item;
+  listId: string;
 }
 
 @Component({
@@ -31,12 +32,12 @@ export class AddItemDialogComponent {
 
   newItem: Item = {
     id: 0,
-    listId: '',
+    listId: this.data.listId,
     name: '',
     totalValue: 0,
     valueItemCollected: 0,
     remainingValue: 700,
-    categoryId: 0,
+    categoryId: 1,
     image: null,
   };
 
@@ -78,27 +79,27 @@ export class AddItemDialogComponent {
 
   save() {
     if (this.newItem.id) {
-      // Se o ID já existir, atualiza o item
       this.#itemService.updateItem(this.newItem).subscribe({
         next: (updatedItem) => {
-          this.dialogRef.close(updatedItem);
-          this.#snackbarService.showAlert('Item atualizado com sucesso!');
+          const itemToReturn = updatedItem ?? this.newItem;
+          this.dialogRef.close(itemToReturn);
+          this.#snackbarService.showSuccess('Item atualizado com sucesso!');
         },
         error: (err) => {
           console.error('Erro ao atualizar o item:', err);
-          this.#snackbarService.showAlert('Erro ao atualizar o item.');
+          this.#snackbarService.showError('Erro ao atualizar o item.');
         }
       });
     } else {
-      // Se o ID não existir, cria um novo item
       this.#itemService.addItem(this.newItem).subscribe({
         next: (addedItem) => {
-          this.dialogRef.close(addedItem);
-          this.#snackbarService.showAlert('Item adicionado com sucesso!');
+          const itemToReturn = addedItem ?? this.newItem;
+          this.dialogRef.close(itemToReturn);
+          this.#snackbarService.showSuccess('Item adicionado com sucesso!');
         },
         error: (err) => {
           console.error('Erro ao adicionar o item:', err);
-          this.#snackbarService.showAlert('Erro ao adicionar o item.');
+          this.#snackbarService.showError('Erro ao adicionar o item.');
         }
       });
     }

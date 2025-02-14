@@ -19,6 +19,11 @@
   min-height: 90vh;
 }
 
+.select-color {
+  max-width: 250px ;
+  margin-left: auto;
+}
+
 @media (max-width: 768px) {
   .content {
     flex-direction: column;

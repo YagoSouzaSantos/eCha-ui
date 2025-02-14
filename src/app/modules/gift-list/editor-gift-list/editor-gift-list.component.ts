@@ -8,11 +8,13 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { UserService } from '../../../core/services/user.service';
 import { ItemService } from '../../../core/services/item.service';
 import { switchMap, forkJoin, catchError, of, map } from 'rxjs';
+import { Item } from '../../../core/interfaces/item';
+import { SelectColorComponent } from '../create-gift-list/components/select-color/select-color.component';
 
 @Component({
   selector: 'app-editor-gift-list',
   standalone: true,
-  imports: [EDITOR_GIFT_LIST],
+  imports: [EDITOR_GIFT_LIST, SelectColorComponent],
   templateUrl: './editor-gift-list.component.html',
   styleUrls: ['./editor-gift-list.component.scss'],
 })
@@ -42,7 +44,6 @@ export class EditorGiftListComponent implements OnInit {
           map(({ userName, items }) => {
             giftList.creator = userName;
             giftList.items = items;
-            console.log('giftList: ', giftList);
             return giftList;
           })
         )
@@ -68,7 +69,32 @@ export class EditorGiftListComponent implements OnInit {
     }
   }
 
+  addItem(newItem: Item) {
+    this.giftList$.update((giftList) => ({
+      ...giftList,
+      items: [...giftList.items, newItem],
+    }));
+  }
+
+  updateItem(updatedItem: Item) {
+    this.giftList$.update((giftList) => ({
+      ...giftList,
+      items: giftList.items.map(item => item.id === updatedItem.id ? updatedItem : item),
+    }));
+  }
+
   private scrollToTop(): void {
     window.scrollTo(0, 0);
+  }
+
+  onSelectColor(color: string): void {
+    this.updateHighlightColor(color);
+  }
+
+  updateHighlightColor(newColor: string): void {
+    this.giftList$.update((giftList) => ({
+      ...giftList,
+      highlightColor: newColor
+    }));
   }
 }

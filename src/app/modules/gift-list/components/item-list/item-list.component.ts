@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Item } from '../../../../core/interfaces/item';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
@@ -22,10 +22,12 @@ export class ItemListComponent implements OnInit, OnChanges {
   @Input({ required: true }) r_editable: boolean = false;
   @Input({ required: true }) r_themeColor!: string;
   @Input({ required: true }) r_items!: Item[];
+  @Input({ required: true }) r_listId!: string;
+  @Output() itemAdded = new EventEmitter<Item>();
+  @Output() itemUpdated = new EventEmitter<Item>();
 
   readonly dialog = inject(MatDialog);
   #snackbarService = inject(SnackbarService);
-  #itemService = inject(ItemService);
 
   filteredItems: Item[] = [];
   filterValue: string = '';
@@ -67,12 +69,14 @@ export class ItemListComponent implements OnInit, OnChanges {
   showAddItemDialog() {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
       data: {
-        themeColor: this.r_themeColor
-      }
+        themeColor: this.r_themeColor,
+        listId: this.r_listId,
+      },
     });
-    dialogRef.afterClosed().subscribe((newItem: Item) => {
+
+    dialogRef.afterClosed().subscribe((newItem: Item | null) => {
       if (newItem) {
-        this.r_items.push(newItem);
+        this.itemAdded.emit(newItem);
       }
     });
   }
@@ -81,18 +85,17 @@ export class ItemListComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
       data: {
         themeColor: this.r_themeColor,
-        item
-      }
+        item,
+      },
     });
-    dialogRef.afterClosed().subscribe((updatedItem: Item) => {
+
+    dialogRef.afterClosed().subscribe((updatedItem: Item | null) => {
       if (updatedItem) {
-        const index = this.r_items.findIndex(i => i.id === updatedItem.id);
-        if (index > -1) {
-          this.r_items[index] = updatedItem;
-        }
+        this.itemUpdated.emit(updatedItem);
       }
     });
   }
+
 
   handleDelete(item: Item) {
     const index = this.r_items.findIndex(i => i.id === item.id);

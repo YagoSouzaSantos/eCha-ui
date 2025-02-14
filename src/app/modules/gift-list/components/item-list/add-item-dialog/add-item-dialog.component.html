@@ -28,15 +28,13 @@
 
     <div class="input-label">Categoria</div>
     <mat-form-field>
-      <mat-select Categoria
-        name="category"
-        required
-        placeholder="Selecione uma das opções" >
+      <mat-select [(ngModel)]="newItem.categoryId" name="categoryId" required placeholder="Selecione uma das opções">
         @for (category of categories; track category) {
-          <mat-option [value]="category.id">{{category.name}}</mat-option>
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
+
 
     <div class="input-label">Anexar imagem</div>
 

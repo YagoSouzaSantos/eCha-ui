@@ -16,26 +16,26 @@ export const giftListExample: GiftList = {
   contributorCount: 8,
   creator: "Maria Luíza",
   items: [
-    // {
-    //   "id": 1,
-    //   "name": "Geladeira",
-    //   "valueItem": 1500,
-    //   "valueItemCollected": 800,
-    //   "remainingValue" : 700,
-    //   "category": "Eletrodomésticos",
-    //   "image": null,
-    //   "imageUrl": "https://img.freepik.com/vetores-gratis/geladeira-no-fundo-branco_1308-102266.jpg?t=st=1737838557~exp=1737842157~hmac=bb154a7ba333a59b71d2f2951a8548fd0cd8e6d425796740bfccb00b5a493033&w=360"
-    // },
-    // {
-    //   "id": 2,
-    //   "name": "Micro-ondas",
-    //   "valueItem": 500,
-    //   "valueItemCollected": 0,
-    //   "remainingValue" : 500,
-    //   "category": "Eletrodomésticos",
-    //   "image": null,
-    //   "imageUrl": "https://m.media-amazon.com/images/I/41akGb8swJL._AC_SL1000_.jpg"
-    // },
+    {
+      "id": 1,
+      "name": "Geladeira",
+      "listId": "1",
+      "totalValue": 1500,
+      "valueItemCollected": 800,
+      "remainingValue" : 700,
+      "categoryId": 1,
+      "image": "https://img.freepik.com/vetores-gratis/geladeira-no-fundo-branco_1308-102266.jpg?t=st=1737838557~exp=1737842157~hmac=bb154a7ba333a59b71d2f2951a8548fd0cd8e6d425796740bfccb00b5a493033&w=360"
+    },
+    {
+      "id": 2,
+      "name": "Micro-ondas",
+      "listId": "1",
+      "totalValue": 500,
+      "valueItemCollected": 0,
+      "remainingValue" : 500,
+      "categoryId": 2,
+      "image": "https://m.media-amazon.com/images/I/41akGb8swJL._AC_SL1000_.jpg"
+    },
     // {
     //   "id": 3,
     //   "name": "Conjunto de Panelas",

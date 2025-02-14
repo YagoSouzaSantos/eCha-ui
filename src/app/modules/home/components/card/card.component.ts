@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SmoothBackGroundDirective } from '../../../../core/diretives/smoothBackGround.directive';
 import { ThemeColorDirective } from '../../../../core/diretives/themeColor.directive';
 import { BulletinBoard } from '../../../../core/interfaces/bulletin-board';
@@ -14,6 +14,7 @@ import { bulletinBoardExample } from '../../../../shared/tests/bulletin-board';
 import { ContributionHistoryDialogComponent } from '../../../bulletin-board/contribution-history-dialog/contribution-history-dialog.component';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
 import { WithdrawDialogComponent } from '../../../../shared/components/withdraw-dialog/withdraw-dialog.component';
+import { BulletinBoardStateService } from '../../../bulletin-board/services/bulletin-board-state.service';
 
 
 @Component({
@@ -28,6 +29,8 @@ export class CardComponent {
   readonly dialog = inject(MatDialog);
   #authenticationService = inject(AuthenticationService);
   #snackbarService = inject(SnackbarService);
+  #bulletinBoardStateService = inject(BulletinBoardStateService);
+  #router = inject(Router);
 
   bulletinBoard: BulletinBoard = bulletinBoardExample;
 
@@ -49,5 +52,10 @@ export class CardComponent {
         }
       });
     }
+  }
+
+  goToBulletinBoard() {
+    this.#bulletinBoardStateService.setModelState(true);
+    this.#router.navigate(['/bulletin-board', this.r_giftList.id]);
   }
 }

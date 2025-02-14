@@ -1,1 +1,52 @@
-<p>manage-profile works!</p>,
+<app-toolbar [r_user]="user" />
+<div class="content">
+  <mat-card class="profile-card" appearance="outlined">
+    <div class="profile-container">
+
+      <!-- Left Side - Image -->
+      <div class="image-container">
+        <img src="https://th.bing.com/th?id=ORMS.bf5f768830704b59f13a179c6a6d5a23&pid=Wdp&w=268&h=140&qlt=90&c=1&rs=1&dpr=1&p=0" alt="User Image">
+      </div>
+
+      <!-- Right Side - Form -->
+      <div class="form-container">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput [disabled]="true" type="email" formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput type="text" formControlName="cpf">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Pix Key</mat-label>
+            <input matInput type="text" formControlName="pixKey">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput type="text" formControlName="phone">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Image (URL)</mat-label>
+            <input matInput type="text" formControlName="image">
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+            Save
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </mat-card>
+</div>

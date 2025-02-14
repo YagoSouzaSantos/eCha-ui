@@ -14,7 +14,7 @@ import { SelectColorComponent } from '../create-gift-list/components/select-colo
 @Component({
   selector: 'app-editor-gift-list',
   standalone: true,
-  imports: [EDITOR_GIFT_LIST, SelectColorComponent],
+  imports: [EDITOR_GIFT_LIST],
   templateUrl: './editor-gift-list.component.html',
   styleUrls: ['./editor-gift-list.component.scss'],
 })

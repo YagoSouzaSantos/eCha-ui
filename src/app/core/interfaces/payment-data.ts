@@ -1,6 +1,7 @@
 export interface PaymentData {
   method: string;
   amount: number;
+  email: string;
   cardDetails?: {
     number: string;
     expiry: string;

@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../../core/services/authentication.service';
 import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Item } from '../../../../core/interfaces/item';
@@ -10,6 +11,9 @@ import { PaymentData } from '../../../../core/interfaces/payment-data';
 import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dialog.component';
 import { Category } from '../../../../core/interfaces/category';
 import { ItemService } from '../../../../core/services/item.service';
+import { UserService } from '../../../../core/services/user.service';
+import { GiftList } from '../../../../core/interfaces/gift-list';
+import { User } from '../../../../core/interfaces/user';
 
 @Component({
   selector: 'app-item-list',
@@ -23,14 +27,17 @@ export class ItemListComponent implements OnInit, OnChanges {
   @Input({ required: true }) r_themeColor!: string;
   @Input({ required: true }) r_items!: Item[];
   @Input({ required: true }) r_listId!: string;
+  @Input() giftList!: GiftList;
   @Output() itemAdded = new EventEmitter<Item>();
   @Output() itemUpdated = new EventEmitter<Item>();
 
   readonly dialog = inject(MatDialog);
   #snackbarService = inject(SnackbarService);
+  #userService = inject(UserService);
 
   filteredItems: Item[] = [];
   filterValue: string = '';
+  user!: User;
 
   ngOnInit(): void {
     this.filteredItems = [...this.r_items];
@@ -110,7 +117,6 @@ export class ItemListComponent implements OnInit, OnChanges {
 
   handlePaymentDialog(item: Item) {
     const dialogRef = this.dialog.open(PaymentDialogComponent, {
-      disableClose: true,
       data: {
         themeColor: this.r_themeColor,
         item
@@ -121,7 +127,7 @@ export class ItemListComponent implements OnInit, OnChanges {
       if (result) {
 
         if (result.pixDetails)
-          this.openPaymentPixDialog();
+          this.openPaymentPixDialog(result);
 
         else if (result.cardDetails) {
           this.openAddMessageDialog();
@@ -142,15 +148,32 @@ export class ItemListComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe(() => { });
   }
 
-  openPaymentPixDialog() {
-    const dialogRef = this.dialog.open(PaymentPixDialogComponent, {
-      disableClose: true,
-      data: {
-        themeColor: this.r_themeColor
+  openPaymentPixDialog(payment: PaymentData) {
+    this.#userService.getUserById(this.giftList.userId).subscribe({
+      next: (user) => {
+        console.log('user: ', user);
+        this.user = user;
+
+        if (!this.user.pixKey) {
+          this.#snackbarService.showAlert('Chave Pix não encontrada.');
+          return;
+        }
+
+        const dialogRef = this.dialog.open(PaymentPixDialogComponent, {
+          data: {
+            themeColor: this.r_themeColor,
+            value: payment.amount
+          }
+        });
+
+        dialogRef.afterClosed().subscribe(() => {
+          this.openAddMessageDialog();
+        });
+      },
+      error: (err) => {
+        console.error('Erro ao buscar usuário:', err);
+        this.#snackbarService.showError('Erro ao buscar usuário.');
       }
     });
-    dialogRef.afterClosed().subscribe(() => {
-      this.openAddMessageDialog();
-    });
-   }
+  }
 }

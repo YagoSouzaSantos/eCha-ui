@@ -28,4 +28,8 @@ export class UserService {
     );
   }
 
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${environment.apiUrl}/user/${id}`);
+  }
+
 }

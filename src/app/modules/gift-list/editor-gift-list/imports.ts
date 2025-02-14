@@ -5,8 +5,9 @@ import { TopNavComponent } from "../../../core/layout/top-nav/top-nav.component"
 import { SummaryComponent } from "../../../shared/components/summary/summary.component";
 import { ItemListComponent } from "../components/item-list/item-list.component";
 import { EvolutionBarComponent } from "../../../shared/components/evolution-bar/evolution-bar.component";
+import { SelectColorComponent } from "../create-gift-list/components/select-color/select-color.component";
 
 
 export const EDITOR_GIFT_LIST = [
-  MinimalistFooterComponent, TopNavComponent, SummaryComponent, EvolutionBarComponent, ItemListComponent, MatProgressBarModule, CommonModule
+  MinimalistFooterComponent, TopNavComponent, SummaryComponent, EvolutionBarComponent, ItemListComponent, MatProgressBarModule, CommonModule, SelectColorComponent
 ]

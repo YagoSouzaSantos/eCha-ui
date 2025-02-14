@@ -1,3 +1,11 @@
+@let giftList = giftList$();
+
+
+@if (!giftList) {
+  <div class="loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+} @else {
 <app-top-nav
   [r_themeColor]="giftList.highlightColor"
   [extendedBackground]="true"
@@ -22,7 +30,9 @@
       [r_editable]="false"
       [r_listId]="giftList.id"
       [r_themeColor]="giftList.highlightColor"
-      [r_items]="giftList.items" />
+      [r_items]="giftList.items"
+      [giftList]="giftList" />
   </div>
 </div>
 <app-minimalist-footer />
+}

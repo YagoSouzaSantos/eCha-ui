@@ -23,8 +23,11 @@ export class PaymentDialogComponent {
   readonly data = inject(MAT_DIALOG_DATA);
 
   selectedOption: string = '1';
-  customValue: number = this.data.item.remainingValue;
 
+
+  customValue: number = this.data?.item?.remainingValue ?? 0;
+  remainingValue: number = (this.data?.item?.totalValue ?? 0) - (this.data?.item?.valueItemCollected ?? 0);
+  email: string = '';
   cardDetails = {
     number: '',
     expiry: '',
@@ -32,7 +35,6 @@ export class PaymentDialogComponent {
     holder: '',
     installments: 1
   };
-
   pixDetails = {
     payerName: ''
   };
@@ -42,7 +44,8 @@ export class PaymentDialogComponent {
   confirmPayment() {
     const paymentData: PaymentData = {
       method: this.selectedOption === '1' ? 'total' : 'custom',
-      amount: this.selectedOption === '1' ? this.data.item.remainingValue : this.customValue,
+      amount: this.selectedOption === '1' ? this.remainingValue : this.customValue,
+      email: this.email
     };
 
     if (this.selectedOption === '1' || this.selectedOption === '2') {

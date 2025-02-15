@@ -7,7 +7,11 @@ import { User } from '../interfaces/user';
 })
 export class AuthenticationService extends LocalStorageService {
   setTokensLocalStorage(token: string) {
-      this.saveTokensLocalstorage(token)
+    this.saveTokensLocalstorage(token)
+  }
+
+  getTokensLocalStorage(): string {
+    return this.getAccessToken()
   }
 
   setUserLocalStorage(user: User): void {
@@ -15,16 +19,33 @@ export class AuthenticationService extends LocalStorageService {
   }
 
   isUserAuthenticated(): boolean {
-    return localStorage.getItem('user') !== null;
+    return localStorage.getItem('EChaAccessToken') !== null;
   }
 
   getUser(): User {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    const token = localStorage.getItem('EChaAccessToken');
+
+    const payload = JSON.parse(atob(token!.split('.')[1]));
+
+    const userData = JSON.parse(payload.UserData);
+
+    const user: User = {
+      id: userData.Id,
+      email: userData.Email,
+      statusUserId: userData.StatusUserId,
+      password: userData.Password,
+      cpf: userData.Cpf,
+      pixKey: userData.PixKey,
+      contactNumber: userData.ContactNumber,
+      name: userData.Name,
+      profileImage: userData.ProfileImage
+    };
+
+    return user;
   }
 
   logout(): void {
-    localStorage.removeItem('user');
+    localStorage.removeItem('EChaAccessToken');
     window.location.reload();
   }
 }

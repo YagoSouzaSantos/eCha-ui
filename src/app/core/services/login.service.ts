@@ -14,7 +14,7 @@ export class LoginService {
   private http = inject(HttpClient)
 
   doLogin(login: DoLogin): Observable<ResponseAuth> {
-    return this.http.post<ResponseAuth>(`${environment.apiUrl}/login`, login);
+    return this.http.post<ResponseAuth>(`${environment.apiUrl}/Auth/login`, login);
   }
 
   doLoginByGetUsers(doLogin: DoLogin): Observable<User> {

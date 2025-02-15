@@ -94,8 +94,7 @@ export class SummaryComponent {
   }
 
   onImageChange(event: { image: string }) {
-    console.log('Imagem recebida:', event.image);
-    this.r_giftListData.image = event.image; // Exemplo de atribuição
+    this.r_giftListData.image = event.image;
   }
 
   saveGiftList() {

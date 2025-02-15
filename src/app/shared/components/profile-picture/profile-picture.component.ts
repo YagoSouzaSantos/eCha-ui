@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ImageSelectionDialogComponent } from './image-selection-dialog/image-selection-dialog.component';
+import { MatTooltip } from '@angular/material/tooltip';
 import { ProfilePictureDialog } from '../../interfaces/profile-picture-dialog';
+import { ImageSelectionDialogComponent } from './image-selection-dialog/image-selection-dialog.component';
 
 @Component({
   selector: 'app-profile-picture',
   standalone: true,
-  imports: [],
+  imports: [MatTooltip],
   templateUrl: './profile-picture.component.html',
   styleUrls: ['./profile-picture.component.scss']
 })

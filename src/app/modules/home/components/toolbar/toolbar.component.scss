@@ -1,3 +1,16 @@
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding-top: 8px;
+  justify-content: center;
+  background-color: transparent;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 mat-toolbar {
   background-color: #fff;
   color           : #fff;

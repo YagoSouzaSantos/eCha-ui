@@ -9,7 +9,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
 
   createUser(register: Register): Observable<User> {
     return this.http.post<User>(`${environment.apiUrl}/user`, register);
@@ -32,4 +32,7 @@ export class UserService {
     return this.http.get<User>(`${environment.apiUrl}/user/${id}`);
   }
 
+  updateUser(id: number, userData: User): Observable<User> {
+    return this.http.put<User>(`${environment.apiUrl}/user/${id}`, userData);
+  }
 }

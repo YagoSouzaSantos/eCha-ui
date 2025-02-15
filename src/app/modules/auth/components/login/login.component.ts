@@ -26,15 +26,15 @@ export class LoginComponent {
   #snackbarService = inject(SnackbarService);
 
   doLogin(loLogin: DoLogin) {
-    this.#loginService.doLoginByGetUsers(loLogin).subscribe({
+    this.#loginService.doLogin(loLogin).subscribe({
       next: (response) => this.processSuccess(response),
       error: (errorResponse) => this.processError(errorResponse)
     });
   }
 
-  private processSuccess(response: User): void {
+  private processSuccess(response: ResponseAuth): void {
     if (response) {
-      this.#authenticationService.setUserLocalStorage(response);
+      this.#authenticationService.setTokensLocalStorage(response.token);
       this.#snackbarService.showSuccess('Bem-vindo ao eChá!');
       this.#router.navigate(['/home']);
     } else {

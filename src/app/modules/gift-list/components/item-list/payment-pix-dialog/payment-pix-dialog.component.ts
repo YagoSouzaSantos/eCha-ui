@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DIALOG } from '../../imports';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Contribution } from '../../../../../core/interfaces/contribution';
 import { SnackbarService } from '../../../../../shared/services/snackbar.service';
-import { AuthenticationService } from '../../../../../core/services/authentication.service';
+import { DIALOG } from '../../imports';
 
 export interface DialogData {
   themeColor: string;
-  value: number;
+  payment: Contribution;
+  userId: number;
 }
 
 @Component({
@@ -20,10 +21,7 @@ export interface DialogData {
 export class PaymentPixDialogComponent {
   readonly dialogRef = inject(MatDialogRef<PaymentPixDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
-
   #snackbarService = inject(SnackbarService);
-  #authenticationService = inject(AuthenticationService);
-
   themeColor = this.data.themeColor;
   pixKeyToPast: string = '';
 
@@ -33,11 +31,7 @@ export class PaymentPixDialogComponent {
 
   private async generatePixKey() {
     try {
-      const user = this.#authenticationService.getUser();
-      if (!user || !user.pixKey) {
-        this.#snackbarService.showAlert('Chave Pix não encontrada.');
-      }
-      this.pixKeyToPast = this.createPixCode(user.pixKey, this.data.value);
+      this.pixKeyToPast = this.createPixCode('99999999999', this.data.payment.value); // chave genérica
     } catch (error) {
       this.#snackbarService.showError('Erro ao gerar chave Pix.');
       console.error(error);
@@ -60,6 +54,6 @@ export class PaymentPixDialogComponent {
   }
 
   onConfirm(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.data.payment);
   }
 }

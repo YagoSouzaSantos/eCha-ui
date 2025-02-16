@@ -9,7 +9,7 @@
     <section class="action">
 
       @if (user) {
-        <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button>
+        <!-- <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button> -->
         <button mat-button (click)="onExit()"><mat-icon>logout</mat-icon></button>
       } @else {
 
@@ -28,7 +28,7 @@
       <mat-menu #menu="matMenu">
 
         @if (user) {
-          <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button>
+          <!-- <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button> -->
           <button mat-button (click)="onExit()"><mat-icon>Sair para Home</mat-icon></button>
         } @else {
           <button mat-menu-item [routerLink]="'/auth/login'">Entrar</button>

@@ -1,3 +1,4 @@
+import { MinimalistFooterComponent } from './../../core/layout/minimalist-footer/minimalist-footer.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -10,5 +11,5 @@ import { ThemeColorDirective } from "../../core/diretives/themeColor.directive";
 
 export const MANAGE_PROFILE = [
   ReactiveFormsModule, FormsModule, MatFormFieldModule, MatCardModule, MatInputModule, MatButtonModule, ToolbarComponent, RouterLink, ProfilePictureComponent,
-  ThemeColorDirective
+  ThemeColorDirective, MinimalistFooterComponent
 ]

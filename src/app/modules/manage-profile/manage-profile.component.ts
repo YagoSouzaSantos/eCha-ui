@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../../core/interfaces/user';
 import { AuthenticationService } from '../../core/services/authentication.service';
-import { MANAGE_PROFILE } from './imports';
-import { ProfilePictureComponent } from "../../shared/components/profile-picture/profile-picture.component";
 import { UserService } from '../../core/services/user.service';
-import { identifierName } from '@angular/compiler';
 import { SnackbarService } from '../../shared/services/snackbar.service';
-import { Router } from '@angular/router';
+import { MANAGE_PROFILE } from './imports';
 
 @Component({
   selector: 'app-manage-profile',
@@ -30,7 +28,7 @@ export class ManageProfileComponent {
     this.form = this.#fb.group({
       id: [''],
       name: ['', Validators.required],
-      email: [{ value: '', disabled: true },[Validators.required]],
+      email: [{ value: '', disabled: true }, [Validators.required]],
       cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       pixKey: [''],
       contactNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
@@ -72,19 +70,21 @@ export class ManageProfileComponent {
       this.form.get('email')?.enable();
 
       const updatedUser: User = this.form.value;
-
       updatedUser.statusUserId = 1;
 
       this.#userService.updateUser(this.user.id, updatedUser).subscribe(
         () => {
-          this.#snackbarService.showSuccess('Usuário atualizado com sucesso.')
-          this.#router.navigate(['/home'])
+          this.#authenticationService.updateUserProfileImage(updatedUser.profileImage);
+          this.#snackbarService.showSuccess('Usuário atualizado com sucesso.');
+          this.#router.navigate(['/home']);
         },
         () => this.#snackbarService.showError('Não foi possível atualizar usuário')
       );
+
       this.form.get('email')?.disable();
     }
   }
+
 
   formatPhone(value: string): string {
     if (!value) return '';

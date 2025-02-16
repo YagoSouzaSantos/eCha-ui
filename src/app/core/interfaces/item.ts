@@ -1,3 +1,5 @@
+import { Contribution } from "./contribution";
+
 export interface Item {
   id: number;
   name: string;
@@ -5,5 +7,6 @@ export interface Item {
   categoryId: number;
   image: string | null;
   totalValue: number;
-  valueItemCollected: number;
+  valueCollected: number;
+  contributions: Contribution[];
 }

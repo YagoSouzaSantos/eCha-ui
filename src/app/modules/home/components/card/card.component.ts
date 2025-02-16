@@ -10,7 +10,6 @@ import { ThemeColorDirective } from '../../../../core/diretives/themeColor.direc
 import { BulletinBoard } from '../../../../core/interfaces/bulletin-board';
 import { GiftList } from '../../../../core/interfaces/gift-list';
 import { AuthenticationService } from '../../../../core/services/authentication.service';
-import { bulletinBoardExample } from '../../../../shared/tests/bulletin-board';
 import { ContributionHistoryDialogComponent } from '../../../bulletin-board/contribution-history-dialog/contribution-history-dialog.component';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
 import { WithdrawDialogComponent } from '../../../../shared/components/withdraw-dialog/withdraw-dialog.component';
@@ -32,7 +31,7 @@ export class CardComponent {
   #bulletinBoardStateService = inject(BulletinBoardStateService);
   #router = inject(Router);
 
-  bulletinBoard: BulletinBoard = bulletinBoardExample;
+  bulletinBoard!: BulletinBoard;
 
   onRankingClick() {
     this.dialog.open(ContributionHistoryDialogComponent, {

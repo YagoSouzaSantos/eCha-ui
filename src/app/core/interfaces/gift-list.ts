@@ -1,3 +1,4 @@
+import { Contribution } from "./contribution";
 import { Item } from "./item";
 
 export interface GiftList {
@@ -8,7 +9,6 @@ export interface GiftList {
   highlightColor: string;
   statusListId: number;
   description: string | null;
-  photoUrl: string | null; // lembrar de remover
   image: string | null;
   eventDate: Date | null;
   totalValue: number;
@@ -16,4 +16,5 @@ export interface GiftList {
   contributorCount: number;
   creator: string;
   items: Item[];
+  contributions: Contribution[];
 }

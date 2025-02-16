@@ -1,7 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GiftList } from '../../../core/interfaces/gift-list';
-import { Message } from '../../../core/interfaces/message';
 import { SnackbarService } from '../../services/snackbar.service';
 import { DatePickerDialogComponent } from './datePickerDialog/datePickerDialog.component';
 import { SUMMARY } from './imports';
@@ -25,7 +24,6 @@ export class SummaryComponent {
   readonly dialog = inject(MatDialog);
 
   remainingDays: number | null = null
-  ml: Message[] = []
 
   share() {
     const url = `${window.location.origin}/donation/${this.r_giftListData.id}`;

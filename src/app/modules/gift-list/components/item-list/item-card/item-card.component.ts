@@ -28,7 +28,7 @@ export class ItemCardComponent {
   }
 
   openPaymentDialog(item: Item) {
-    if (!this.r_editable) {
+    if (!this.r_editable && (this.r_item.totalValue > this.r_item.valueCollected)) {
       this.eventPaymentClick.emit(item);
     }
   }

@@ -5,9 +5,11 @@ import { PaymentConfirmationComponent } from "./payment-confirmation/payment-con
 import { ICON_LIST } from '../../../../../core/constants/icon-list';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from '../../../../../shared/services/snackbar.service';
+import { Contribution } from '../../../../../core/interfaces/contribution';
+import { ContributionService } from '../../../../../core/services/contribution.service';
 
 export interface DialogData {
-  eventDate: string;
+  payment: Contribution;
   themeColor: string;
   creatorName: string
 }
@@ -24,6 +26,7 @@ export class AddMessageDialogComponent {
   readonly dialogRef = inject(MatDialogRef<AddMessageDialogComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
   #snackbarService = inject(SnackbarService);
+  #contributionService = inject(ContributionService);
 
   messageRead: boolean;
   messageForm: FormGroup;
@@ -43,10 +46,6 @@ export class AddMessageDialogComponent {
     this.messageRead = true;
   }
 
-  onConfirm(): void {
-    this.dialogRef.close();
-  }
-
   selectIcon(icon: string): void {
     this.selectedIcon = icon;
     this.messageForm.patchValue({ icon });
@@ -54,9 +53,21 @@ export class AddMessageDialogComponent {
 
   saveMessage(): void {
     if (this.messageForm.valid) {
-      this.#snackbarService.showAlert('Método não implementado')
-      console.log('Formulário enviado:', this.messageForm.value);
+      const updatedPayment: Contribution = {
+        ...this.data.payment,
+        contributorName: this.messageForm.value.name,
+        message: this.messageForm.value.message,
+        icon: this.messageForm.value.icon
+      };
+
+      console.log('Objeto atualizado:', updatedPayment);
+
+      this.#contributionService.postContribution(updatedPayment).subscribe({
+        next: () => this.#snackbarService.showSuccess('Contribuição registrada com sucesso.'),
+        error: () => this.#snackbarService.showError('Não foi possível concluir a operação.')
+      });
       this.dialogRef.close();
     }
   }
+
 }

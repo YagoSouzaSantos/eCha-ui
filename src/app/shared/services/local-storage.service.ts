@@ -17,25 +17,4 @@ export class LocalStorageService {
     return localStorage.getItem('EChaAccessToken');
   }
 
-  // protected getRefreshToken(): string | any {
-  //   return sessionStorage.getItem('FanturyManagerDeskRefreshToken');
-  // }
-
-  // static getCompanySelected(): { codEmp: string, name: string } | string {
-  //   const company = sessionStorage.getItem('FanturyManagerCompanySelected');
-  //   if (company) {
-  //     return JSON.parse(company)
-  //   }
-  //   return { codEmp: '000', name: '' }
-  // }
-
-  // static clearCompanySelected(): void {
-  //   sessionStorage.removeItem('FanturyManagerCompanySelected')
-  // }
-
-  // protected clearTokensSessionStorage(): void {
-  //   sessionStorage.removeItem('FanturyManagerDeskToken');
-  //   sessionStorage.removeItem('FanturyManagerDeskRefreshToken');
-  //   sessionStorage.removeItem('FanturyManagerCompanySelected')
-  // }
 }

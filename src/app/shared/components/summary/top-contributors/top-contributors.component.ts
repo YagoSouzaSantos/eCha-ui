@@ -2,9 +2,9 @@ import { Component, inject, Input } from '@angular/core';
 import { MatCard } from '@angular/material/card';
 import { BulletinBoardStateService } from '../../../../modules/bulletin-board/services/bulletin-board-state.service';
 import { Router } from '@angular/router';
-import { Message } from '../../../../core/interfaces/message';
 import { TextColorDirective } from '../../../../core/diretives/textColor.directive';
 import { MatButtonModule } from '@angular/material/button';
+import { Contribution } from '../../../../core/interfaces/contribution';
 
 @Component({
   selector: 'app-top-contributors',
@@ -17,10 +17,10 @@ export class TopContributorsComponent {
   @Input({ required: true }) r_editable!: boolean;
   @Input({ required: true }) r_theme: string = '';
   @Input({ required: true }) r_key: string = '';
-  _r_messageList: Message[] = [];
+  _r_messageList: Contribution[] = [];
 
   @Input({ required: true })
-  set r_messageList(value: Message[]) {
+  set r_messageList(value: Contribution[]) {
     this._r_messageList = [...value].sort((a, b) => b.value - a.value);
   }
 

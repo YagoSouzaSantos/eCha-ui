@@ -5,7 +5,7 @@
   <section class="messages">
     @for (message of messages; track $index) {
     <div>
-      <p class="contributor"><b>{{ message.contributor }}</b></p>
+      <p class="contributor"><b>{{ message.contributorName }}</b></p>
       <div class="contribution-data">
         <span>Valor da contribuição</span>
         <span> R${{ message.value.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}</span>

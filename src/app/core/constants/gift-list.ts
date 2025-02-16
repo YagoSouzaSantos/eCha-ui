@@ -8,7 +8,6 @@ export const GIFT_LIST: GiftList = {
   highlightColor: '',
   statusListId: 0,
   description: null,
-  photoUrl: null,
   image: null,
   eventDate: new Date(),
   totalValue: 0,
@@ -16,4 +15,5 @@ export const GIFT_LIST: GiftList = {
   contributorCount: 0,
   creator: '',
   items: [],
+  contributions: [],
 };

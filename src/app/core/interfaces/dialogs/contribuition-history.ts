@@ -1,6 +1,6 @@
-import { Message } from "../message";
+import { Contribution } from "../contribution";
 
 export interface ContribuitionHistoryDialogData {
-  messages: Message[];
+  messages: Contribution[];
   themeColor: string;
 }

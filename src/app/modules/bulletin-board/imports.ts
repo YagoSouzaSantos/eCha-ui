@@ -19,7 +19,7 @@ import { MatInputModule } from "@angular/material/input";
 export const BULLETIN_BOARD_SHARED = [
   MatButtonModule, SmoothBackGroundDirective
 ]
-export const BULLETIN_BOARD = [
+export const BULLETIN_BOARD_IMPORTS = [
   MinimalistFooterComponent, BulletinBoardEvolutionBarComponent, HostMessageComponent, MessagesComponent, TopNavComponent
 ]
 export const MESSAGES = [

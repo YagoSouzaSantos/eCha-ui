@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { GiftList } from '../../../core/interfaces/gift-list';
-import { giftListExample } from '../../../shared/tests/giftlist';
 import { TopNavComponent } from '../../../core/layout/top-nav/top-nav.component';
 import { MinimalistFooterComponent } from '../../../core/layout/minimalist-footer/minimalist-footer.component';
 import { SummaryComponent } from '../../../shared/components/summary/summary.component';
@@ -25,8 +24,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class DonationComponent {
   #giftListService = inject(GiftListService);
   #snackbarService = inject(SnackbarService);
-  #itemService = inject(ItemService);
-  #userService = inject(UserService);
   #route = inject(ActivatedRoute);
   giftList$ = signal<GiftList>(GIFT_LIST);
 
@@ -38,27 +35,16 @@ export class DonationComponent {
     const id = this.#route.snapshot.paramMap.get('key');
     if (!id) return;
 
-    this.#giftListService.getGiftListById(id).pipe(
-      switchMap(giftList =>
-        forkJoin({
-          userName: this.#userService.getUserNameById(giftList.userId).pipe(catchError(() => of('Usuário desconhecido'))),
-          items: this.#itemService.getItemByListId(id).pipe(catchError(() => of([])))
-        }).pipe(
-          map(({ userName, items }) => {
-            giftList.creator = userName;
-            giftList.items = items;
-            return giftList;
-          })
-        )
-      )
-    ).subscribe({
-      next: (updatedGiftList) => {
-        this.giftList$.set(updatedGiftList);
+    this.#giftListService.getGiftListById(id).subscribe({
+      next: (giftList) => {
+        this.giftList$.set(giftList);
+        console.log('this.giftList$: ', this.giftList$());
         this.scrollToTop();
       },
       error: () => this.#snackbarService.showError('Erro ao carregar lista.')
     });
   }
+
 
   private scrollToTop(): void {
     window.scrollTo(0, 0);

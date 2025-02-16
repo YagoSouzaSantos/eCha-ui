@@ -1,19 +1,17 @@
-import { AuthenticationService } from './../../../../core/services/authentication.service';
 import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Category } from '../../../../core/interfaces/category';
+import { Contribution } from '../../../../core/interfaces/contribution';
+import { GiftList } from '../../../../core/interfaces/gift-list';
 import { Item } from '../../../../core/interfaces/item';
+import { User } from '../../../../core/interfaces/user';
+import { UserService } from '../../../../core/services/user.service';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
 import { ITEM_LIST, ITEM_LIST_SHARED } from '../imports';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
-import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 import { AddMessageDialogComponent } from './add-message-dialog/add-message-dialog.component';
-import { PaymentData } from '../../../../core/interfaces/payment-data';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dialog.component';
-import { Category } from '../../../../core/interfaces/category';
-import { ItemService } from '../../../../core/services/item.service';
-import { UserService } from '../../../../core/services/user.service';
-import { GiftList } from '../../../../core/interfaces/gift-list';
-import { User } from '../../../../core/interfaces/user';
 
 @Component({
   selector: 'app-item-list',
@@ -103,7 +101,6 @@ export class ItemListComponent implements OnInit, OnChanges {
     });
   }
 
-
   handleDelete(item: Item) {
     const index = this.r_items.findIndex(i => i.id === item.id);
 
@@ -123,14 +120,14 @@ export class ItemListComponent implements OnInit, OnChanges {
       }
     });
 
-    dialogRef.afterClosed().subscribe((result: PaymentData | undefined) => {
+    dialogRef.afterClosed().subscribe((result: Contribution | undefined) => {
       if (result) {
 
         if (result.pixDetails)
           this.openPaymentPixDialog(result);
 
         else if (result.cardDetails) {
-          this.openAddMessageDialog();
+          this.openAddMessageDialog(result);
         }
       } else
         this.#snackbarService.showAlert("Pagamento cancelado.");
@@ -138,17 +135,20 @@ export class ItemListComponent implements OnInit, OnChanges {
     });
   }
 
-  openAddMessageDialog() {
+  openAddMessageDialog(payment: Contribution) {
     const dialogRef = this.dialog.open(AddMessageDialogComponent, {
       disableClose: true,
       data: {
+        payment: payment,
         themeColor: this.r_themeColor
       }
     });
-    dialogRef.afterClosed().subscribe(() => { });
+    dialogRef.afterClosed().subscribe(() => {
+      window.location.reload();
+    });
   }
 
-  openPaymentPixDialog(payment: PaymentData) {
+  openPaymentPixDialog(payment: Contribution) {
     this.#userService.getUserById(this.giftList.userId).subscribe({
       next: (user) => {
         console.log('user: ', user);
@@ -162,12 +162,12 @@ export class ItemListComponent implements OnInit, OnChanges {
         const dialogRef = this.dialog.open(PaymentPixDialogComponent, {
           data: {
             themeColor: this.r_themeColor,
-            value: payment.amount
+            payment: payment
           }
         });
 
-        dialogRef.afterClosed().subscribe(() => {
-          this.openAddMessageDialog();
+        dialogRef.afterClosed().subscribe((result) => {
+          this.openAddMessageDialog(result);
         });
       },
       error: (err) => {

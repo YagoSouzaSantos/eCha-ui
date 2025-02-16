@@ -13,11 +13,11 @@
     <app-evolution-item-bar
       [r_themeColor]="r_themeColor"
       [r_valueItem]="r_item.totalValue"
-      [r_valueItemCollected]="r_item.valueItemCollected" />
+      [r_valueItemCollected]="r_item.valueCollected" />
 
     <div *ngIf="r_editable" class="action">
       <button mat-button (click)="onClickEdit(r_item)"><i class="ph ph-pencil-simple"></i></button>
-      <button mat-button (click)="onClickDelete(r_item)" [disabled]="r_item.valueItemCollected > 0"><i class="ph ph-trash"></i></button>
+      <button mat-button (click)="onClickDelete(r_item)" [disabled]="r_item.valueCollected > 0"><i class="ph ph-trash"></i></button>
     </div>
   </div>
 </mat-card>

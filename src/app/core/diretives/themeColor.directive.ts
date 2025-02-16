@@ -66,7 +66,7 @@ export class ThemeColorDirective {
         break;
 
       default:
-        this.el.nativeElement.style.backgroundColor = '#59ba29';
+        this.el.nativeElement.style.backgroundColor = '#ebe6e6';
         this.el.nativeElement.style.color = '#fff';
         break;
     }

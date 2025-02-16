@@ -22,7 +22,7 @@ export class AuthenticationService extends LocalStorageService {
     return localStorage.getItem('EChaAccessToken') !== null;
   }
 
-  getUser(): User {
+  setUserByToken(): User {
     const token = localStorage.getItem('EChaAccessToken');
 
     const payload = JSON.parse(atob(token!.split('.')[1]));
@@ -41,7 +41,19 @@ export class AuthenticationService extends LocalStorageService {
       profileImage: userData.ProfileImage
     };
 
+    this,this.setUserLocalStorage(user)
+
     return user;
+  }
+
+  updateUserProfileImage(newProfileImage: string): void {
+    const user = this.getUser();
+    user.profileImage = newProfileImage;
+    this.setUserLocalStorage(user);
+  }
+
+  getUser(): User {
+    return JSON.parse(localStorage.getItem('user')!) as User;
   }
 
   logout(): void {

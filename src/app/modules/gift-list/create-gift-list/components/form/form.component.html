@@ -47,6 +47,10 @@
 
   <button mat-flat-button class="full-width-button" smoothBackGround={{currentTheme}} (click)="onSubmit($event)"> Pronto!
   </button>
-  <div class="item5"><button mat-button textColor={{currentTheme}} class="full-width-button">Use as configurações padrão</button></div>
+  <div class="item5">
+    <button
+      mat-button textColor={{currentTheme}}
+      class="full-width-button"
+      [routerLink]="'/home'">Criar lista de presentes depois</button></div>
 
 </form>

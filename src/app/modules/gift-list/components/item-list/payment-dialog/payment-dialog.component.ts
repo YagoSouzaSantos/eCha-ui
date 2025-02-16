@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item } from '../../../../../core/interfaces/item';
-
-import { PaymentData } from '../../../../../core/interfaces/payment-data';
+import { Contribution } from '../../../../../core/interfaces/contribution';
 import { DIALOG } from '../../imports';
 
 export interface DialogData {
@@ -24,9 +23,8 @@ export class PaymentDialogComponent {
 
   selectedOption: string = '1';
 
-
   customValue: number = this.data?.item?.remainingValue ?? 0;
-  remainingValue: number = (this.data?.item?.totalValue ?? 0) - (this.data?.item?.valueItemCollected ?? 0);
+  remainingValue: number = (this.data.item?.totalValue ?? 0) - (this.data?.item?.valueCollected ?? 0);
   email: string = '';
   cardDetails = {
     number: '',
@@ -42,30 +40,27 @@ export class PaymentDialogComponent {
   installments = Array.from({ length: 10 }, (_, i) => i + 1);
 
   confirmPayment() {
-    const paymentData: PaymentData = {
-      method: this.selectedOption === '1' ? 'total' : 'custom',
-      amount: this.selectedOption === '1' ? this.remainingValue : this.customValue,
-      email: this.email
+    const paymentData: Contribution = {
+      itemId: this.data.item.id,
+      value: this.selectedOption === '1' ? this.remainingValue : this.customValue,
+      contributorEmail: this.email,
+      isVisible: true
     };
 
-    if (this.selectedOption === '1' || this.selectedOption === '2') {
-      console.log("Pagamento: ", paymentData);
-    }
+    // if (this.selectedOption === '1' || this.selectedOption === '2') {
+    //   console.log("Pagamento: ", paymentData);
+    // }
 
     if (this.cardDetails.number) {
       paymentData.cardDetails = { ...this.cardDetails };
-      console.log("Detalhes do Cartão: ", paymentData.cardDetails);
     }
 
     if (this.pixDetails.payerName) {
       paymentData.pixDetails = { ...this.pixDetails };
-      console.log("Detalhes do PIX: ", paymentData.pixDetails);
     }
 
     this.dialogRef.close(paymentData);
   }
-
-
   allowOnlyNumbers(event: KeyboardEvent) {
     const allowedKeys = ['Backspace', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight', 'Delete'];
     if (allowedKeys.indexOf(event.key) !== -1 || /^[0-9]$/.test(event.key)) {
@@ -73,6 +68,7 @@ export class PaymentDialogComponent {
     }
     event.preventDefault();
   }
+
   formatExpiryDate() {
     const value = this.cardDetails.expiry.replace(/\D/g, '');
     if (value.length > 4) {
@@ -83,12 +79,15 @@ export class PaymentDialogComponent {
       this.cardDetails.expiry = value;
     }
   }
+
   formatCardNumber() {
     this.cardDetails.number = this.cardDetails.number.replace(/\D/g, '').slice(0, 16);
   }
+
   formatCVV() {
     this.cardDetails.cvv = this.cardDetails.cvv.replace(/\D/g, '').slice(0, 3);
   }
+
   isFormValid(): boolean {
     if (!this.selectedOption) return false;
 
@@ -102,6 +101,7 @@ export class PaymentDialogComponent {
 
     return false;
   }
+
   private isCardDetailsValid(): boolean {
     return (
       this.cardDetails.number.length === 16 &&
@@ -111,12 +111,15 @@ export class PaymentDialogComponent {
       this.cardDetails.installments > 0
     );
   }
+
   private isPixDetailsValid(): boolean {
     return this.pixDetails.payerName.trim().length > 0;
   }
+
   private isCreditCardSelected(): boolean {
     return this.selectedOption !== '' && this.cardDetails.number !== '';
   }
+
   private isPixSelected(): boolean {
     return this.selectedOption !== '' && this.pixDetails.payerName !== '';
   }

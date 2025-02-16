@@ -35,9 +35,10 @@ export class AddItemDialogComponent {
     listId: this.data.listId,
     name: '',
     totalValue: 0,
-    valueItemCollected: 0,
+    valueCollected: 0,
     categoryId: 1,
     image: null,
+    contributions: []
   };
 
   ngOnInit(): void {

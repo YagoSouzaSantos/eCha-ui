@@ -63,8 +63,7 @@ export class AddMessageDialogComponent {
       console.log('Objeto atualizado:', updatedPayment);
 
       this.#contributionService.postContribution(updatedPayment).subscribe({
-        next: () => this.#snackbarService.showSuccess('Contribuição registrada com sucesso.'),
-        error: () => this.#snackbarService.showError('Não foi possível concluir a operação.')
+        next: () => this.#snackbarService.showSuccess('Contribuição registrada com sucesso.')
       });
       this.dialogRef.close();
     }

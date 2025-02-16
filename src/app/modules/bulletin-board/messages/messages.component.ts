@@ -41,4 +41,8 @@ export class MessagesComponent {
       }
     });
   }
+
+  get filteredMessages() {
+    return this.r_editable ? this.r_messages : this.r_messages.filter(m => m.isVisible);
+  }
 }

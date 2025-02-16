@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -24,15 +24,17 @@ import { User } from '../../core/interfaces/user';
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   #giftListService = inject(GiftListService);
   #authenticationService = inject(AuthenticationService);
   giftLists$ = signal<GiftList[] | null>(null);
   filteredGiftLists$ = signal<GiftList[] | null>(null);
   filterValue: string = '';
 
-  constructor() {
-    this.getGiftLists();
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.getGiftLists();
+    }, 2000);
   }
 
   getGiftLists() {

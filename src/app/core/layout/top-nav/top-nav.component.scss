@@ -23,8 +23,9 @@ button {
   margin: 0 8px 0 8px;
 }
 
-mat-icon {
+i {
   color: #fff;
+  font-size: 1em;
 }
 
 img {
@@ -35,6 +36,8 @@ img {
 .menu {
   display: none;
 }
+
+
 
 @media (max-width: 600px) {
   .action {

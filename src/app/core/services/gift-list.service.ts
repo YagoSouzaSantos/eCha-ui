@@ -38,9 +38,12 @@ export class GiftListService {
     );
   }
 
-
-
   updateGiftList(id: string, updatedGiftList: GiftList): Observable<GiftList> {
     return this.http.put<GiftList>(`${environment.apiUrl}/list/${id}`, updatedGiftList);
   }
+
+  giftListCashout(id: string): Observable<string> {
+    return this.http.post(`${environment.apiUrl}/list/${id}/cashout`, null, { responseType: 'text' });
+  }
+
 }

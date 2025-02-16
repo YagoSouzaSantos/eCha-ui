@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { LocalStorageService } from '../../shared/services/local-storage.service';
 import { User } from '../interfaces/user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService extends LocalStorageService {
+  #userService = inject(UserService);
+  user!: User;
+
   setTokensLocalStorage(token: string) {
     this.saveTokensLocalstorage(token)
   }
@@ -19,31 +23,24 @@ export class AuthenticationService extends LocalStorageService {
   }
 
   isUserAuthenticated(): boolean {
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      return false;
+    }
+
     return localStorage.getItem('EChaAccessToken') !== null;
   }
 
-  setUserByToken(): User {
+  setUserByToken() {
     const token = localStorage.getItem('EChaAccessToken');
 
     const payload = JSON.parse(atob(token!.split('.')[1]));
 
     const userData = JSON.parse(payload.UserData);
 
-    const user: User = {
-      id: userData.Id,
-      email: userData.Email,
-      statusUserId: userData.StatusUserId,
-      password: userData.Password,
-      cpf: userData.Cpf,
-      pixKey: userData.PixKey,
-      contactNumber: userData.ContactNumber,
-      name: userData.Name,
-      profileImage: userData.ProfileImage
-    };
-
-    this,this.setUserLocalStorage(user)
-
-    return user;
+    this.#userService.getUserById(userData.Id).subscribe((response) => {
+      this.user = response;
+      this.setUserLocalStorage(this.user)
+    })
   }
 
   updateUserProfileImage(newProfileImage: string): void {
@@ -58,6 +55,7 @@ export class AuthenticationService extends LocalStorageService {
 
   logout(): void {
     localStorage.removeItem('EChaAccessToken');
+    localStorage.removeItem('user');
     window.location.reload();
   }
 }

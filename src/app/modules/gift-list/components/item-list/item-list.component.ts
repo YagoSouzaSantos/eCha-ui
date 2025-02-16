@@ -12,6 +12,7 @@ import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.compon
 import { AddMessageDialogComponent } from './add-message-dialog/add-message-dialog.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 import { PaymentPixDialogComponent } from './payment-pix-dialog/payment-pix-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-list',
@@ -32,6 +33,7 @@ export class ItemListComponent implements OnInit, OnChanges {
   readonly dialog = inject(MatDialog);
   #snackbarService = inject(SnackbarService);
   #userService = inject(UserService);
+  #router = inject(Router);
 
   filteredItems: Item[] = [];
   filterValue: string = '';
@@ -144,7 +146,7 @@ export class ItemListComponent implements OnInit, OnChanges {
       }
     });
     dialogRef.afterClosed().subscribe(() => {
-      window.location.reload();
+      this.#router.navigate([`/bulletin-board/${this.giftList.id}`]);
     });
   }
 
@@ -169,10 +171,6 @@ export class ItemListComponent implements OnInit, OnChanges {
         dialogRef.afterClosed().subscribe((result) => {
           this.openAddMessageDialog(result);
         });
-      },
-      error: (err) => {
-        console.error('Erro ao buscar usuário:', err);
-        this.#snackbarService.showError('Erro ao buscar usuário.');
       }
     });
   }

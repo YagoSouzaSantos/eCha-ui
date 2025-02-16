@@ -9,8 +9,7 @@
     <section class="action">
 
       @if (user) {
-        <!-- <button mat-stroked-button class="btn-ol-dark" (click)="getBalance()">Meu saldo</button> -->
-        <button mat-button (click)="onExit()"><mat-icon>logout</mat-icon></button>
+        <button mat-stroked-button class="btn-ol-dark"(click)="onExit()"><i class="ph ph-arrow-u-down-left"></i> Voltar para Home</button>
       } @else {
 
         @if( r_themeColor == 'white') {

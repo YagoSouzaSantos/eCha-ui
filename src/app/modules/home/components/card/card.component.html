@@ -20,10 +20,19 @@
       (click)="onRankingClick()"
       matTooltip="Ranking de doadores"><i class="ph ph-ranking"></i></button>
 
-    <button
-      mat-icon-button
-      (click)="onMakeWithdrawal()"
-      matTooltip="Realizar saque"><i class="ph ph-hand-withdraw"></i></button>
+
+    @if (r_giftList.statusListId == 1) {
+      <button
+        mat-icon-button
+        (click)="onMakeWithdrawal()"
+        matTooltip="Realizar saque"><i class="ph ph-hand-withdraw"></i></button>
+    }
+    @else {
+      <button
+        mat-icon-button
+        matTooltip="Solicitação de saque em andamento"
+        smoothBackGround="yellow"><i class="ph ph-hand-withdraw"></i></button>
+    }
 
 
     <button
@@ -33,10 +42,12 @@
 
     <span class="spacer"></span>
 
-    <button
-      mat-icon-button
-      smoothBackGround="green"
-      [routerLink]="'/editor/' + r_giftList.id"
-      matTooltip="Editar"><i class="ph ph-pencil-simple"></i></button>
+    @if(r_giftList.statusListId == 1){
+      <button
+        mat-icon-button
+        smoothBackGround="green"
+        [routerLink]="'/editor/' + r_giftList.id"
+        matTooltip="Editar"><i class="ph ph-pencil-simple"></i></button>
+    }
   </mat-card-actions>
 </mat-card>

@@ -1,1 +1,20 @@
-<p>withdraw-dialog works!</p>,
+<mat-card class="withdraw-dialog">
+  <mat-card-content class="content">
+    <h2 class="title">Realizar Saque</h2>
+    <p class="subtitle">Valor disponível para saque</p>
+    <p class="balance"> R$ {{ data.giftList.totalValue ? data.giftList.totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : '0,00' }}</p>
+
+    <p class="info-message">
+      Após solicitar o saque, o depósito será processado e poderá levar até 24 horas para ser creditado em sua conta. Agradecemos pela sua compreensão!
+    </p>
+
+    <button
+      mat-button
+      themeColor="green"
+      class="withdraw-button"
+      (click)="withdraw()" >
+      <i class="ph ph-hand-withdraw"></i> Solicitar saque</button>
+
+      <button mat-button (click)="onCancel()" class="withdraw-button">Cancelar</button>
+  </mat-card-content>
+</mat-card>

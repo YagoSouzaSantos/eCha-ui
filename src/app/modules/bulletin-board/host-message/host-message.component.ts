@@ -13,7 +13,7 @@ import { HostMessageDialogComponent } from './host-message-dialog/host-message-d
 })
 export class HostMessageComponent {
   @Input({ required: true }) r_themeColor!: string;
-  @Input({ required: true }) r_hostImage!: string;
+  @Input({ required: true }) r_hostImage!: string | null;
   @Input({ required: true }) r_hostMessage!: string;
   @Input({ required: true }) r_editable!: boolean;
 

@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Comprar {{ data.item.name }} </h2>
 <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
   <mat-radio-button value="1">
-    Pagar valor total de R${{ data.item.remainingValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}
+    Pagar valor total de R${{ remainingValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }}
   </mat-radio-button>
 
   <div class="radio-input-container">
@@ -21,6 +21,18 @@
 </mat-radio-group>
 
 <mat-dialog-content class="content">
+  <div class="payment-pix">
+
+    <mat-form-field>
+      <mat-label>E-mail (para envio do comprovante)</mat-label>
+      <input matInput
+             name="email"
+             required
+             [(ngModel)]="email" />
+    </mat-form-field>
+  </div>
+
+
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>

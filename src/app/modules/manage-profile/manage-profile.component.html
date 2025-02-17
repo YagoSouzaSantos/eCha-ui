@@ -1,0 +1,71 @@
+<app-toolbar [r_user]="user"></app-toolbar>
+
+<div class="content">
+  <mat-card class="profile-card" appearance="outlined">
+    <h2>Gerenciar conta de usuário</h2>
+
+    <div class="profile-container">
+
+
+      <div>
+      <app-profile-picture class="image-container"
+        [r_editable]="true"
+        [r_iconName]="'ph ph-user'"
+        [size]="150"
+        [r_themeColor]="'green'"
+        [image]="user.profileImage"
+        (imageDataChange)="onImageChange($event)" />
+      </div>
+
+      <div class="form-container">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+          <div class="input-label">Nome</div>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+
+          <div class="input-label">E-mail</div>
+          <mat-form-field appearance="outline">
+            <input matInput [disabled]="true" type="email" formControlName="email">
+          </mat-form-field>
+
+          <div class="input-label">CPF</div>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="cpf">
+          </mat-form-field>
+
+          <div class="input-label">Chave PIX</div>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="pixKey">
+          </mat-form-field>
+
+
+          <div class="input-label">Telefone para contato</div>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="contactNumber">
+          </mat-form-field>
+
+          <button
+            mat-flat-button
+            themeColor="green"
+            type="submit"
+            [disabled]="form.invalid">
+            <i class="ph ph-floppy-disk"></i>  Salvar
+          </button>
+
+          <button
+            [routerLink]="'/home'"
+            mat-flat-button>
+            <i class="ph ph-x-circle"></i>  Cancelar
+          </button>
+        </form>
+      </div>
+
+
+      <div class="extra-image-container">
+        <img src="assets/image/manage-profile/image.jpg" alt="Extra Image">
+      </div>
+    </div>
+  </mat-card>
+</div>
+<app-minimalist-footer />

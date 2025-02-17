@@ -1,10 +1,11 @@
 export interface User {
   id: number;
   email: string;
+  statusUserId: number;
   password: string;
-  firstName: string;
-  lastName: string;
-  imageURL: string;
-  imageBase64: string;
-  themeColor: string;
+  cpf: string;
+  pixKey: string;
+  contactNumber: string;
+  name: string;
+  profileImage: string;
 }

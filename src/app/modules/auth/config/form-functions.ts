@@ -15,7 +15,9 @@ export function createRegisterForm(fb: FormBuilder): FormGroup {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      contactNumber: [''],
+      authenticationMethodId: [1]
     },
     {
       validators: [matchPasswords('password', 'confirmPassword')],

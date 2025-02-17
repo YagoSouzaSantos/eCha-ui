@@ -1,12 +1,15 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthenticationService } from "../../../../core/services/authentication.service";
 
-export function creationForm(fb: FormBuilder): FormGroup {
+export function creationForm(fb: FormBuilder, authService: AuthenticationService): FormGroup {
+  const user = authService.getUser();
   return fb.group({
+    userId: [user ? user.id : null],
     title: ['', [Validators.required]],
-    message: [''],
-    themeColor: ['', [Validators.required]],
-    typography: [1,],
+    description: [''],
+    highlightColor: ['', [Validators.required]],
+    fontId: [1],
     photoUrl: [null],
-    photo: [null],
+    image: [null],
   });
 }

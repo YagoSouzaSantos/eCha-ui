@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Register } from '../../shared/interfaces/register';
-import { ResponseAuth } from '../interfaces/responses/response-auth';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { ResponseAuth } from '../interfaces/responses/response-auth';
 export class RegisterService {
   private http = inject(HttpClient)
 
-  createUser(register: Register): Observable<ResponseAuth> {
-    return this.http.post<ResponseAuth>(`${environment.apiUrl}/user`, register);
+  createUser(register: Register): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/user`, register);
   }
 }

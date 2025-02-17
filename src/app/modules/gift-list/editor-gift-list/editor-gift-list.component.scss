@@ -9,13 +9,23 @@
   margin: 0 auto;
   overflow-x: hidden;
 
-  & > div:nth-child(2) {
+  &>div:nth-child(2) {
     flex-grow: 1;
   }
 }
 
+.loading {
+  padding: 16px;
+  min-height: 90vh;
+}
+
+.select-color {
+  max-width: 250px ;
+  margin-left: auto;
+}
+
 @media (max-width: 768px) {
-  .content{
+  .content {
     flex-direction: column;
     margin: 0 auto 30px auto;
   }

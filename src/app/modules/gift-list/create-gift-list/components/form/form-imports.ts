@@ -7,6 +7,7 @@ import { SmoothBackGroundDirective } from "../../../../../core/diretives/smoothB
 import { TextColorDirective } from "../../../../../core/diretives/textColor.directive";
 import { ProfilePictureComponent } from "../../../../../shared/components/profile-picture/profile-picture.component";
 import { SelectColorComponent } from "../select-color/select-color.component";
+import { RouterLink } from "@angular/router";
 
 export const IMPORTS = [
   ReactiveFormsModule,
@@ -18,5 +19,6 @@ export const IMPORTS = [
   MatChipsModule,
   MatButtonModule,
   SmoothBackGroundDirective,
-  TextColorDirective
+  TextColorDirective,
+  RouterLink
 ]

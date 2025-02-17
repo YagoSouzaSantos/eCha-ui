@@ -1,4 +1,9 @@
+import { Item } from "./item";
+
 export interface Category {
-  value: string;
-  viewValue: string;
+  id: number;
+  name: string;
+  creationDate: Date;
+  updateDate: Date;
+  items: Item[];
 }

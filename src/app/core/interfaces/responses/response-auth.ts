@@ -1,6 +1,7 @@
 export interface ResponseAuth {
-  name: string;
-  tokens: Tokens;
+  name?: string;
+  token: string;
+  tokens?: Tokens;
 }
 
 export interface Tokens {

@@ -1,13 +1,14 @@
-import { Message } from './message';
+import { Contribution } from "./contribution";
 
 export interface BulletinBoard {
-  hostImage: string;
+  id?: string;
+  hostImage: string | null;
   hostMessage: string;
-  messages: Message[];
+  messages: Contribution[];
   totalValue: number;
   collectedValue: number;
   contributorCount: number;
   themeColor: string;
-  eventDate: Date;
+  eventDate: Date | null;
   giftListKey: string;
 }

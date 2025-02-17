@@ -1,10 +1,12 @@
+import { Contribution } from "./contribution";
+
 export interface Item {
   id: number;
   name: string;
-  category: string;
+  listId: string;
+  categoryId: number;
   image: string | null;
-  imageUrl: string | null;
-  valueItem: number;
-  valueItemCollected: number;
-  remainingValue : number;
+  totalValue: number;
+  valueCollected: number;
+  contributions: Contribution[];
 }

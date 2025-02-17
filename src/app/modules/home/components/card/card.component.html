@@ -1,0 +1,53 @@
+<mat-card appearance="outlined">
+  <img matCardImage src="{{r_giftList.image}}">
+
+  <mat-card-header>
+    <mat-card-title>{{r_giftList.title}}</mat-card-title>
+  </mat-card-header>
+
+  <div class="hr-line" themeColor="{{r_giftList.highlightColor}}"></div>
+
+  <mat-card-content class="text"> {{r_giftList.description}}</mat-card-content>
+
+  <mat-card-actions>
+    <button
+      mat-icon-button
+      [routerLink]="'/donation/' + r_giftList.id"
+      matTooltip="Visualizar lista"><i class="ph ph-eyes"></i></button>
+
+    <button
+      mat-icon-button
+      (click)="onRankingClick()"
+      matTooltip="Ranking de doadores"><i class="ph ph-ranking"></i></button>
+
+
+    @if (r_giftList.statusListId == 1) {
+      <button
+        mat-icon-button
+        (click)="onMakeWithdrawal()"
+        matTooltip="Realizar saque"><i class="ph ph-hand-withdraw"></i></button>
+    }
+    @else {
+      <button
+        mat-icon-button
+        matTooltip="Solicitação de saque em andamento"
+        smoothBackGround="yellow"><i class="ph ph-hand-withdraw"></i></button>
+    }
+
+
+    <button
+      mat-icon-button
+      (click)="goToBulletinBoard()"
+      matTooltip="Ver mensagens"><i class="ph ph-chats-teardrop"></i></button>
+
+    <span class="spacer"></span>
+
+    @if(r_giftList.statusListId == 1){
+      <button
+        mat-icon-button
+        smoothBackGround="green"
+        [routerLink]="'/editor/' + r_giftList.id"
+        matTooltip="Editar"><i class="ph ph-pencil-simple"></i></button>
+    }
+  </mat-card-actions>
+</mat-card>

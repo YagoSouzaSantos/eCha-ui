@@ -12,7 +12,7 @@ export class BulletinBoardEvolutionBarComponent {
   @Input({ required: true }) r_valueCollected!: number;
   @Input({ required: true }) r_themeColor!: string;
   @Input({ required: true }) r_contributorCount!: number;
-  @Input({ required: true }) r_eventDate!: Date;
+  @Input({ required: true }) r_eventDate?: Date | null;
 
   percentageValue: number = 0;
   remainingDays: number | null = null
@@ -49,19 +49,31 @@ export class BulletinBoardEvolutionBarComponent {
     }
   }
 
-  calculateDaysUntil(targetDate: Date): boolean {
-    const today = new Date();
-
-    today.setHours(0, 0, 0, 0);
-    targetDate.setHours(0, 0, 0, 0);
-
-    if (today > targetDate) {
+  calculateDaysUntil(targetDate: any): boolean {
+    if (!targetDate) {
+      console.error("Erro: targetDate é indefinido ou nulo.");
       return false;
     }
-    const diffInTime = targetDate.getTime() - today.getTime();
 
+    const date = targetDate instanceof Date ? targetDate : new Date(targetDate);
+
+    if (isNaN(date.getTime())) {
+      console.error("Erro: targetDate não é uma data válida:", targetDate);
+      return false;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    date.setHours(0, 0, 0, 0);
+
+    if (today > date) {
+      return false;
+    }
+
+    const diffInTime = date.getTime() - today.getTime();
     this.remainingDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
     return true;
   }
+
 }

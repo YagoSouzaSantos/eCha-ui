@@ -1,7 +1,12 @@
 <form [formGroup]="creationForm">
 
   <div class="row gap-8">
-    <app-profile-picture class="collumn col-2" [size]="100" [themeColor]="currentTheme" [r_editable]="true" (imageDataChange)="onImageDataChange($event)" />
+    <app-profile-picture
+      [r_iconName]="'ph ph-image-square'"
+      class="collumn col-2"
+      [size]="100" [r_themeColor]="currentTheme"
+      [r_editable]="true"
+      (imageDataChange)="onImageDataChange($event)" />
 
     <div class="collumn col-10">
       <div class="input-label">Título da lista de presentes</div>
@@ -17,17 +22,16 @@
 
   </div>
 
-  <section>
-
+  <!-- <section>
     <div class="input-label">Fonte escolhida</div>
-
-    <mat-chip-listbox aria-label="Cutest dog breeds">
-      @for (dog of bestBoys; track dog) {
-        <mat-chip-option smoothBackGround={{currentTheme}}>{{dog}}</mat-chip-option>
+    <mat-chip-listbox formControlName="fontId">
+      @for (item of fonts; track item) {
+        <mat-chip-option [value]="item.fontId" smoothBackGround={{currentTheme}}>
+          {{ item.name }}
+        </mat-chip-option>
       }
-
     </mat-chip-listbox>
-  </section>
+  </section> -->
 
 
   <section>
@@ -35,7 +39,7 @@
     <mat-form-field class="example-full-width">
       <textarea matInput
         placeholder="Deixe aqui uma mensagem carinhosa que vai aparecer pras pessoas que te ajudarem. Mostre um pouco da sua gratidão aos seus entes queridos <3"
-        style="height: 116px;" formControlName="message"></textarea>
+        style="height: 116px;" formControlName="description"></textarea>
     </mat-form-field>
 
 
@@ -43,6 +47,10 @@
 
   <button mat-flat-button class="full-width-button" smoothBackGround={{currentTheme}} (click)="onSubmit($event)"> Pronto!
   </button>
-  <div class="item5"><button mat-button textColor={{currentTheme}} class="full-width-button">Use as configurações padrão</button></div>
+  <div class="item5">
+    <button
+      mat-button textColor={{currentTheme}}
+      class="full-width-button"
+      [routerLink]="'/home'">Criar lista de presentes depois</button></div>
 
 </form>

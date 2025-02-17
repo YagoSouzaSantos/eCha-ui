@@ -30,7 +30,12 @@ section {
 }
 
 .mat-mdc-unelevated-button {
-  // background-color: $action-button !important;
   color: $text-action-button !important;
   font-weight: 450 !important;
+}
+
+::ng-deep .mdc-evolution-chip--selected {
+  *{
+    color: rgb(0, 0, 0) !important;
+  }
 }

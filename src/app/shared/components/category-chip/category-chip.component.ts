@@ -1,26 +1,32 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output, signal } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { Category } from '../../../core/interfaces/category';
-import { SnackbarService } from '../../services/snackbar.service';
+import { CategoryService } from '../../../core/services/category.service';
 
 @Component({
   selector: 'app-category-chip',
   standalone: true,
   imports: [MatChipsModule],
   templateUrl: './category-chip.component.html',
-  styleUrl: './category-chip.component.scss',
+  styleUrls: ['./category-chip.component.scss'], // Corrigido para "styleUrls"
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryChipComponent {
-  @Output() filterChange = new EventEmitter<string>();
+  @Output() filterChange = new EventEmitter<Category>();
+  #categoryService = inject(CategoryService);
 
-  categories: Category[] = [
-    { value: 'Eletrodomésticos', viewValue: 'Eletrodomésticos' },
-    { value: 'Utensílios de Cozinha', viewValue: 'Utensílios de Cozinha' },
-    { value: 'Eletroportáteis', viewValue: 'Eletroportáteis' }
-  ];
+  categories = signal<Category[]>([]);
 
-  onSubmit(value: string): void {
-      this.filterChange.emit(value);
+  ngOnInit(): void {
+    this.#categoryService.getAllCategories().subscribe({
+      next: (data) => this.categories.set(data),
+      error: (err) => {
+        console.error('Erro ao buscar categorias:', err);
+      },
+    });
+  }
+
+  onSubmit(category: Category): void {
+    this.filterChange.emit(category);
   }
 }

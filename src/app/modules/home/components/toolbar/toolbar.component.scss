@@ -1,0 +1,46 @@
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding-top: 8px;
+  justify-content: center;
+  background-color: transparent;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+mat-toolbar {
+  background-color: #fff;
+  color: #fff;
+}
+
+img {
+  height: 48px;
+  width: auto;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.profile:hover {
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+button {
+  margin: 0 6px;
+}
+
+.menu {
+  width: 200px !important;
+  overflow-x: hidden;
+}

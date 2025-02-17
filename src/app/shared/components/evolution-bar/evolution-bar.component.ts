@@ -9,9 +9,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './evolution-bar.component.scss'
 })
 export class EvolutionBarComponent implements OnChanges {
-  @Input({ required: true }) r_contributorCount!: number;
-  @Input({ required: true }) r_valueCollected!: number;
-  @Input({ required: true }) r_totalValue!: number;
+  @Input({ required: true }) r_contributorCount: number = 0;
+  @Input({ required: true }) r_valueCollected: number | undefined = 0;
+  @Input({ required: true }) r_totalValue: number = 0;
   @Input({ required: true }) r_themeColor!: string;
 
   percentageValue: number = 0;
@@ -40,12 +40,16 @@ export class EvolutionBarComponent implements OnChanges {
   }
 
   calculatePercentage() {
-    if (this.r_totalValue > 0) {
-      this.percentageValue = Math.floor((this.r_valueCollected / this.r_totalValue) * 100);
+    const valueCollected = this.r_valueCollected || 0;
+    const totalValue = this.r_totalValue || 0;
+
+    if (totalValue > 0) {
+      this.percentageValue = Math.floor((valueCollected / totalValue) * 100);
     } else {
       this.percentageValue = 0;
     }
   }
+
 }
 
 

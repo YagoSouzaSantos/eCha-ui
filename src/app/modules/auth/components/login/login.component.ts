@@ -1,15 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { DoLogin } from './../../../../core/interfaces/login';
-import { LoginFormComponent } from "./ui/login-form/login-form.component";
 import { MatCard } from '@angular/material/card';
+import { Router } from '@angular/router';
 import { ResponseAuth } from '../../../../core/interfaces/responses/response-auth';
 import { ResponseError } from '../../../../core/interfaces/responses/response-error';
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { LoginService } from '../../../../core/services/login.service';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
-
-
+import { DoLogin } from './../../../../core/interfaces/login';
+import { LoginFormComponent } from "./ui/login-form/login-form.component";
 
 @Component({
   selector: 'app-sign-in',
@@ -27,24 +25,19 @@ export class LoginComponent {
   doLogin(loLogin: DoLogin) {
     this.#loginService.doLogin(loLogin).subscribe({
       next: (response) => this.processSuccess(response),
-      error: (errorResponse) => this.processError(errorResponse)
+      error: () => this.#snackbarService.showSuccess('Não foi possível realizar login')
     });
   }
 
   private processSuccess(response: ResponseAuth): void {
-    if (response.tokens?.accessToken) {
-      this.#authenticationService.setTokensLocalStorage(response.tokens.accessToken);
-      this.#snackbarService.showSuccess('Login realizado com sucesso.');
+    if (response) {
+      this.#authenticationService.setTokensLocalStorage(response.token);
+      this.#authenticationService.setUserByToken();
+      this.#snackbarService.showSuccess('Bem-vindo ao eChá!');
       this.#router.navigate(['/home']);
     } else {
       this.#snackbarService.showError('Resposta inválida do servidor.');
     }
   }
-
-  private processError(errorResponse: ResponseError): void {
-    const errorMessage = errorResponse.errors?.[0];
-    this.#snackbarService.showError(errorMessage);
-  }
-
 }
 

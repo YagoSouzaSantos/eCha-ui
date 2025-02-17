@@ -1,32 +1,32 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GiftList } from '../../../core/interfaces/gift-list';
-import { Message } from '../../../core/interfaces/message';
 import { SnackbarService } from '../../services/snackbar.service';
-import { bulletinBoardExample } from '../../tests/bulletin-board';
 import { DatePickerDialogComponent } from './datePickerDialog/datePickerDialog.component';
 import { SUMMARY } from './imports';
 import { SummaryMessageDialogComponent } from './summaryMessageDialog/summaryMessageDialog.component';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
   imports: [SUMMARY],
   templateUrl: './summary.component.html',
-  styleUrl: './summary.component.scss'
+  styleUrl: './summary.component.scss',
+
 })
 export class SummaryComponent {
   @Input({ required: true }) r_editable!: boolean;
   @Input({ required: true }) r_giftListData!: GiftList;
+  @Output() save: EventEmitter<void> = new EventEmitter<void>();
 
   #snackbarService = inject(SnackbarService);
   readonly dialog = inject(MatDialog);
 
   remainingDays: number | null = null
-  ml: Message[] = bulletinBoardExample.messages;
 
   share() {
-    const url = `${window.location.origin}/donation/${this.r_giftListData.key}`;
+    const url = `${window.location.origin}/donation/${this.r_giftListData.id}`;
 
     navigator.clipboard.writeText(url).then(
       () => {
@@ -42,13 +42,13 @@ export class SummaryComponent {
     if (this.r_editable) {
       const dialogRef = this.dialog.open(SummaryMessageDialogComponent, {
         data: {
-          message: this.r_giftListData.message,
-          themeColor: this.r_giftListData.themeColor
+          message: this.r_giftListData.description,
+          themeColor: this.r_giftListData.highlightColor
         }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.r_giftListData.message = result.message
+          this.r_giftListData.description = result.message
         }
       });
     }
@@ -59,7 +59,7 @@ export class SummaryComponent {
       const dialogRef = this.dialog.open(DatePickerDialogComponent, {
         data: {
           eventDate: this.r_giftListData.eventDate,
-          themeColor: this.r_giftListData.themeColor
+          themeColor: this.r_giftListData.highlightColor
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -70,19 +70,32 @@ export class SummaryComponent {
     }
   }
 
-  calculateDaysUntil(targetDate: Date): boolean {
+  calculateDaysUntil(targetDate: string | Date | null): boolean {
+    if (!targetDate) return false;
+
+    const target = typeof targetDate === "string" ? new Date(targetDate) : targetDate;
+
+    if (isNaN(target.getTime())) return false;
+
     const today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
+    target.setUTCHours(0, 0, 0, 0);
 
-    today.setHours(0, 0, 0, 0);
-    targetDate.setHours(0, 0, 0, 0);
-
-    if (today > targetDate) {
+    if (today > target) {
       return false;
     }
-    const diffInTime = targetDate.getTime() - today.getTime();
 
+    const diffInTime = target.getTime() - today.getTime();
     this.remainingDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
     return true;
+  }
+
+  onImageChange(event: { image: string }) {
+    this.r_giftListData.image = event.image;
+  }
+
+  saveGiftList() {
+    this.save.emit();
   }
 }

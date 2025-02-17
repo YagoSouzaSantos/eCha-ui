@@ -1,12 +1,11 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { Credentials } from '../../../../../../shared/interfaces/credentials';
+import { Register } from '../../../../../../shared/interfaces/register';
+import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
 import { FormValidation } from '../../../../../../shared/utils/form-validation';
 import { createRegisterForm } from '../../../../config/form-functions';
 import { MATERIAL } from '../../../../config/imports';
-import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
-import { Register } from '../../../../../../shared/interfaces/register';
 
 @Component({
   selector: 'app-register-form',

@@ -13,7 +13,9 @@
   <div class="bar-description">
     <div> {{ percentageValue }}% </div>
 
-    @if (calculateDaysUntil(r_eventDate)) { <div>{{ remainingDays }} dias até o chá</div> }
+    @if (r_eventDate) {
+      @if (calculateDaysUntil(r_eventDate)) { <div>{{ remainingDays }} dias até o chá</div> }
+    }
   </div>
 </div>
 

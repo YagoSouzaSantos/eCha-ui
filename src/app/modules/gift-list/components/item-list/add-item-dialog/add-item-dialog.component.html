@@ -18,7 +18,7 @@
       <span matTextPrefix>R$ &nbsp;</span>
       <input matInput
              type="number"
-             [(ngModel)]="newItem.valueItem"
+             [(ngModel)]="newItem.totalValue"
              (ngModelChange)="onValueChange($event)"
              name="value"
              required
@@ -26,19 +26,14 @@
              min="0" />
     </mat-form-field>
 
-
     <div class="input-label">Categoria</div>
     <mat-form-field>
-      <mat-select Categoria
-        name="category"
-        required
-        placeholder="Selecione uma das opções" >
+      <mat-select [(ngModel)]="newItem.categoryId" name="categoryId" required placeholder="Selecione uma das opções">
         @for (category of categories; track category) {
-          <mat-option [value]="category.value">{{category.viewValue}}</mat-option>
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
-
 
 
     <div class="input-label">Anexar imagem</div>
@@ -55,12 +50,10 @@
       </button>
     }
 
-
-
     <div class="input-label">(Alternativo) Url da imagem do item</div>
     <mat-form-field>
       <input matInput
-        [(ngModel)]="newItem.imageUrl"
+        [(ngModel)]="newItem.image"
         name="imageUrl"
         placeholder="Cole o url da imagem aqui"/>
     </mat-form-field>

@@ -3,33 +3,39 @@
 
   @if(r_editable) { <button mat-button (click)="viewContributionHistory()">Histórico de contribuições  <i class="ph ph-arrow-right"></i></button> }
 
-  @for (message of r_messages; track $index) {
+  @for (message of filteredMessages; track $index) {
   <div class="message-wrapper" [ngClass]="{ 'left': $index % 2 === 0, 'right': $index % 2 !== 0 }">
 
     @if ($index % 2 === 0) {
-      <span class="msg-icon" textColor="{{r_themeColor}}"><i class="{{message.icon}}"></i></span>
-      <div class="message-content" smoothBackGround="{{r_themeColor}}">
-        <p><b>{{message.contributor}}</b></p>
-        <p>“{{ message.message }}”</p>
-      </div>
+
+      @if (message.isVisible || r_editable) {
+        <span class="msg-icon" textColor="{{r_themeColor}}"><i class="{{message.icon}}"></i></span>
+        <div class="message-content" smoothBackGround="{{r_themeColor}}">
+          <p><b>{{message.contributorName}}</b></p>
+          <p>“{{ message.message }}”</p>
+        </div>
+      }
 
       @if (r_editable) {
         <button mat-button (click)="toggleVisibility(message)">
-          <i class="ph" [ngClass]="{'ph-eye': message.visible, 'ph-eye-closed': !message.visible}"></i>
+          <i class="ph" [ngClass]="{'ph-eye': message.isVisible, 'ph-eye-closed': !message.isVisible}"></i>
         </button>
       }
     } @else {
 
       @if (r_editable) {
         <button mat-button (click)="toggleVisibility(message)">
-          <i class="ph" [ngClass]="{'ph-eye': message.visible, 'ph-eye-closed': !message.visible}"></i>
+          <i class="ph" [ngClass]="{'ph-eye': message.isVisible, 'ph-eye-closed': !message.isVisible}"></i>
         </button>
       }
+
+      @if (message.isVisible || r_editable) {
       <div class="message-content" smoothBackGround="{{r_themeColor}}">
-        <p><b>{{message.contributor}}</b></p>
+        <p><b>{{message.contributorName}}</b></p>
         <p class="message">“{{ message.message }}”</p>
       </div>
       <span class="msg-icon" textColor="{{r_themeColor}}"><i class="{{message.icon}}"></i></span>
+      }
     }
 
   </div>

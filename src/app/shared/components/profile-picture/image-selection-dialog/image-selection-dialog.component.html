@@ -1,23 +1,38 @@
-<span class="title">Selecionar imagem</span>
+<mat-dialog-content>
+  <span class="title">Selecionar imagem</span>
 
-<mat-form-field>
-  <mat-label>Selecionar imagem por URL</mat-label>
-  <input matInput [(ngModel)]="urlImage" />
-</mat-form-field>
+  <span class="input-label">Selecionar imagem por URL</span>
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="urlImage"
+      placeholder="Digite a URL da imagem" />
+  </mat-form-field>
+
+  <button
+    mat-flat-button
+    smoothBackGround="{{data.themeColor}}"
+    (click)="fileInput.click()">
+    <i class="ph ph-devices"></i> Ou selecionar do dispositivo
+  </button>
 
 
-<span class="input-label text">ou</span>
 
-<button mat-stroked-button extended (click)="fileInput.click()"><mat-icon>image</mat-icon> Selecionar do dispositivo</button>
-<input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden />
+  <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden />
 
-@if(filePath()){
-  <p class="file-path"><b>Arquivo selecionado: </b>{{ filePath() }}</p>
-}
+  <div class="action">
+    <button
+      mat-flat-button
+      (click)="onConfirm()"
+      [disabled]="!urlImage && !base64Image()"
+      themeColor="{{data.themeColor}}">
+      Confirmar
+    </button>
 
-<mat-dialog-actions>
-
-  <button mat-raised-button (click)="onConfirm()" themeColor={{data.themeColor}}>Confirmar</button>
-  <button mat-button (click)="onCancel()">Cancelar</button>
-
-</mat-dialog-actions>
+    <button
+      mat-flat-button
+      (click)="onCancel()">
+      Cancelar
+    </button>
+  </div>
+</mat-dialog-content>

@@ -38,7 +38,7 @@ export class LoginFormComponent {
   }
 
   alert(): void {
-    this.#snackbarService.showAlert('Método não implementado!');
+    this.#snackbarService.showAlert('Não disponível no momento');
   }
 
   onSubmit(event: Event) {

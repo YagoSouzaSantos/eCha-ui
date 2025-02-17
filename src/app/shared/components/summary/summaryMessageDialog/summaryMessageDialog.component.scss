@@ -27,8 +27,14 @@
     margin-bottom: 12px;
     width: 260px;
   }
+
   .full-width{
     width: 100%;
     width: 260px;
+    height: 200px;
   }
+}
+
+textarea {
+  height: 150px !important;
 }

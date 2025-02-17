@@ -38,8 +38,21 @@ export class AuthenticationService extends LocalStorageService {
     const userData = JSON.parse(payload.UserData);
 
     this.#userService.getUserById(userData.Id).subscribe((response) => {
+      
+      const user: User = {
+        id: response.id,
+        email: response.email,
+        statusUserId: response.statusUserId,
+        password: '',
+        cpf:'',
+        contactNumber:'',
+        pixKey: response.pixKey,        
+        name: response.name,
+        profileImage: response.profileImage
+      }
       this.user = response;
-      this.setUserLocalStorage(this.user)
+      
+      this.setUserLocalStorage(user)
     })
   }
 

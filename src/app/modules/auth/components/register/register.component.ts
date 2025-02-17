@@ -26,15 +26,18 @@ export class RegisterComponent {
   #router = inject(Router);
 
   onRegister(register: Register) {
+    const doLogin = { email: register.email, password: register.password };
+    
     this.#registerService.createUser(register).subscribe({
-      next: (response) => this.processSuccess({ email: response.email, password: response.password }),
+      next: () => this.processSuccess(doLogin),
       error: () => {
         this.#snackbarService.showError('Ocorreu um erro ao criar usuário');
       },
     });
   }
+  
 
-  processSuccess(doLogin: {email: string, password: string}) {
+  processSuccess(doLogin: DoLogin) {
     this.#loginService.doLogin(doLogin).subscribe({
       next: (response) => {
         if (response) {
